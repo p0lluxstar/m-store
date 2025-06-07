@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { medusa } from '../../../medusa-config';
 
 interface Product {
   id: string;
@@ -14,7 +13,7 @@ interface Product {
   }>;
 }
 
-const ProductList = (): JSX.Element => {
+const ProductList = () => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

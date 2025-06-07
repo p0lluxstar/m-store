@@ -3,13 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "medusa"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm --workspace backend run start:dev\" \"npm --workspace frontend run dev\" \"npm --workspace medusa run dev\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/parser": "^8.33.1",
+    "concurrently": "^9.1.2",
+    "eslint-plugin-import": "^2.31.0",
     "prettier": "^3.5.3"
   }
 }

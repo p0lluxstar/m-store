@@ -1,15 +1,18 @@
-import styles from "./page.module.css";
-import ProductList from "./components/ProductList";
+import { JSX } from 'react';
 
-export default function Home() {
+import MainHeader from '@/components/header/MainHeader';
+import ProductList from '@/components/ProductList';
+
+export default function Home(): JSX.Element {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ProductList/>
+    <div>
+      <header>
+        <MainHeader />
+      </header>
+      <main>
+        <ProductList />
       </main>
-      <footer className={styles.footer}>
-       
-      </footer>
+      <footer></footer>
     </div>
   );
 }
