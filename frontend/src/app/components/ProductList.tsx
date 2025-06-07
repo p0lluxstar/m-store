@@ -22,12 +22,13 @@ const ProductList = (): JSX.Element => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { products } = await medusa.store.product.list({
-          fields: `*variants.calculated_price`,
-          region_id: 'reg_01JWRDG8DY2GDMAK48EY1BJ9MF',
-        });
+        const res = await fetch('http://localhost:4000/products');
+        if (!res.ok) {
+          throw new Error(`Ошибка при запросе: ${res.status}`);
+        }
 
-        setProducts(products);
+        const data = await res.json();
+        setProducts(data);
       } catch (err) {
         console.error('Ошибка:', err);
       } finally {
