@@ -5,7 +5,15 @@ body {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+ color: #474747;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 2;
+  margin: 0;
+  overflow-x: hidden;
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
 }
 
 * {
@@ -14,3 +22,8 @@ body {
   margin: 0;
 }
 
+@media only screen and (min-width: 1200px) {
+  .container {
+    max-width: 1200px;
+  }
+}

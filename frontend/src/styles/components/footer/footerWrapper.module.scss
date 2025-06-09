@@ -1,0 +1,10 @@
+@use '../../common/variables' as *;
+
+.footer {
+  background-color: #26292e;
+
+  .container {
+    max-width: $container-width;
+    margin: 0 auto;
+  }
+}

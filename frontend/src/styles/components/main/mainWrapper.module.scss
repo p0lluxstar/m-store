@@ -1,0 +1,8 @@
+@use '../../common/variables' as *;
+
+.main {
+  .container {
+    max-width: $container-width;
+    margin: 0 auto;
+  }
+}
