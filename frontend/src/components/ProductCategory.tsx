@@ -1,4 +1,6 @@
 'use client';
+
+import { useParams } from 'next/navigation';
 import { JSX, useEffect, useState } from 'react';
 
 interface Product {
@@ -13,7 +15,8 @@ interface Product {
   }>;
 }
 
-const ProductList = (): JSX.Element => {
+const ProductCategory = (): JSX.Element => {
+  const { category } = useParams() as { category: string };
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -21,7 +24,7 @@ const ProductList = (): JSX.Element => {
   useEffect(() => {
     const fetchProducts = async (): Promise<void> => {
       try {
-        const res = await fetch('http://localhost:4000/products');
+        const res = await fetch(`http://localhost:4000/categories/products?handle=${category}`);
         if (!res.ok) {
           throw new Error(`Ошибка при запросе: ${res.status}`);
         }
@@ -63,4 +66,4 @@ const ProductList = (): JSX.Element => {
   );
 };
 
-export default ProductList;
+export default ProductCategory;

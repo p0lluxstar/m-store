@@ -1,19 +1,12 @@
-import type { Metadata } from 'next';
+import { JSX } from 'react';
 
-import { Geist, Geist_Mono } from 'next/font/google';
+import FooterWrapper from '@/components/footer/FooterWrapper';
+import HeaderWrapper from '@/components/header/HeaderWrapper';
 
 import '../styles/globals.css';
 import '../styles/normalize.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -24,10 +17,14 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>): JSX.Element {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body>
+        <HeaderWrapper />
+        {children}
+        <FooterWrapper />
+      </body>
     </html>
   );
 }

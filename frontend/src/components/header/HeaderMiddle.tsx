@@ -10,13 +10,13 @@ const HeaderMiddle = (): JSX.Element => {
           <div className={styles['header-middle-start']}>
             <div className={styles['header-logo-area']}>
               <a href="index.html">
-                <img
+                {/* <img
                   className={styles['logo-main']}
                   src="assets/img/logo.webp"
                   width="131"
                   height="34"
                   alt="Logo"
-                />
+                /> */}
               </a>
             </div>
           </div>

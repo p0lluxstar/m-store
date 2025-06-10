@@ -12,13 +12,13 @@ const FooterMain = (): JSX.Element => {
               <div className="about-widget-wrap">
                 <div className="widget-logo-area">
                   <a href="index.html">
-                    <img
+                    {/* <img
                       className="logo-main"
                       src="assets/img/logo-light.webp"
                       width="131"
                       height="34"
                       alt="Logo"
-                    />
+                    /> */}
                   </a>
                 </div>
                 <p className="desc">

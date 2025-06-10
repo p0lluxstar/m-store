@@ -10,7 +10,7 @@ const FooterBottom = (): JSX.Element => {
           <div className="col-md-7 col-lg-6">
             <p className="copyright">
               © 2021 Shome. Made with <i className="fa fa-heart"></i> by{' '}
-              <a target="_blank" href="https://themeforest.net/user/codecarnival/portfolio">
+              <a target="_blank" href="">
                 Codecarnival.
               </a>
             </p>
@@ -18,12 +18,12 @@ const FooterBottom = (): JSX.Element => {
           <div className="col-md-5 col-lg-6">
             <div className="payment">
               <a href="account-login.html">
-                <img
+                {/* <img
                   src="assets/img/photos/payment-card.webp"
                   width="192"
                   height="21"
                   alt="Payment Logo"
-                />
+                /> */}
               </a>
             </div>
           </div>

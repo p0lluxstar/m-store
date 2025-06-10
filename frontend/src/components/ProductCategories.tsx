@@ -1,32 +1,29 @@
 'use client';
+
+import Link from 'next/link';
 import { JSX, useEffect, useState } from 'react';
 
-interface Product {
+interface Category {
   id: string;
-  title: string;
-  description: string;
-  variants?: Array<{
-    prices: Array<{
-      amount: number;
-      currency_code: string;
-    }>;
-  }>;
+  name: string;
+  handle: string;
 }
 
-const ProductList = (): JSX.Element => {
-  const [products, setProducts] = useState<Product[]>([]);
+const ProductCategories = (): JSX.Element => {
+  const [products, setProducts] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProducts = async (): Promise<void> => {
       try {
-        const res = await fetch('http://localhost:4000/products');
+        const res = await fetch('http://localhost:4000/categories');
         if (!res.ok) {
           throw new Error(`Ошибка при запросе: ${res.status}`);
         }
 
         const data = await res.json();
+        console.log(data);
         setProducts(data);
       } catch (err) {
         console.error('Ошибка:', err);
@@ -43,24 +40,20 @@ const ProductList = (): JSX.Element => {
 
   return (
     <div>
-      <h1>ProductList</h1>
+      <h1>Categories</h1>
       {products.length > 0 ? (
         <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              <h3>{product.title}</h3>
-              <p>{product.description}</p>
-              {product.variants[0]?.calculated_price?.calculated_amount && (
-                <p>Цена: {product.variants[0]?.calculated_price?.calculated_amount}</p>
-              )}
+          {products.map((category) => (
+            <li key={category.id}>
+              <Link href={`/shop/${category.handle}`}>{category.name}</Link>
             </li>
           ))}
         </ul>
       ) : (
-        <p>Товары не найдены</p>
+        <p>Категории не найдены</p>
       )}
     </div>
   );
 };
 
-export default ProductList;
+export default ProductCategories;

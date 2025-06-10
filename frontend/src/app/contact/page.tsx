@@ -1,12 +1,11 @@
 import { JSX } from 'react';
 
 import MainWrapper from '@/components/main/MainWrapper';
-import HomeProductList from '@/components/ProductList';
 
-export default function HomePage(): JSX.Element {
+export default function ContactPage(): JSX.Element {
   return (
     <MainWrapper>
-      <HomeProductList />
+      <h1>ContactPage</h1>
     </MainWrapper>
   );
 }

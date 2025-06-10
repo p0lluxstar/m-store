@@ -1,8 +1,8 @@
 import { Controller, Get } from '@nestjs/common';
-import { MedusaService } from 'src/medusa/medusa.service';
+import { MedusaService } from '../medusa/medusa.service';
 
 @Controller('products')
-export class ProductsController {
+export class ProductController {
   constructor(private readonly medusaService: MedusaService) {}
 
   @Get()

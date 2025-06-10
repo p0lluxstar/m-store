@@ -14,12 +14,14 @@ const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
     plugins: {
-      import: (await import('eslint-plugin-import')).default, // ✅
+      import: (await import('eslint-plugin-import')).default,
     },
     rules: {
       'no-console': 'warn',
       '@typescript-eslint/explicit-function-return-type': 'error',
       '@typescript-eslint/no-explicit-any': 'error',
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
       'import/order': [
         'error',
         {
@@ -37,11 +39,6 @@ const eslintConfig = [
             {
               pattern: '@/**',
               group: 'internal', // Изменяем на internal для лучшей группировки
-              position: 'before',
-            },
-            {
-              pattern: '@/components/header/**', // Специфичный паттерн для header
-              group: 'internal',
               position: 'before',
             },
           ],
