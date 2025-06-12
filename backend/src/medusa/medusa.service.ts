@@ -16,6 +16,19 @@ export class MedusaService {
     }
   }
 
+  async getProductById(productId: string, regionId: string) {
+    try {
+      const { product } = await medusa.store.product.retrieve(productId, {
+        region_id: regionId,
+        fields: '*variants.calculated_price',
+      });
+
+      return product;
+    } catch (error) {
+      throw new Error(`Failed to fetch products: ${error.message}`);
+    }
+  }
+
   async getCategories() {
     try {
       const { product_categories } = await medusa.store.category.list();
