@@ -7,7 +7,7 @@ import { useFetch } from '@/app/hooks/useFetch';
 import { ICategory } from '@/types';
 
 
-const ProductCategories = (): JSX.Element => {
+const CategoriesList = (): JSX.Element => {
   const {
     data: categories,
     loading,
@@ -19,7 +19,7 @@ const ProductCategories = (): JSX.Element => {
 
   return (
     <div>
-      <h1>Categories</h1>
+      <h1>CategoriesList</h1>
       {categories.length > 0 ? (
         <ul>
           {categories.map((category:ICategory) => (
@@ -35,4 +35,4 @@ const ProductCategories = (): JSX.Element => {
   );
 };
 
-export default ProductCategories;
+export default CategoriesList;

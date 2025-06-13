@@ -17,7 +17,7 @@ interface Product {
   }>;
 }
 
-const Product = (): JSX.Element => {
+const ProductDetails = (): JSX.Element => {
   const { product: productId } = useParams() as { product: string };
 
   const {
@@ -38,4 +38,4 @@ const Product = (): JSX.Element => {
   );
 };
 
-export default Product;
+export default ProductDetails;

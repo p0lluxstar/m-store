@@ -1,12 +1,12 @@
 import { JSX } from 'react';
 
 import MainWrapper from '@/components/main/MainWrapper';
-import Product from '@/components/Product';
+import ProductDetails from '@/components/ProductDetails';
 
 const ProductPage = (): JSX.Element => {
   return (
     <MainWrapper>
-      <Product />
+      <ProductDetails />
     </MainWrapper>
   );
 };

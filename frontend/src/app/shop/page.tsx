@@ -1,14 +1,14 @@
 import { JSX } from 'react';
 
+import CategoriesList from '@/components/CategoriesList';
 import MainWrapper from '@/components/main/MainWrapper';
-import ProductCategories from '@/components/ProductCategories';
-import ProductList from '@/components/ProductList';
+import ProductsList from '@/components/ProductsList';
 
 export default function ShopPage(): JSX.Element {
   return (
     <MainWrapper>
-      <ProductCategories />
-      <ProductList />
+      <CategoriesList />
+      <ProductsList fetchUrl="http://localhost:4000/products" />
     </MainWrapper>
   );
 }

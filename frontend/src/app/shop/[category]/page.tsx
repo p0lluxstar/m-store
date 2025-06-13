@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 
 import MainWrapper from '@/components/main/MainWrapper';
-import ProductCategory from '@/components/ProductCategory';
+import ProductsCategoryList from '@/components/ProductsCategoryList';
 
 export const metadata = {
   title: 'Категория товаров — M-Store',
@@ -11,7 +11,7 @@ export const metadata = {
 const CategoryProductPage = (): JSX.Element => {
   return (
     <MainWrapper>
-      <ProductCategory />
+      <ProductsCategoryList />
     </MainWrapper>
   );
 };
