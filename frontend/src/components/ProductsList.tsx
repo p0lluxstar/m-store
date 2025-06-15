@@ -18,14 +18,18 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
 
   const handleAddToCart = (product: IProduct): void => {
     const price = product.variants?.[0]?.calculated_price?.calculated_amount;
+    const variantId = product.variants?.[0]?.id;
 
-    if (!price) return alert('Цена недоступна');
+    if (!price || !variantId) {
+      return alert('Цена или вариант товара недоступны');
+    }
 
     addToCart({
       id: product.id,
+      variant_id: variantId,
       title: product.title,
-      price,
       quantity: 1,
+      price,
     });
 
     alert('Товар добавлен в корзину!');

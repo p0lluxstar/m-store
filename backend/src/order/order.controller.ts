@@ -1,12 +1,12 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { OrderService } from './order.service';
+import { MedusaService } from 'src/medusa/medusa.service';
 
 @Controller('order')
 export class OrderController {
-  constructor(private readonly orderService: OrderService) {}
+  constructor(private readonly medusaService: MedusaService) {}
 
   @Post()
-  async create(@Body() dto: any) {
-    return this.orderService.createOrder(dto);
+  async create(@Body() data: any) {
+    return this.medusaService.createOrder(data);
   }
 }

@@ -1,14 +1,9 @@
-export interface ICartItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-}
+import { ICartItem } from "@/types";
 
 export const addToCart = (item: ICartItem): void => {
   const cart: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
-  const existing = cart.find((p) => p.id === item.id);
+  const existing = cart.find((p) => p.variant_id === item.variant_id);
 
   if (existing) {
     existing.quantity += 1;

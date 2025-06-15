@@ -3,16 +3,12 @@
 import { JSX, useEffect, useState } from 'react';
 
 import MainWrapper from '@/components/main/MainWrapper';
-
-interface ICartItem {
-  id: string;
-  title: string;
-  price: number;
-  quantity: number;
-}
+import { ICartItem, TCartItemEssentials } from '@/types';
 
 const CartPage = (): JSX.Element => {
   const [cart, setCart] = useState<ICartItem[]>([]);
+  const [customerName, setCustomerName] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
 
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
@@ -30,26 +26,39 @@ const CartPage = (): JSX.Element => {
   };
 
   const placeOrder = async (): Promise<void> => {
+    if (!customerName || !customerPhone) {
+      alert('Пожалуйста, заполните все поля');
+      return;
+    }
     const cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
     const orderData = {
-      name: 'Иван',
-      phone: '+79991234567',
-      items: cart.map((item: any) => ({
-        product_id: item.id,
+      region_id: 'reg_01JWRDG8DY2GDMAK48EY1BJ9MF',
+      customer_name: customerName,
+      customer_phone: customerPhone,
+      items: cart.map((item: TCartItemEssentials) => ({
         variant_id: item.variant_id,
         quantity: item.quantity,
       })),
     };
 
-    const res = await fetch('http://localhost:4000/order', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderData),
-    });
+    try {
+      const res = await fetch('http://localhost:4000/order', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(orderData),
+      });
 
-    const result = await res.json();
-    console.log('Заказ создан:', result);
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || `HTTP error! status: ${res.status} ${res.statusText}`);
+      }
+
+      const result = await res.json();
+      return result;
+    } catch (error) {
+      console.error('Ошибка при создании заказа:', error);
+    }
   };
 
   return (
@@ -72,6 +81,22 @@ const CartPage = (): JSX.Element => {
             </ul>
             <h2>Итого: {getTotalPrice()} ₽</h2>
             <button onClick={clearCart}>Очистить корзину</button>
+            <div>
+              <label htmlFor="customerName">Имя: </label>
+              <input
+                type="text"
+                id="customerName"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+              ></input>
+              <label htmlFor="customerPhone">Телефон: </label>
+              <input
+                type="text"
+                id="customerPhone"
+                value={customerPhone}
+                onChange={(e) => setCustomerPhone(e.target.value)}
+              ></input>
+            </div>
             <button onClick={placeOrder}>Оформить заказ</button>
           </>
         )}
