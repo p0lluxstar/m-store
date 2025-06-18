@@ -1,12 +1,10 @@
 import { JSX } from 'react';
 
-import styles from '../../styles/components/footer/footerBottom.module.scss';
-
 const FooterBottom = (): JSX.Element => {
   return (
-    <div className={styles['footer-bottom']}>
-      <div className={styles['container']}>
-        <div className={styles['row']}>
+    <div className="bg-[#36393f] py-5 text-[var(--white-ca)]">
+      <div className="max-w-[var(--content-max-width)] mx-auto">
+        <div className="flex justify-between">
           <div className="col-md-7 col-lg-6">
             <p className="copyright">
               © 2021 Shome. Made with <i className="fa fa-heart"></i> by{' '}

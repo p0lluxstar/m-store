@@ -1,34 +1,34 @@
-@use '../../common/variables' as *;
+// @use '../../common/variables' as *;
 
-.footer-main {
-  padding: 100px 0px;
-  color: $white-ca;
+// .footer-main {
+//   padding: 100px 0px;
+//   color: $white-ca;
 
-  .container {
-    max-width: $container-width;
-    margin: 0 auto;
+//   .container {
+//     max-width: $container-width;
+//     margin: 0 auto;
 
-    .row {
-      display: flex;
+//     .row {
+//       display: flex;
 
-      a {
-        color: $white-ca;
-        text-decoration: none;
-      }
+//       a {
+//         color: $white-ca;
+//         text-decoration: none;
+//       }
 
-      .footer-main-item {
-        display: flex 0 0 auto;
-        width: 25%;
-        padding: 0px 15px;
+//       .footer-main-item {
+//         display: flex 0 0 auto;
+//         width: 25%;
+//         padding: 0px 15px;
 
-        .nav-menu {
-          list-style: none;
-        }
+//         .nav-menu {
+//           list-style: none;
+//         }
 
-        .widget-contact-list {
-          list-style: none;
-        }
-      }
-    }
-  }
-}
+//         .widget-contact-list {
+//           list-style: none;
+//         }
+//       }
+//     }
+//   }
+// }

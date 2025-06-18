@@ -4,10 +4,10 @@ import styles from '../../styles/components/footer/footerMain.module.scss';
 
 const FooterMain = (): JSX.Element => {
   return (
-    <div className={styles['footer-main']}>
-      <div className={styles['container']}>
-        <div className={styles['row']}>
-          <div className={styles['footer-main-item']}>
+    <div className="py-24 text-[var(--white-ca)]">
+      <div className="max-w-[var(--content-max-width)] mx-auto">
+        <div className="flex">
+          <div className="flex-none w-1/4 px-4">
             <div className="widget-item">
               <div className="about-widget-wrap">
                 <div className="widget-logo-area">
@@ -42,7 +42,7 @@ const FooterMain = (): JSX.Element => {
               </div>
             </div>
           </div>
-          <div className={styles['footer-main-item']}>
+          <div className="flex-none w-1/4 px-4">
             <div className="widget-item widget-services-item">
               <h4 className="widget-title">Services</h4>
               <h4
@@ -77,7 +77,7 @@ const FooterMain = (): JSX.Element => {
               </div>
             </div>
           </div>
-          <div className={styles['footer-main-item']}>
+          <div className="flex-none w-1/4 px-4">
             <div className="widget-item widget-account-item">
               <h4 className="widget-title">My Account</h4>
               <h4
@@ -112,7 +112,7 @@ const FooterMain = (): JSX.Element => {
               </div>
             </div>
           </div>
-          <div className={styles['footer-main-item']}>
+          <div className="flex-none w-1/4 px-4">
             <div className="widget-item">
               <h4 className="widget-title">Contact Info</h4>
               <h4

@@ -1,19 +1,19 @@
-@use '../common/variables' as *;
+// @use '../common/variables' as *;
 
-.main-menu-list {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  list-style: none;
-  background-color: $theme-color;
-  border-radius: 10px 10px 0 0;
+// .main-menu-list {
+//   display: flex;
+//   justify-content: center;
+//   gap: 20px;
+//   list-style: none;
+//   background-color: $theme-color;
+//   border-radius: 10px 10px 0 0;
 
-  .main-menu-link {
-    color: $white;
-    text-decoration: none;
-  }
+//   .main-menu-link {
+//     color: $white;
+//     text-decoration: none;
+//   }
 
-  .active {
-    color: #fffc;
-  }
-}
+//   .active {
+//     color: #fffc;
+//   }
+// }

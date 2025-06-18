@@ -1,22 +1,22 @@
-@use '../../common/variables' as *;
+// @use '../../common/variables' as *;
 
-.footer-bottom {
-  background-color: #36393f;
-  padding: 20px 0px;
-  color: $white-ca;
+// .footer-bottom {
+//   background-color: #36393f;
+//   padding: 20px 0px;
+//   color: $white-ca;
 
-  .container {
-    max-width: $container-width;
-    margin: 0 auto;
+//   .container {
+//     max-width: $container-width;
+//     margin: 0 auto;
 
-    .row {
-      display: flex;
-      justify-content: space-between;
+//     .row {
+//       display: flex;
+//       justify-content: space-between;
 
-      a {
-        color: $white-ca;
-        text-decoration: none;
-      }
-    }
-  }
-}
+//       a {
+//         color: $white-ca;
+//         text-decoration: none;
+//       }
+//     }
+//   }
+// }

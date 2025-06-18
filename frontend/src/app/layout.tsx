@@ -2,6 +2,7 @@ import { JSX } from 'react';
 
 import FooterWrapper from '@/components/footer/FooterWrapper';
 import HeaderWrapper from '@/components/header/HeaderWrapper';
+import { StoreProviders } from '@/store/StoreProvaider';
 
 import '../styles/globals.css';
 import '../styles/normalize.css';
@@ -21,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <HeaderWrapper />
-        {children}
-        <FooterWrapper />
+        <StoreProviders>
+          <HeaderWrapper />
+          {children}
+          <FooterWrapper />
+        </StoreProviders>
       </body>
     </html>
   );

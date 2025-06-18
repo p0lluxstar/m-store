@@ -6,7 +6,7 @@ import MainMenu from '../MainMenu';
 const HeaderBottom = (): JSX.Element => {
   return (
     <div className={styles['header-bottom']}>
-      <div className={styles['container']}>
+      <div className="max-w-[var(--content-max-width)] mx-auto">
         <div className={styles['row']}>
           <MainMenu />
         </div>

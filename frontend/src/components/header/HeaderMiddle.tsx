@@ -1,37 +1,52 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
 import { JSX } from 'react';
+import { FaRegHeart } from 'react-icons/fa6';
+import { IoIosSearch } from 'react-icons/io';
+import { RiShoppingBagLine } from 'react-icons/ri';
 
 import styles from '../../styles/components/header/headerMiddle.module.scss';
+import CartItemsCounter from '../CartItemsCounter';
 
 const HeaderMiddle = (): JSX.Element => {
+  const handleShoppingCartButton = (): void => {
+    console.log('btn')
+  };
+
   return (
-    <div className={styles['header-middle']}>
-      <div className={styles['container']}>
-        <div className={styles['row']}>
-          <div className={styles['header-middle-start']}>
+    <div className="py-6.25">
+      <div className="max-w-[var(--content-max-width)] mx-auto">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
             <div className={styles['header-logo-area']}>
-              <a href="index.html">
-                {/* <img
-                  className={styles['logo-main']}
-                  src="assets/img/logo.webp"
-                  width="131"
-                  height="34"
-                  alt="Logo"
-                /> */}
-              </a>
+              <Link href="index.html">
+                <Image src={'/img/jpg/logo-bg-white.jpg'} alt="Logo" width={170} height={50} />
+              </Link>
             </div>
           </div>
           <div className={styles['header-middle-center']}>
             <div className={styles['header-search-area']}>
-              <form className={styles['header-searchbox']}>
-                <input type="search" className="form-control" placeholder="Search" />
-                <button className={styles['btn-submit']} type="submit">
-                  <i className="pe-7s-search"></i>
+              <form className="relative">
+                <input
+                  type="search"
+                  className="rounded-lg text-[#989898] text-sm h-11 leading-[2.75rem] w-96 pt-[5px] pr-[70px] pb-[5px] pl-[10px] border-2 border-solid border-[#e8e8e8] focus:outline-none"
+                  placeholder="Поиск"
+                />
+                <button
+                  className="flex justify-center items-center w-16 bg-[var(--theme-color)] rounded-l-none rounded-r-[8px] absolute right-0 top-0 h-11"
+                  type="submit"
+                >
+                  <i className=" text-white text-[30px]">
+                    <IoIosSearch />
+                  </i>
                 </button>
               </form>
             </div>
           </div>
           <div className={styles['header-middle-end']}>
-            <div className={styles['header-action-area']}>
+            <div className="flex gap-3 relative">
               <div className={styles['shopping-search']}>
                 <button
                   className={styles['shopping-search-btn']}
@@ -44,20 +59,22 @@ const HeaderMiddle = (): JSX.Element => {
                 </button>
               </div>
               <div className={styles['shopping-wishlist']}>
-                <a className={styles['shopping-wishlist-btn']} href="shop-wishlist.html">
-                  <i className="pe-7s-like icon"></i>
-                </a>
+                <Link className={styles['shopping-wishlist-btn']} href="shop-wishlist.html">
+                  <i className="text-[24px] hover:opacity-90">
+                    <FaRegHeart />
+                  </i>
+                </Link>
               </div>
               <div className={styles['shopping-cart']}>
                 <button
-                  className={styles['shopping-cart-btn']}
+                  className="hover:cursor-pointer hover:opacity-90"
                   type="button"
-                  data-bs-toggle="offcanvas"
-                  data-bs-target="#AsideOffcanvasCart"
-                  aria-controls="offcanvasRightLabel"
+                  onClick={handleShoppingCartButton}
                 >
-                  <i className="pe-7s-shopbag icon"></i>
-                  <sup className={styles['shop-count']}>02</sup>
+                  <i className="text-[26px] hover:opacity-90">
+                    <RiShoppingBagLine />
+                  </i>
+                  <CartItemsCounter />
                 </button>
               </div>
               <button

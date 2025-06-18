@@ -1,29 +1,57 @@
+@import "tailwindcss";
+
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  /* max-width: 100vw;
+  overflow-x: hidden; */
 }
 
 body {
  color: #474747;
-  font-size: 16px;
+ /* font-family: "Poppins", sans-serif; */
+  /* font-size: 16px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   line-height: 2;
   margin: 0;
   overflow-x: hidden;
   -ms-word-wrap: break-word;
-  word-wrap: break-word;
+  word-wrap: break-word; */
 }
 
 * {
+   box-sizing: border-box;
+}
+
+/* body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+li {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-}
+} */
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) {
   .container {
     max-width: 1200px;
   }
+} */
+
+:root {
+  --content-max-width: 1200px;
+  --theme-color: #eb3e32;
+  --white: #fff;
+  --white-ca: #cacaca;
+}
+
+.custom-before::before {
+  @apply content-[''] bg-gray-600 h-[15px] absolute w-[1px] right-0.5 top-0.5;
 }

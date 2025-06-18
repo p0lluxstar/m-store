@@ -10,37 +10,37 @@ const MainMenu = (): JSX.Element => {
   const pathname = usePathname();
 
   return (
-    <ul className={styles['main-menu-list']}>
+    <ul className="flex items-center justify-center gap-5 h-12 list-none bg-[var(--theme-color)] rounded-t-lg">
       <li className={styles['main-menu-item']}>
         <Link
-          className={`${styles['main-menu-link']} ${pathname === '/' ? styles['active'] : ''}`}
+          className={`no-underline ${pathname === '/' ? 'text-[#fffc]' : 'text-white'}`}
           href="/"
         >
-          <span>Home</span>
+          <span className='font-semibold'>ГЛАВНАЯ</span>
         </Link>
       </li>
       <li className={styles['main-menu-item']}>
         <Link
-          className={`${styles['main-menu-link']} ${pathname === '/shop' ? styles['active'] : ''}`}
+          className={`no-underline ${pathname === '/shop' ? 'text-[#fffc]' : 'text-white'}`}
           href="/shop"
         >
-          <span>Shop</span>
+          <span className='font-semibold'>КАТАЛОГ</span>
         </Link>
       </li>
       <li>
         <Link
-          className={`${styles['main-menu-link']} ${pathname === '/about' ? styles['active'] : ''}`}
+          className={`no-underline ${pathname === '/about' ? 'text-[#fffc]' : 'text-white'}`}
           href="about"
         >
-          <span>About</span>
+          <span className='font-semibold'>О НАС</span>
         </Link>
       </li>
       <li>
         <Link
-          className={`${styles['main-menu-link']} ${pathname === '/contact' ? styles['active'] : ''}`}
+          className={`no-underline ${pathname === '/contact' ? 'text-[#fffc]' : 'text-white'}`}
           href="contact"
         >
-          <span>Contact</span>
+          <span className='font-semibold'>КОНТАКТЫ</span>
         </Link>
       </li>
     </ul>

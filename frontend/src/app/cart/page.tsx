@@ -1,14 +1,17 @@
 'use client';
 
 import { JSX, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import MainWrapper from '@/components/main/MainWrapper';
+import { cartItemsActions } from '@/store/slices/cartItemsSlice';
 import { ICartItem, TCartItemEssentials } from '@/types';
 
 const CartPage = (): JSX.Element => {
   const [cart, setCart] = useState<ICartItem[]>([]);
   const [customerName, setCustomerName] = useState('');
   const [customerPhone, setCustomerPhone] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const storedCart = localStorage.getItem('cart');
@@ -23,6 +26,7 @@ const CartPage = (): JSX.Element => {
   const clearCart = (): void => {
     localStorage.removeItem('cart');
     setCart([]);
+    dispatch(cartItemsActions.clearCart());
   };
 
   const placeOrder = async (): Promise<void> => {

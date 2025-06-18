@@ -1,9 +1,11 @@
 'use client';
 import Link from 'next/link';
 import { JSX } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { useFetch } from '@/app/hooks/useFetch';
-import { IProduct } from '@/types';
+import { cartItemsActions } from '@/store/slices/cartItemsSlice';
+import { ICartItem, IProduct } from '@/types';
 import { addToCart } from '@/utils/addToCart';
 
 interface IProps {
@@ -11,6 +13,7 @@ interface IProps {
 }
 
 const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
+  const dispatch = useDispatch();
   const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
 
   if (loading) return <div>Loading products...</div>;
@@ -24,15 +27,19 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
       return alert('Цена или вариант товара недоступны');
     }
 
-    addToCart({
+    const cartItem: ICartItem = {
       id: product.id,
       variant_id: variantId,
       title: product.title,
       quantity: 1,
       price,
-    });
+    };
 
-    alert('Товар добавлен в корзину!');
+    addToCart(cartItem);
+
+    dispatch(cartItemsActions.addToCart());
+
+    // alert('Товар добавлен в корзину!');
   };
 
   return (
