@@ -1,5 +1,7 @@
 import { JSX } from 'react';
 
+import AsideCart from '@/components/AsideCart';
+import Blackout from '@/components/Blackout';
 import FooterWrapper from '@/components/footer/FooterWrapper';
 import HeaderWrapper from '@/components/header/HeaderWrapper';
 import { StoreProviders } from '@/store/StoreProvaider';
@@ -26,6 +28,8 @@ export default function RootLayout({
           <HeaderWrapper />
           {children}
           <FooterWrapper />
+          <AsideCart />
+          <Blackout />
         </StoreProviders>
       </body>
     </html>

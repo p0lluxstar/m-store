@@ -1,45 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { ICartItem } from '@/types';
+import { addToCartLS } from '@/utils/addToCartLS';
 
 interface ICartItemsState {
-  items: number;
-}
-
-function getInitialCartQuantity(): number {
-  if (typeof window === 'undefined') return 0;
-
-  try {
-    const cartData = localStorage.getItem('cart');
-    return cartData
-      ? JSON.parse(cartData).reduce((sum: number, item: ICartItem) => sum + item.quantity, 0)
-      : 0;
-  } catch {
-    return 0;
-  }
+  items: ICartItem[];
 }
 
 const initialState: ICartItemsState = {
-  items: getInitialCartQuantity(),
+  items:
+    typeof window !== 'undefined' && localStorage.getItem('cart')
+      ? JSON.parse(localStorage.getItem('cart') as string)
+      : [],
 };
 
 const cartItemsSlice = createSlice({
   name: 'cartItemsSlice',
   initialState,
   reducers: {
-    addToCart(state) {
-      state.items += 1;
-      // state.items.push(action.payload);
-      // localStorage.setItem('cart', JSON.stringify(state.items));
+    setCartItems(state, action: PayloadAction<ICartItem[]>) {
+      state.items = action.payload;
+    },
+    addToCart(state, action: PayloadAction<ICartItem>) {
+      state.items.push(action.payload);
+      addToCartLS(action.payload);
     },
     clearCart(state) {
-      state.items = 0;
-      // state.items = [];
-      // localStorage.removeItem('cart');
+      state.items = [];
+      localStorage.removeItem('cart');
     },
   },
 });
 
-export const cartItemsActions = cartItemsSlice.actions;
-// export const { setCartItems, addToCartTemp } = cartItemsSlice.actions;
+export const { setCartItems, addToCart, clearCart } = cartItemsSlice.actions;
 export const cartItemsReducer = cartItemsSlice.reducer;

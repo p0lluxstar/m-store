@@ -5,23 +5,18 @@ import Link from 'next/link';
 import { JSX } from 'react';
 import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
-import { RiShoppingBagLine } from 'react-icons/ri';
 
 import styles from '../../styles/components/header/headerMiddle.module.scss';
-import CartItemsCounter from '../CartItemsCounter';
+import ShopCartBtn from '../ShopCartBtn';
 
 const HeaderMiddle = (): JSX.Element => {
-  const handleShoppingCartButton = (): void => {
-    console.log('btn')
-  };
-
   return (
     <div className="py-6.25">
       <div className="max-w-[var(--content-max-width)] mx-auto">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <div className={styles['header-logo-area']}>
-              <Link href="index.html">
+              <Link href="/">
                 <Image src={'/img/jpg/logo-bg-white.jpg'} alt="Logo" width={170} height={50} />
               </Link>
             </div>
@@ -65,18 +60,7 @@ const HeaderMiddle = (): JSX.Element => {
                   </i>
                 </Link>
               </div>
-              <div className={styles['shopping-cart']}>
-                <button
-                  className="hover:cursor-pointer hover:opacity-90"
-                  type="button"
-                  onClick={handleShoppingCartButton}
-                >
-                  <i className="text-[26px] hover:opacity-90">
-                    <RiShoppingBagLine />
-                  </i>
-                  <CartItemsCounter />
-                </button>
-              </div>
+              <ShopCartBtn />
               <button
                 className={styles['btn-menu']}
                 type="button"

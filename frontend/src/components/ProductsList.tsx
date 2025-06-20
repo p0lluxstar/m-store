@@ -1,12 +1,12 @@
 'use client';
 import Link from 'next/link';
 import { JSX } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetch } from '@/app/hooks/useFetch';
-import { cartItemsActions } from '@/store/slices/cartItemsSlice';
+import { RootState } from '@/store';
+import { addToCart } from '@/store/slices/cartItemsSlice';
 import { ICartItem, IProduct } from '@/types';
-import { addToCart } from '@/utils/addToCart';
 
 interface IProps {
   fetchUrl: string;
@@ -15,6 +15,7 @@ interface IProps {
 const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   const dispatch = useDispatch();
   const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
+  const cartItems = useSelector((state: RootState) => state.cartItems.items);
 
   if (loading) return <div>Loading products...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -31,15 +32,19 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
       id: product.id,
       variant_id: variantId,
       title: product.title,
+      handle: product.handle,
+      imagesUrl: product.images[0].url,
       quantity: 1,
       price,
     };
 
-    addToCart(cartItem);
-
-    dispatch(cartItemsActions.addToCart());
+    dispatch(addToCart(cartItem));
 
     // alert('Товар добавлен в корзину!');
+  };
+
+  const isInCart = (productId: string): boolean => {
+    return cartItems.some((item) => item.id === productId);
   };
 
   return (
@@ -47,16 +52,24 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
       <h1>ProductList</h1>
       {products.length > 0 ? (
         <ul>
-          {products.map((product: IProduct) => (
-            <li key={product.id}>
-              <h3>
-                <Link href={`/shop/${product.handle}/${product.id}`}>{product.title}</Link>
-              </h3>
-              <p>{product.description}</p>
-              <p>Цена: {product.variants?.[0]?.calculated_price?.calculated_amount}</p>
-              <button onClick={() => handleAddToCart(product)}>В корзину</button>
-            </li>
-          ))}
+          {products.map((product: IProduct) => {
+            const inCart = isInCart(product.id);
+            const price = product.variants?.[0]?.calculated_price?.calculated_amount;
+            return (
+              <li key={product.id}>
+                <h3>
+                  <Link href={`/catalog/${product.handle}/${product.id}`}>{product.title}</Link>
+                </h3>
+                <p>{product.description}</p>
+                <p>Цена: {price}</p>
+                {inCart ? (
+                  <span style={{ color: 'green', fontWeight: 'bold' }}>В корзине</span>
+                ) : (
+                  <button onClick={() => handleAddToCart(product)}>В корзину</button>
+                )}
+              </li>
+            );
+          })}
         </ul>
       ) : (
         <p>Товары не найдены</p>

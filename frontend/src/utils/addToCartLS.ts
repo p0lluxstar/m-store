@@ -1,6 +1,6 @@
 import { ICartItem } from "@/types";
 
-export const addToCart = (item: ICartItem): void => {
+export const addToCartLS = (item: ICartItem): void => {
   const cart: ICartItem[] = JSON.parse(localStorage.getItem('cart') || '[]');
 
   const existing = cart.find((p) => p.variant_id === item.variant_id);

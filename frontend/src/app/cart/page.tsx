@@ -4,7 +4,7 @@ import { JSX, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import MainWrapper from '@/components/main/MainWrapper';
-import { cartItemsActions } from '@/store/slices/cartItemsSlice';
+import { clearCart } from '@/store/slices/cartItemsSlice';
 import { ICartItem, TCartItemEssentials } from '@/types';
 
 const CartPage = (): JSX.Element => {
@@ -23,10 +23,9 @@ const CartPage = (): JSX.Element => {
   const getTotalPrice = (): number =>
     cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-  const clearCart = (): void => {
-    localStorage.removeItem('cart');
+  const handleClearCart = (): void => {
     setCart([]);
-    dispatch(cartItemsActions.clearCart());
+    dispatch(clearCart());
   };
 
   const placeOrder = async (): Promise<void> => {
@@ -84,7 +83,7 @@ const CartPage = (): JSX.Element => {
               ))}
             </ul>
             <h2>Итого: {getTotalPrice()} ₽</h2>
-            <button onClick={clearCart}>Очистить корзину</button>
+            <button onClick={handleClearCart}>Очистить корзину</button>
             <div>
               <label htmlFor="customerName">Имя: </label>
               <input

@@ -16,15 +16,15 @@ const MainMenu = (): JSX.Element => {
           className={`no-underline ${pathname === '/' ? 'text-[#fffc]' : 'text-white'}`}
           href="/"
         >
-          <span className='font-semibold'>ГЛАВНАЯ</span>
+          <span className='font-semibold uppercase'>Главная</span>
         </Link>
       </li>
       <li className={styles['main-menu-item']}>
         <Link
           className={`no-underline ${pathname === '/shop' ? 'text-[#fffc]' : 'text-white'}`}
-          href="/shop"
+          href="/catalog"
         >
-          <span className='font-semibold'>КАТАЛОГ</span>
+          <span className='font-semibold uppercase'>Каталог</span>
         </Link>
       </li>
       <li>
@@ -32,7 +32,7 @@ const MainMenu = (): JSX.Element => {
           className={`no-underline ${pathname === '/about' ? 'text-[#fffc]' : 'text-white'}`}
           href="about"
         >
-          <span className='font-semibold'>О НАС</span>
+          <span className='font-semibold uppercase'>О нас</span>
         </Link>
       </li>
       <li>
@@ -40,7 +40,7 @@ const MainMenu = (): JSX.Element => {
           className={`no-underline ${pathname === '/contact' ? 'text-[#fffc]' : 'text-white'}`}
           href="contact"
         >
-          <span className='font-semibold'>КОНТАКТЫ</span>
+          <span className='font-semibold uppercase'>Контакты</span>
         </Link>
       </li>
     </ul>

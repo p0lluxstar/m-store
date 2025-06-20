@@ -24,7 +24,7 @@ const CategoriesList = (): JSX.Element => {
         <ul>
           {categories.map((category:ICategory) => (
             <li key={category.id}>
-              <Link href={`/shop/${category.handle}`}>{category.name}</Link>
+              <Link href={`/catalog/${category.handle}`}>{category.name}</Link>
             </li>
           ))}
         </ul>

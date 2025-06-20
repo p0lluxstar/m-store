@@ -3,6 +3,10 @@ export interface IProduct {
   title: string;
   description: string;
   handle: string;
+  images: Array<{
+    id: string;
+    url: string;
+  }>;
   variants?: Array<{
     id: string;
     calculated_price: {
@@ -21,6 +25,8 @@ export interface ICartItem {
   id: string;
   variant_id: string;
   title: string;
+  handle: string;
+  imagesUrl: string;
   quantity: number;
   price: number;
 }
