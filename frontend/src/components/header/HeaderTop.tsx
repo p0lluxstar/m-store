@@ -15,24 +15,20 @@ const HeaderTop = (): JSX.Element => {
             </div>
           </div>
           <div className={styles['header-top-end']}>
-            <div className={styles['header-info-items']}>
-              <div className={styles['info-items']}>
-                <ul className="flex gap-2.5">
-                  <li className="flex pr-[15px] relative custom-before">
-                    <i className="text-[var(--theme-color)] pr-[10px]">
-                      <FaPhoneAlt />
-                    </i>
-                    <a href="tel://0123456789">+00 123 456 789</a>
-                  </li>
-                  <li className='flex'>
-                    <i className="text-[var(--theme-color)] pr-[10px] text-xl">
-                      <MdEmail />
-                    </i>
-                    <a href="mailto://demo@example.com">demo@example.com</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <ul className="flex gap-2.5">
+              <li className="flex items-center pr-[15px] relative custom-before before:!top-[4px]">
+                <i className="text-[var(--theme-color)] pr-[10px]">
+                  <FaPhoneAlt />
+                </i>
+                <a href="tel://0123456789">+00 123 456 789</a>
+              </li>
+              <li className="flex items-center">
+                <i className="text-[var(--theme-color)] pr-[10px] text-xl">
+                  <MdEmail />
+                </i>
+                <a href="mailto://demo@example.com">demo@example.com</a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

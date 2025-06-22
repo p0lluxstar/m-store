@@ -1,6 +1,10 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import { JSX } from 'react';
+import { BsInstagram } from 'react-icons/bs';
+import { FaVk } from 'react-icons/fa';
 
-import styles from '../../styles/components/footer/footerMain.module.scss';
+import { MAIN_MENU_ITEMS } from '@/constants';
 
 const FooterMain = (): JSX.Element => {
   return (
@@ -10,139 +14,73 @@ const FooterMain = (): JSX.Element => {
           <div className="flex-none w-1/4 px-4">
             <div className="widget-item">
               <div className="about-widget-wrap">
-                <div className="widget-logo-area">
-                  <a href="index.html">
-                    {/* <img
-                      className="logo-main"
-                      src="assets/img/logo-light.webp"
-                      width="131"
-                      height="34"
-                      alt="Logo"
-                    /> */}
-                  </a>
+                <div className="mb-[20px]">
+                  <Link href="/">
+                    <Image src={'/img/png/logo-bg-white.png'} alt="Logo" width={170} height={50} />
+                  </Link>
                 </div>
-                <p className="desc">
-                  Lorem ipsum dolor sit amet consl adipisi elit, sed do eiusmod templ incididunt ut
-                  labore
+                <p className="mb-[30px] text-[18px] leading-loose">
+                  Идеальный баланс функциональности и внешнего вида — для тех, кто ценит комфорт и
+                  детали.
                 </p>
-                <div className="social-icons">
-                  <a href="https://www.facebook.com/" target="_blank" rel="noopener">
-                    <i className="fa fa-facebook"></i>
-                  </a>
-                  <a href="https://dribbble.com/" target="_blank" rel="noopener">
-                    <i className="fa fa-dribbble"></i>
-                  </a>
-                  <a href="https://www.pinterest.com/" target="_blank" rel="noopener">
-                    <i className="fa fa-pinterest-p"></i>
-                  </a>
-                  <a href="https://twitter.com/" target="_blank" rel="noopener">
-                    <i className="fa fa-twitter"></i>
-                  </a>
+                <div className="flex gap-3">
+                  <Link href="/" target="_blank" rel="noopener">
+                    <i className="flex justify-center items-center bg-[#5d5d5d] text-[#fff] w-[36px] h-[36px] text-[26px] rounded-[7px] hover:bg-[var(--theme-color)] transition-colors">
+                      <FaVk />
+                    </i>
+                  </Link>
+                  <Link href="/" target="_blank" rel="noopener">
+                    <i className="flex justify-center items-center bg-[#5d5d5d] text-[#fff] w-[36px] h-[36px] text-[26px] rounded-[7px] hover:bg-[var(--theme-color)] transition-colors">
+                      <BsInstagram />
+                    </i>
+                  </Link>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex-none w-1/4 px-4">
             <div className="widget-item widget-services-item">
-              <h4 className="widget-title">Services</h4>
-              <h4
-                className="widget-collapsed-title collapsed"
-                data-bs-toggle="collapse"
-                data-bs-target="#widgetId-1"
-              >
-                Services
-              </h4>
-              <div id="widgetId-1" className="collapse widget-collapse-body">
-                <div className="collapse-body">
-                  <div className="widget-menu-wrap">
-                    <ul className={styles['nav-menu']}>
-                      <li>
-                        <a href="contact.html">Home monitoring</a>
-                      </li>
-                      <li>
-                        <a href="contact.html">Air Filters</a>
-                      </li>
-                      <li>
-                        <a href="contact.html">Professional installation</a>
-                      </li>
-                      <li>
-                        <a href="contact.html">Smart Buildings</a>
-                      </li>
-                      <li>
-                        <a href="contact.html">For contractors</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <h4 className="text-white text-[24px] mb-[20px]">Главное меню</h4>
+              <ul className='leading-loose'>
+                {MAIN_MENU_ITEMS.map((item): any => {
+                  return (
+                    <li key={item.name}>
+                      <Link href={item.url}>
+                        <span className="font-semibold hover:text-[var(--theme-color)] transition-colors">
+                          {item.name}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
           <div className="flex-none w-1/4 px-4">
             <div className="widget-item widget-account-item">
-              <h4 className="widget-title">My Account</h4>
-              <h4
-                className="widget-collapsed-title collapsed"
-                data-bs-toggle="collapse"
-                data-bs-target="#widgetId-2"
-              >
-                My Account
-              </h4>
-              <div id="widgetId-2" className="collapse widget-collapse-body">
-                <div className="collapse-body">
-                  <div className="widget-menu-wrap">
-                    <ul className={styles['nav-menu']}>
-                      <li>
-                        <a href="account-login.html">My Account</a>
-                      </li>
-                      <li>
-                        <a href="contact.html">Contact</a>
-                      </li>
-                      <li>
-                        <a href="shop-cart.html">Shopping cart</a>
-                      </li>
-                      <li>
-                        <a href="shop.html">Shop</a>
-                      </li>
-                      <li>
-                        <a href="account-login.html">Services Login</a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <h4 className="text-white text-[24px] mb-[20px]">Покупателям</h4>
             </div>
           </div>
           <div className="flex-none w-1/4 px-4">
             <div className="widget-item">
-              <h4 className="widget-title">Contact Info</h4>
-              <h4
-                className="widget-collapsed-title collapsed"
-                data-bs-toggle="collapse"
-                data-bs-target="#widgetId-3"
-              >
-                Contact Info
-              </h4>
-              <div id="widgetId-3" className="collapse widget-collapse-body">
-                <div className="collapse-body">
-                  <div className="widget-contact-wrap">
-                    <ul className={styles['widget-contact-list']}>
-                      <li>
-                        <span>Address:</span> Your address goes here.
-                      </li>
-                      <li>
-                        <span>Phone//fax:</span> <a href="tel://0123456789">0123456789</a>
-                      </li>
-                      <li>
-                        <span>Email:</span> <a href="mailto://demo@example.com">demo@example.com</a>
-                      </li>
-                      <li>
-                        <a target="_blank" href="https://www.hasthemes.com">
-                          www.example.com
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+              <h4 className="text-white text-[24px] mb-[20px]">Контакты</h4>
+              <div>
+                <ul className='text-[18px] leading-loose'>
+                  <li>
+                    <span>Адрес: г. Москва</span>
+                  </li>
+                  <li>
+                    <span>Телефон:</span> <Link className='hover:text-[var(--theme-color)] transition-colors' href="tel://0123456789">+00 123 456 789</Link>
+                  </li>
+                  <li>
+                    <span>Email:</span> <Link className='hover:text-[var(--theme-color)] transition-colors' href="mailto://demo@example.com">demo@example.com</Link>
+                  </li>
+                  <li>
+                    <Link className='hover:text-[var(--theme-color)] transition-colors' target="_blank" href="https://www.hasthemes.com">
+                      demo@example.com
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

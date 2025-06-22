@@ -17,7 +17,7 @@ const HeaderMiddle = (): JSX.Element => {
           <div className="flex items-center">
             <div className={styles['header-logo-area']}>
               <Link href="/">
-                <Image src={'/img/jpg/logo-bg-white.jpg'} alt="Logo" width={170} height={50} />
+                <Image src={'/img/png/logo-bg-black.png'} alt="Logo" width={170} height={50} />
               </Link>
             </div>
           </div>

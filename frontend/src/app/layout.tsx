@@ -7,7 +7,7 @@ import HeaderWrapper from '@/components/header/HeaderWrapper';
 import { StoreProviders } from '@/store/StoreProvaider';
 
 import '../styles/globals.css';
-import '../styles/normalize.css';
+// import '../styles/normalize.css';
 
 import type { Metadata } from 'next';
 

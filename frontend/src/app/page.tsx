@@ -1,12 +1,20 @@
 import { JSX } from 'react';
 
+import BrandSlider from '@/components/BrandSlider';
+import FeaturedItems from '@/components/FeaturedItems';
 import MainWrapper from '@/components/main/MainWrapper';
-import ProductsList from '@/components/ProductsList';
+import MainSlider from '@/components/MainSlider';
+import ServiceInfo from '@/components/ServiceInfo';
+import SpecialOffer from '@/components/SpecialOffer';
 
 export default function HomePage(): JSX.Element {
   return (
     <MainWrapper>
-      <ProductsList fetchUrl="http://localhost:4000/products" />
+      <MainSlider />
+      <ServiceInfo />
+      <FeaturedItems />
+      <SpecialOffer />
+      <BrandSlider />
     </MainWrapper>
   );
 }

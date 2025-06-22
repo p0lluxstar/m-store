@@ -30,7 +30,7 @@ const AsideCart = (): JSX.Element | null => {
 
   return (
     <div
-      className={` ${visible ? 'translate-x-0' : 'translate-x-full'} fixed top-0 right-0 z-20 w-[400px] h-screen bg-white transition-transform duration-300 ease-in-out`}
+      className={` ${visible ? 'translate-x-0' : 'translate-x-full'} fixed top-0 right-0 z-20 w-[400px] h-screen bg-white transition-transform duration-100 ease-in-out`}
     >
       <div className="relative h-[60px] bg-[#f7f7f7] [border-bottom:1px_solid_#e8e8e8]">
         <button
@@ -59,7 +59,7 @@ const AsideCart = (): JSX.Element | null => {
                     />
                     <div>
                       <h3
-                        className="[font-size:18px] font-medium mb-[10px]"
+                        className="[font-size:18px] font-medium mb-[10px] hover:text-[var(--theme-color)] transition-colors"
                         onClick={handleAsideCartCloseBtn}
                       >
                         <Link href={`/catalog/${item.handle}/${item.id}`}>{item.title}</Link>

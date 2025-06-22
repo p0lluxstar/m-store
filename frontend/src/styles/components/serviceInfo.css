@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@layer components {
+  .test {
+    @apply text-red-500;
+  }
+  
+  .service-card {
+    @apply flex flex-col justify-center items-center w-1/3 p-6 
+           group hover:bg-gray-50 transition-all;
+  }
+}
