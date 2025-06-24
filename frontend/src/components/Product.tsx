@@ -6,7 +6,7 @@ import { GrCart } from 'react-icons/gr';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '@/store';
-import { addToCart } from '@/store/slices/cartItemsSlice';
+import { addItemToCart } from '@/store/slices/cartItemsSlice';
 import { ICartItem, IProduct } from '@/types';
 
 interface IProps {
@@ -36,7 +36,7 @@ const Product = ({ product }: IProps): JSX.Element => {
       price,
     };
 
-    dispatch(addToCart(cartItem));
+    dispatch(addItemToCart(cartItem));
 
     // alert('Товар добавлен в корзину!');
   };

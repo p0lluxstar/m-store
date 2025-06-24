@@ -4,7 +4,7 @@ import { JSX } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '@/store';
-import { toggleVisibility } from '@/store/slices/toggleSlice';
+import { toggleVisibility } from '@/store/slices/toggleAsideCartSlice';
 
 const Blackout = (): JSX.Element => {
   const dispatch = useDispatch();
