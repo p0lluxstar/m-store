@@ -122,7 +122,7 @@ export class MedusaService {
       // 5. Устновить метод доставки
       try {
         await medusa.store.cart.addShippingMethod(cart.id, {
-          option_id: 'so_01JWRDG8MEWBEQT4KNHZNHVXQ0',
+          option_id: 'so_01JYHRVXE94YZ435P9SMAEQXCE',
         });
       } catch (err) {
         throw new Error(`Ошибка установки метода доставки: ${err.message}`);

@@ -5,7 +5,7 @@ interface IToggleState {
 }
 
 const initialState: IToggleState = {
-  visible: true,
+  visible: false,
 };
 
 const toggleAsideCartSlice = createSlice({

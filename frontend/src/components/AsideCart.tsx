@@ -70,7 +70,10 @@ const AsideCart = (): JSX.Element | null => {
                       >
                         <Link href={`/catalog/${item.handle}/${item.id}`}>{item.title}</Link>
                       </h3>
-                      <button className='absolute right-[-20px] text-[20px] hover:cursor-pointer hover:opacity-80' onClick={() => handleDelItemFromCart(item.id)}>
+                      <button
+                        className="absolute right-[-20px] text-[20px] hover:cursor-pointer hover:opacity-80"
+                        onClick={() => handleDelItemFromCart(item.id)}
+                      >
                         <IoMdClose />
                       </button>
                       <p>
@@ -94,10 +97,19 @@ const AsideCart = (): JSX.Element | null => {
             </Link>
           </>
         ) : (
-          <>
-            <p className="text-lg">Корзина пуста</p>
-            <p className="text-sm">Добавьте товары из каталога</p>
-          </>
+          <div className="flex flex-col justify-center w-full mb-[60px]">
+            <div className="mb-[10px] text-[18px]">
+              <p>Корзина пуста</p>
+              <p>Добавьте товары из каталога</p>
+            </div>
+            <Link
+              onClick={handleAsideCartCloseBtn}
+              href="/catalog"
+              className="flex justify-center items-center bg-[#333131] w-full h-[50px] text-white text-[18px] font-medium cursor-pointer hover:opacity-90"
+            >
+              Перейти в каталог
+            </Link>
+          </div>
         )}
       </div>
     </div>
