@@ -3,45 +3,39 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
-import { HiMiniMinusSmall } from 'react-icons/hi2';
-import { HiMiniPlusSmall } from 'react-icons/hi2';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useAddToCartFromWishlist } from '@/app/hooks/useAddToCartFromWishlist';
+import { useDelToCartFromWishlist } from '@/app/hooks/useDelToCartFromWishlist';
 import { RootState } from '@/store';
-import {
-  clearCart,
-  delItemFromCart,
-  decQuantityItem,
-  incQuantityItem,
-} from '@/store/slices/cartItemsSlice';
+import { delItemFromWishlist, clearWishlist } from '@/store/slices/wishLikstItemsSlice';
 
 import EmptyState from '../EmptyState';
 
-const TableCart = (): JSX.Element => {
+const WishListTable = (): JSX.Element => {
   const dispatch = useDispatch();
+  const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
+  const { handleAddProduct } = useAddToCartFromWishlist();
+  const { handleDelProduct } = useDelToCartFromWishlist();
 
   const handleClearCart = (): void => {
-    dispatch(clearCart());
+    dispatch(clearWishlist());
   };
 
-  const handleDecQuantity = (productId: string): void => {
-    dispatch(decQuantityItem(productId));
+  const handleDelItemFromWishList = (productId: string): void => {
+    dispatch(delItemFromWishlist(productId));
   };
 
-  const handleIncQuantity = (productId: string): void => {
-    dispatch(incQuantityItem(productId));
+  const isInCart = (productId: string): boolean => {
+    return cartItems.some((item) => item.id === productId);
   };
 
-  const handleDelItemFromCart = (productId: string): void => {
-    dispatch(delItemFromCart(productId));
-  };
-
-  if (cartItems.length === 0) {
+  if (wishListItems.length === 0) {
     return (
       <EmptyState
-        title="Корзина пуста"
+        title="В избранном пока ничего нет"
         subtitle="Добавьте товары из каталога"
         linkText="Перейти в каталог"
         linkUrl="/catalog"
@@ -55,19 +49,19 @@ const TableCart = (): JSX.Element => {
         <tr>
           <th className="min-w-[30px] py-[12px]">&nbsp;</th>
           <th className="min-w-[110px] py-[12px]">&nbsp;</th>
-          <th className="w-[600px] py-[12px] text-left">Товар</th>
-          <th className="w-[200px] py-[12px]">Цена</th>
-          <th className="w-[100px] py-[12px]">Количество</th>
-          <th className="w-[200px] py-[12px]">Сумма</th>
+          <th className="w-[800px] py-[12px] text-left">Товар</th>
+          <th className="w-[300px] py-[12px] text-left">Категория</th>
+          <th className="w-[150px] py-[12px]">Цена</th>
+          <th className="w-[350px] py-[12px]"></th>
         </tr>
       </thead>
       <tbody>
-        {cartItems.map((item) => (
+        {wishListItems.map((item) => (
           <tr className="h-[150px] [border-bottom:1px_solid_#e8e8e8]" key={item.id}>
             <td>
               <button
                 className="text-[20px] hover:cursor-pointer hover:opacity-80"
-                onClick={() => handleDelItemFromCart(item.id)}
+                onClick={() => handleDelItemFromWishList(item.id)}
               >
                 <RiDeleteBinLine />
               </button>
@@ -88,38 +82,33 @@ const TableCart = (): JSX.Element => {
                 {item.title}
               </Link>
             </td>
-            <td className="text-center text-[18px] font-medium">{item.price}₽</td>
-            <td className="text-center text-[18px] font-medium">
-              <div className="flex justify-center items-center mx-[auto] my-[0] w-[80px] border border-gray-300 rounded-md overflow-hidden bg-white">
-                {/* Кнопка минус */}
-                <button
-                  type="button"
-                  className="flex items-center justify-center h-10 hover:cursor-pointer"
-                  onClick={() => handleDecQuantity(item.id)}
-                >
-                  <HiMiniMinusSmall />
-                </button>
-
-                {/* Поле ввода */}
-                <input
-                  type="number"
-                  min="1"
-                  value={item.quantity}
-                  onChange={() => {}}
-                  className="w-8 h-10 text-center text-lg font-medium focus:outline-none focus:ring-1 focus:ring-blue-500 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                />
-
-                {/* Кнопка плюс */}
-                <button
-                  type="button"
-                  className="flex items-center justify-center h-10 hover:cursor-pointer"
-                  onClick={() => handleIncQuantity(item.id)}
-                >
-                  <HiMiniPlusSmall />
-                </button>
-              </div>
+            <td className="text-[18px] font-medium">
+              <span>{item.handle}</span>
             </td>
-            <td className="text-center text-[18px] font-medium">{item.price * item.quantity}₽</td>
+            <td className="text-center text-[18px] font-medium">{item.price}₽</td>
+            <td className="text-right text-[18px] font-medium">
+              {isInCart(item.id) ? (
+                <button
+                  className="w-[150px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDelProduct(item.id);
+                  }}
+                >
+                  Удалить из корзины
+                </button>
+              ) : (
+                <button
+                  className="w-[150px] border-[1px] border-solid border-[#8a8a8a] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleAddProduct(item);
+                  }}
+                >
+                  Добавить в корзину
+                </button>
+              )}
+            </td>
           </tr>
         ))}
       </tbody>
@@ -131,7 +120,7 @@ const TableCart = (): JSX.Element => {
               className="min-w-[180px] h-[50px] font-medium border-[1px] border-solid border-[#e8e8e8] rounded-[8px] [box-shadow:none] cursor-pointer text-[#333131] hover:text-white hover:bg-[#333131] transition-colors"
               onClick={handleClearCart}
             >
-              Очистить коризну
+              Очистить избранные
             </button>
           </td>
         </tr>
@@ -140,4 +129,4 @@ const TableCart = (): JSX.Element => {
   );
 };
 
-export default TableCart;
+export default WishListTable;

@@ -4,10 +4,10 @@ import { JSX, useEffect, useState } from 'react';
 
 import Loader from '@/components/Loader';
 import MainWrapper from '@/components/main/MainWrapper';
-import OrderFlow from '@/components/order/OrderFlow';
 import PageHeaderArea from '@/components/PageHeaderArea';
+import WishListTable from '@/components/wishlist/WishListTable';
 
-const CartPage = (): JSX.Element => {
+const WishListPage = (): JSX.Element => {
   const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
@@ -17,9 +17,9 @@ const CartPage = (): JSX.Element => {
   return (
     <MainWrapper>
       <PageHeaderArea />
-      {hasMounted ? <OrderFlow /> : <Loader backgroundColor="#eb3e32" />}
+       {hasMounted ? <WishListTable /> : <Loader backgroundColor="#eb3e32" />}
     </MainWrapper>
   );
 };
 
-export default CartPage;
+export default WishListPage;

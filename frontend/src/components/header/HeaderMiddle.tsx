@@ -3,11 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
-import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
 
 import styles from '../../styles/components/header/headerMiddle.module.scss';
-import ShopCartBtn from '../cart/ShopCartBtn';
+import HeaderCartBtn from '../cart/HeaderCartBtn';
+import HeaderWishListBtn from '../wishlist/HeaderWishListBtn';
 
 const HeaderMiddle = (): JSX.Element => {
   return (
@@ -41,7 +41,7 @@ const HeaderMiddle = (): JSX.Element => {
             </div>
           </div>
           <div className={styles['header-middle-end']}>
-            <div className="flex gap-3 relative">
+            <div className="flex gap-5 relative">
               <div className={styles['shopping-search']}>
                 <button
                   className={styles['shopping-search-btn']}
@@ -53,15 +53,9 @@ const HeaderMiddle = (): JSX.Element => {
                   <i className="pe-7s-search icon"></i>
                 </button>
               </div>
-              <div className={styles['shopping-wishlist']}>
-                <Link className={styles['shopping-wishlist-btn']} href="shop-wishlist.html">
-                  <i className="text-[24px] hover:opacity-90">
-                    <FaRegHeart />
-                  </i>
-                </Link>
-              </div>
-              <ShopCartBtn />
-              <button
+              <HeaderWishListBtn />
+              <HeaderCartBtn />
+              {/* <button
                 className={styles['btn-menu']}
                 type="button"
                 data-bs-toggle="offcanvas"
@@ -69,7 +63,7 @@ const HeaderMiddle = (): JSX.Element => {
                 aria-controls="AsideOffcanvasMenu"
               >
                 <i className="pe-7s-menu"></i>
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

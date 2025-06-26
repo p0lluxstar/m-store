@@ -5,7 +5,7 @@ const PageHeaderArea = (): JSX.Element => {
   return (
     <div>
       <Image
-        className="mb-[100px]"
+        className="mb-[60px]"
         src={'/img/webp/page-header-area.webp'}
         alt="page header area"
         width={1920}

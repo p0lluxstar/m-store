@@ -3,49 +3,35 @@ import Link from 'next/link';
 import { JSX } from 'react';
 import { FaRegHeart } from 'react-icons/fa6';
 import { GrCart } from 'react-icons/gr';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import { useAddToCartOrWishListFromProductItem } from '@/app/hooks/useAddToCartOrWishListFromProductItem';
+import { useDelToCartOrWishListFromProductItem } from '@/app/hooks/useDelToCartOrWishListFromProductItem';
 import { RootState } from '@/store';
-import { addItemToCart } from '@/store/slices/cartItemsSlice';
-import { ICartItem, IProduct } from '@/types';
+import { IProduct } from '@/types';
+
 
 interface IProps {
   product: IProduct;
 }
 
 const ProductItem = ({ product }: IProps): JSX.Element => {
-  const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
+  const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
   const price = product.variants?.[0]?.calculated_price?.calculated_amount;
-
-  const handleAddToCart = (product: IProduct): void => {
-    const price = product.variants?.[0]?.calculated_price?.calculated_amount;
-    const variantId = product.variants?.[0]?.id;
-
-    if (!price || !variantId) {
-      return alert('Цена или вариант товара недоступны');
-    }
-
-    const cartItem: ICartItem = {
-      id: product.id,
-      variant_id: variantId,
-      title: product.title,
-      handle: product.handle,
-      imagesUrl: product.images[0].url,
-      quantity: 1,
-      price,
-    };
-
-    dispatch(addItemToCart(cartItem));
-
-    // alert('Товар добавлен в корзину!');
-  };
+  const { handleAddProduct } = useAddToCartOrWishListFromProductItem();
+  const { handleDelProduct } = useDelToCartOrWishListFromProductItem();
 
   const isInCart = (productId: string): boolean => {
     return cartItems.some((item) => item.id === productId);
   };
 
+  const isInWishList = (productId: string): boolean => {
+    return wishListItems.some((item) => item.id === productId);
+  };
+
   const inCart = isInCart(product.id);
+  const inWishList = isInWishList(product.id);
 
   return (
     <div className="relative group">
@@ -61,21 +47,28 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
         </Link>
         <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
-            className="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors"
+            className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inWishList ? '!bg-red-500 text-white' : ''}`}
             onClick={(e) => {
               e.preventDefault();
-              // Здесь добавьте логику для добавления в избранное
-              console.log('Added to favorites', product.id);
+              if (inWishList) {
+                handleDelProduct(product.id, 'wishlist');
+              } else {
+                handleAddProduct(product, 'wishlist');
+              }
             }}
             title="Добавить в избранное"
           >
             <FaRegHeart />
           </button>
           <button
-            className={`bg-white p-2 rounded-full shadow-md hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
+            className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
             onClick={(e) => {
               e.preventDefault();
-              handleAddToCart(product);
+              if (inCart) {
+                handleDelProduct(product.id, 'cart');
+              } else {
+                handleAddProduct(product, 'cart');
+              }
             }}
             title="Добавить в корзину"
           >
@@ -95,11 +88,6 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
         </Link>
       </h3>
       <p className="text-[#666] text-[20px] font-medium">{price}₽</p>
-      {/* {inCart ? (
-        <span style={{ color: 'green', fontWeight: 'bold' }}>В корзине</span>
-      ) : (
-        <button onClick={() => handleAddToCart(product)}>В корзину</button>
-      )} */}
     </div>
   );
 };
