@@ -13,7 +13,7 @@ interface IProps {
   product: IProduct;
 }
 
-const Product = ({ product }: IProps): JSX.Element => {
+const ProductItem = ({ product }: IProps): JSX.Element => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
   const price = product.variants?.[0]?.calculated_price?.calculated_amount;
@@ -104,4 +104,4 @@ const Product = ({ product }: IProps): JSX.Element => {
   );
 };
 
-export default Product;
+export default ProductItem;

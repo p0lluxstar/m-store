@@ -7,7 +7,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { IoIosSearch } from 'react-icons/io';
 
 import styles from '../../styles/components/header/headerMiddle.module.scss';
-import ShopCartBtn from '../ShopCartBtn';
+import ShopCartBtn from '../cart/ShopCartBtn';
 
 const HeaderMiddle = (): JSX.Element => {
   return (

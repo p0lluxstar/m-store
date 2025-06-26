@@ -9,7 +9,7 @@ import { RootState } from '@/store';
 import { clearCart } from '@/store/slices/cartItemsSlice';
 import { useTotalCartItems } from '@/utils/totalCartItems';
 
-import Loader from './Loader';
+import Loader from '../Loader';
 
 interface IUserFormCart {
   name: string;

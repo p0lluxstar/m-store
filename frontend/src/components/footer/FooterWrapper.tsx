@@ -1,7 +1,7 @@
 import { JSX } from 'react';
 
+import FooterBottom from './FooterBottom';
 import FooterMain from './FooterMain';
-import FooterBottom from './FotterBottom';
 
 const FooterWrapper = (): JSX.Element => {
   return (

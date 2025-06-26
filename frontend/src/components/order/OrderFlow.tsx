@@ -1,8 +1,10 @@
 import { JSX, useState } from 'react';
 
+import TableCart from '../cart/TableCart';
+
 import OrderSubmit from './OrderSubmit';
 import OrderSuccess from './OrderSuccess';
-import TableCart from './TableCart';
+
 
 const OrderFlow = (): JSX.Element => {
   const [orderCompleted, setOrderCompleted] = useState(false);

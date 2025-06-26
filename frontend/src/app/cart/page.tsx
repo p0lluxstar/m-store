@@ -4,7 +4,7 @@ import { JSX, useEffect, useState } from 'react';
 
 import Loader from '@/components/Loader';
 import MainWrapper from '@/components/main/MainWrapper';
-import OrderFlow from '@/components/OrderFlow';
+import OrderFlow from '@/components/order/OrderFlow';
 import PageHeaderArea from '@/components/PageHeaderArea';
 
 const CartPage = (): JSX.Element => {

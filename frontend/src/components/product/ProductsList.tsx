@@ -4,7 +4,7 @@ import { JSX } from 'react';
 import { useFetch } from '@/app/hooks/useFetch';
 import { IProduct } from '@/types';
 
-import Product from './Product';
+import ProductItem from './ProductItem';
 
 interface IProps {
   fetchUrl: string;
@@ -23,7 +23,7 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
           {products.map((product: IProduct) => {
             return (
               <div key={product.id}>
-                <Product product={product} />
+                <ProductItem product={product} />
               </div>
             );
           })}

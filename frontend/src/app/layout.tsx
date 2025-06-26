@@ -1,6 +1,6 @@
 import { JSX } from 'react';
 
-import AsideCart from '@/components/AsideCart';
+import AsideCart from '@/components/cart/AsideCart';
 import Blackout from '@/components/Blackout';
 import FooterWrapper from '@/components/footer/FooterWrapper';
 import HeaderWrapper from '@/components/header/HeaderWrapper';
