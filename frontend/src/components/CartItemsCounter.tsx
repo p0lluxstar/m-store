@@ -8,7 +8,13 @@ import { RootState } from '@/store';
 const CartItemCounter = (): JSX.Element | null => {
   const [isMounted, setIsMounted] = useState(false);
   const totalCartItems = useSelector((state: RootState) => {
-    return state.cartItems.items.length;
+    let quantityCartItems = 0;
+
+    state.cartItems.items.map((item) => {
+      quantityCartItems += item.quantity;
+    });
+
+    return quantityCartItems;
   });
 
   useEffect(() => {

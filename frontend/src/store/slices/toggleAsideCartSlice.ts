@@ -8,8 +8,8 @@ const initialState: IToggleState = {
   visible: false,
 };
 
-const toggleSlice = createSlice({
-  name: 'toggle',
+const toggleAsideCartSlice = createSlice({
+  name: 'toggleAsideCartSlice',
   initialState,
   reducers: {
     toggleVisibility(state) {
@@ -21,5 +21,5 @@ const toggleSlice = createSlice({
   },
 });
 
-export const { toggleVisibility, setVisible } = toggleSlice.actions;
-export const toggleReducer = toggleSlice.reducer;
+export const { toggleVisibility, setVisible } = toggleAsideCartSlice.actions;
+export const toggleAsideCartReducer = toggleAsideCartSlice.reducer;

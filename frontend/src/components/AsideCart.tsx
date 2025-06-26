@@ -4,10 +4,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { JSX, useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
+import { IoMdClose } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '@/store';
-import { toggleVisibility } from '@/store/slices/toggleSlice';
+import { delItemFromCart } from '@/store/slices/cartItemsSlice';
+import { toggleVisibility } from '@/store/slices/toggleAsideCartSlice';
 import { ICartItem } from '@/types';
 
 const AsideCart = (): JSX.Element | null => {
@@ -27,6 +29,10 @@ const AsideCart = (): JSX.Element | null => {
   if (!hasMounted) return null;
 
   const totalAmount = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handleDelItemFromCart = (productId: string): void => {
+    dispatch(delItemFromCart(productId));
+  };
 
   return (
     <div
@@ -57,14 +63,22 @@ const AsideCart = (): JSX.Element | null => {
                       width={70}
                       height={70}
                     />
-                    <div>
+                    <div className="relative w-[100%]">
                       <h3
                         className="[font-size:18px] font-medium mb-[10px] hover:text-[var(--theme-color)] transition-colors"
                         onClick={handleAsideCartCloseBtn}
                       >
                         <Link href={`/catalog/${item.handle}/${item.id}`}>{item.title}</Link>
                       </h3>
-                      <p>1 × {item.price}₽</p>
+                      <button
+                        className="absolute right-[-20px] text-[20px] hover:cursor-pointer hover:opacity-80"
+                        onClick={() => handleDelItemFromCart(item.id)}
+                      >
+                        <IoMdClose />
+                      </button>
+                      <p>
+                        {item.quantity} × {item.price}₽
+                      </p>
                     </div>
                   </li>
                 );
@@ -83,10 +97,19 @@ const AsideCart = (): JSX.Element | null => {
             </Link>
           </>
         ) : (
-          <>
-            <p className="text-lg">Корзина пуста</p>
-            <p className="text-sm">Добавьте товары из каталога</p>
-          </>
+          <div className="flex flex-col justify-center w-full mb-[60px]">
+            <div className="mb-[10px] text-[18px]">
+              <p>Корзина пуста</p>
+              <p>Добавьте товары из каталога</p>
+            </div>
+            <Link
+              onClick={handleAsideCartCloseBtn}
+              href="/catalog"
+              className="flex justify-center items-center bg-[#333131] w-full h-[50px] text-white text-[18px] font-medium cursor-pointer hover:opacity-90"
+            >
+              Перейти в каталог
+            </Link>
+          </div>
         )}
       </div>
     </div>

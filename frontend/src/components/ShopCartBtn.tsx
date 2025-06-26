@@ -2,7 +2,7 @@ import { JSX } from 'react';
 import { RiShoppingBagLine } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
 
-import { toggleVisibility } from '@/store/slices/toggleSlice';
+import { toggleVisibility } from '@/store/slices/toggleAsideCartSlice';
 
 import CartItemsCounter from './CartItemsCounter';
 
