@@ -26,9 +26,13 @@ const CartItemCounter = (): JSX.Element | null => {
   }
 
   return (
-    <div className="flex justify-center items-center absolute top-[-2px] right-[4px] p-[3px] bg-[var(--theme-color)] w-[21px] h-[21px] text-white rounded-[50%] text-[14px] font-semibold">
-      <span>{totalCartItems}</span>
-    </div>
+    <>
+      {totalCartItems > 0 && (
+        <div className="flex justify-center items-center absolute top-[-2px] right-[-8px] p-[3px] bg-[var(--theme-color)] w-[21px] h-[21px] text-white rounded-[50%] text-[14px] font-semibold">
+          <span>{totalCartItems}</span>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -6,7 +6,7 @@ import { toggleVisibility } from '@/store/slices/toggleAsideCartSlice';
 
 import CartItemsCounter from './CartItemsCounter';
 
-const ShopCartBtn = (): JSX.Element => {
+const HeaderCartBtn = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const handleCartButton = (): void => {
@@ -20,7 +20,7 @@ const ShopCartBtn = (): JSX.Element => {
         type="button"
         onClick={handleCartButton}
       >
-        <i className="text-[26px] hover:opacity-90">
+        <i className="text-[32px] hover:opacity-90">
           <RiShoppingBagLine />
         </i>
         <CartItemsCounter />
@@ -29,4 +29,4 @@ const ShopCartBtn = (): JSX.Element => {
   );
 };
 
-export default ShopCartBtn;
+export default HeaderCartBtn;
