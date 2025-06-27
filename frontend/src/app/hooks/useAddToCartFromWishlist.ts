@@ -3,10 +3,14 @@ import { useDispatch } from 'react-redux';
 import { addItemToCart } from '@/store/slices/cartItemsSlice';
 import { ICartItem } from '@/types';
 
-export const useAddToCartFromWishlist = (): any => {
+interface IUseAddToCartFromWishlist {
+  handleAddProduct: (product: ICartItem) => void;
+}
+
+export const useAddToCartFromWishlist = ():IUseAddToCartFromWishlist => {
   const dispatch = useDispatch();
 
-  const handleAddProduct = (product: ICartItem): any => {
+  const handleAddProduct = (product: ICartItem): void => {
     const price = product.price;
     const variantId = product.variant_id;
 
