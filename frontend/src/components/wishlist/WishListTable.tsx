@@ -89,7 +89,7 @@ const WishListTable = (): JSX.Element => {
             <td className="text-right text-[18px] font-medium">
               {isInCart(item.id) ? (
                 <button
-                  className="w-[150px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
+                  className="w-[150px] border-[1px] border-solid border-[#8a8a8a] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
                   onClick={(e) => {
                     e.preventDefault();
                     handleDelProduct(item.id);
@@ -99,7 +99,7 @@ const WishListTable = (): JSX.Element => {
                 </button>
               ) : (
                 <button
-                  className="w-[150px] border-[1px] border-solid border-[#8a8a8a] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
+                  className="w-[150px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
                   onClick={(e) => {
                     e.preventDefault();
                     handleAddProduct(item);

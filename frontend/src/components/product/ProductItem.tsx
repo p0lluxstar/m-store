@@ -47,7 +47,7 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
         </Link>
         <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
           <button
-            className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inWishList ? '!bg-red-500 text-white' : ''}`}
+            className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
             onClick={(e) => {
               e.preventDefault();
               if (inWishList) {
