@@ -84,7 +84,7 @@ const WishListTable = (): JSX.Element => {
             <td className="text-[18px] font-medium">
               <span>{item.handle}</span>
             </td>
-            <td className="text-center text-[18px] font-medium">{item.price}₽</td>
+            <td className="text-center text-[18px] font-medium">{item.price.toFixed(2)}₽</td>
             <td className="text-right text-[18px] font-medium">
               {isInCart(item.id) ? (
                 <Link

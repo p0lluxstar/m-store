@@ -7,6 +7,9 @@ export interface IProduct {
     id: string;
     url: string;
   }>;
+  tags: Array<{
+    value: string;
+  }>;
   variants?: Array<{
     id: string;
     calculated_price: {

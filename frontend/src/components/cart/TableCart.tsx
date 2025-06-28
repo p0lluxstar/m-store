@@ -89,7 +89,7 @@ const TableCart = (): JSX.Element => {
                 {item.title}
               </Link>
             </td>
-            <td className="text-center text-[18px] font-medium">{item.price}₽</td>
+            <td className="text-center text-[18px] font-medium">{item.price.toFixed(2)}₽</td>
             <td className="text-center text-[18px] font-medium">
               <div className="flex justify-center items-center mx-[auto] my-[0] w-[80px] border border-gray-300 rounded-md overflow-hidden bg-white">
                 {/* Кнопка минус */}
@@ -120,7 +120,7 @@ const TableCart = (): JSX.Element => {
                 </button>
               </div>
             </td>
-            <td className="text-center text-[18px] font-medium">{item.price * item.quantity}₽</td>
+            <td className="text-center text-[18px] font-medium">{(item.price * item.quantity).toFixed(2)}₽</td>
           </tr>
         ))}
       </tbody>

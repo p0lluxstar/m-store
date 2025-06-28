@@ -82,7 +82,11 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
         </div>
         <div className="mb-[20px]">
           <span className="font-medium">Категория</span>:{' '}
-          <Link href={`/catalog/${product.handle}`}>{product.handle}</Link>
+          <Link href={`/catalog/${product.handle}`}>
+            {product.tags.map((tag) => {
+              return <span key={tag.value}>{tag.value}</span>;
+            })}
+          </Link>
         </div>
         <div className="flex gap-[10px]">
           {inCart ? (

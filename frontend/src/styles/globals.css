@@ -36,3 +36,25 @@ body {
 .custom-before::before {
   @apply content-[''] bg-gray-600 h-[15px] absolute w-[1px] right-0.5 top-0.5;
 }
+
+/* для фильтра цен*/
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--theme-color, #333);
+  cursor: pointer;
+  margin-top: -7px;
+  pointer-events: auto;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--theme-color, #333);
+  cursor: pointer;
+  pointer-events: auto;
+}

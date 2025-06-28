@@ -1,14 +1,22 @@
 import { JSX } from 'react';
 
-import CategoriesList from '@/components/CategoriesList';
+import CatalogFilters from '@/components/filter/CatalogFilters';
+import CatalogSort from '@/components/filter/CatalogSort';
 import MainWrapper from '@/components/main/MainWrapper';
+import PageHeaderArea from '@/components/PageHeaderArea';
 import ProductsList from '@/components/product/ProductsList';
 
 export default function ShopPage(): JSX.Element {
   return (
     <MainWrapper>
-      <CategoriesList />
-      <ProductsList fetchUrl="http://localhost:4000/products" />
+      <PageHeaderArea />
+      <div className="flex gap-[40px]">
+        <CatalogFilters />
+        <div>
+          <CatalogSort />
+          <ProductsList fetchUrl="http://localhost:4000/products" />
+        </div>
+      </div>
     </MainWrapper>
   );
 }

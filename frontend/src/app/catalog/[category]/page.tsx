@@ -1,6 +1,9 @@
 import { JSX } from 'react';
 
+import CatalogFilters from '@/components/filter/CatalogFilters';
+import CatalogSort from '@/components/filter/CatalogSort';
 import MainWrapper from '@/components/main/MainWrapper';
+import PageHeaderArea from '@/components/PageHeaderArea';
 import ProductsCategoryList from '@/components/product/ProductsCategoryList';
 
 export const metadata = {
@@ -11,7 +14,14 @@ export const metadata = {
 const CategoryProductPage = (): JSX.Element => {
   return (
     <MainWrapper>
-      <ProductsCategoryList />
+      <PageHeaderArea />
+      <div className="flex gap-[40px]">
+        <CatalogFilters />
+        <div className='w-[100%]'>
+          <CatalogSort />
+          <ProductsCategoryList />
+        </div>
+      </div>
     </MainWrapper>
   );
 };

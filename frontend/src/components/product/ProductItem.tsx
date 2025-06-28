@@ -82,7 +82,9 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
         </div>
       </div>
       <Link className="text-[#666]" href={`/catalog/${product.handle}`}>
-        {product.handle}
+        {product.tags.map((tag) => {
+          return <span key={tag.value}>{tag.value}</span>;
+        })}
       </Link>
       <h3>
         <Link
@@ -92,7 +94,7 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
           {product.title}
         </Link>
       </h3>
-      <p className="text-[#666] text-[20px] font-medium">{price}₽</p>
+      <p className="text-[#666] text-[20px] font-medium">{price.toFixed(2)}₽</p>
     </div>
   );
 };
