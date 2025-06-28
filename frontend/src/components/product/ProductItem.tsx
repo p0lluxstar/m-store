@@ -10,7 +10,6 @@ import { useDelToCartOrWishListFromProductItem } from '@/app/hooks/useDelToCartO
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
 
-
 interface IProps {
   product: IProduct;
 }
@@ -56,24 +55,30 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
                 handleAddProduct(product, 'wishlist');
               }
             }}
-            title="Добавить в избранное"
+            title={inWishList ? 'Удалить из избранного' : 'Добавить в избранное'}
           >
             <FaRegHeart />
           </button>
-          <button
-            className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
-            onClick={(e) => {
-              e.preventDefault();
-              if (inCart) {
-                handleDelProduct(product.id, 'cart');
-              } else {
+          {inCart ? (
+            <Link
+              href={'/cart'}
+              className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
+              title="Перейти в корзину"
+            >
+              <GrCart />
+            </Link>
+          ) : (
+            <button
+              className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
                 handleAddProduct(product, 'cart');
-              }
-            }}
-            title="Добавить в корзину"
-          >
-            <GrCart />
-          </button>
+              }}
+              title="Добавить в корзину"
+            >
+              <GrCart />
+            </button>
+          )}
         </div>
       </div>
       <Link className="text-[#666]" href={`/catalog/${product.handle}`}>

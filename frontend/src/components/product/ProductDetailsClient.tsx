@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { JSX } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
@@ -71,35 +72,41 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
       </div>
       <div className="w-[50%]">
         <h3 className="text-[36px] font-medium text-black">{product.title}</h3>
-        <p className="text-[30px] font-bold text-black">
+        <div className="text-[30px] font-bold text-black">
           {product.variants?.[0]?.calculated_price?.calculated_amount.toFixed(2)}₽
-        </p>
-        <p className="[border-bottom:1px_solid_#c8c8c8] my-[20px]"></p>
-        <p className="text-[18px] mb-[15px]">{product.description}</p>
+        </div>
+        <div className="[border-bottom:1px_solid_#c8c8c8] my-[20px]"></div>
+        <div className="text-[18px] mb-[15px]">{product.description}</div>
+        <div>
+          <span className="font-medium">Артикул</span>: {product.id.slice(-6)}
+        </div>
+        <div className="mb-[20px]">
+          <span className="font-medium">Категория</span>:{' '}
+          <Link href={`/catalog/${product.handle}`}>{product.handle}</Link>
+        </div>
         <div className="flex gap-[10px]">
           {inCart ? (
-            <button
-              className="w-[150px] border-[1px] border-solid border-[#8a8a8a] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
-              onClick={(e) => {
-                e.preventDefault();
-                handleDelProduct(product.id, 'cart');
-              }}
+            <Link
+              className="w-[120px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] text-center font-medium cursor-pointer hover:opacity-90"
+              href={'/cart'}
+              title="Перейти в корзину"
             >
-              Удалить из корзины
-            </button>
+              В корзине
+            </Link>
           ) : (
             <button
-              className="w-[150px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
+              className="w-[120px] bg-[#8a8a8a] border-[1px] border-solid border-[#8a8a8a] text-white text-[14px] p-[6px] cursor-pointer text-center font-medium hover:opacity-90"
               onClick={(e) => {
                 e.preventDefault();
                 handleAddProduct(product, 'cart');
               }}
+              title="Добавить в корзину"
             >
-              Добавить в корзину
+              Купить
             </button>
           )}
           <button
-            className={`bg-gray-500 p-2 rounded-[5px] text-white cursor-pointer hover:opacity-90 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
+            className={`bg-gray-500 p-2 text-white cursor-pointer hover:opacity-90 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
             onClick={(e) => {
               e.preventDefault();
               if (inWishList) {
@@ -108,6 +115,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
                 handleAddProduct(product, 'wishlist');
               }
             }}
+            title={inWishList ? 'Удалить из избранного' : 'Добавить в избранное'}
           >
             <FaRegHeart />
           </button>
