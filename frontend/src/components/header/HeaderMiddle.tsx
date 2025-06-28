@@ -42,7 +42,7 @@ const HeaderMiddle = (): JSX.Element => {
           </div>
           <div className={styles['header-middle-end']}>
             <div className="flex gap-5 relative">
-              <div className={styles['shopping-search']}>
+              {/* <div className={styles['shopping-search']}>
                 <button
                   className={styles['shopping-search-btn']}
                   type="button"
@@ -52,7 +52,7 @@ const HeaderMiddle = (): JSX.Element => {
                 >
                   <i className="pe-7s-search icon"></i>
                 </button>
-              </div>
+              </div> */}
               <HeaderWishListBtn />
               <HeaderCartBtn />
               {/* <button

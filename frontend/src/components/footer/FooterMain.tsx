@@ -42,7 +42,7 @@ const FooterMain = (): JSX.Element => {
             <div className="widget-item widget-services-item">
               <h4 className="text-white text-[24px] mb-[20px]">Главное меню</h4>
               <ul className='leading-loose'>
-                {MAIN_MENU_ITEMS.map((item): any => {
+                {MAIN_MENU_ITEMS.map((item): JSX.Element => {
                   return (
                     <li key={item.name}>
                       <Link href={item.url}>

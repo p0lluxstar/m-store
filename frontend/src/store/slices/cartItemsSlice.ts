@@ -22,13 +22,15 @@ const cartItemsSlice = createSlice({
     },
 
     addItemToCart(state, action: PayloadAction<ICartItem>) {
-      state.items.push(action.payload);
-      localStorage.setItem('cart', JSON.stringify(state.items));
+      const itemExists = state.items.some((item) => item.id === action.payload.id);
+      if (!itemExists) {
+        state.items.push(action.payload);
+        localStorage.setItem('cart', JSON.stringify(state.items));
+      }
     },
 
     delItemFromCart(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
-
       localStorage.setItem('cart', JSON.stringify(state.items));
     },
 

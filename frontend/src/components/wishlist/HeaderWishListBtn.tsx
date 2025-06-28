@@ -8,10 +8,10 @@ import { RootState } from '@/store';
 const HeaderWishListBtn = (): JSX.Element => {
   const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
   const hasItems = wishListItems.length > 0;
-  
+
   return (
     <div className="relative">
-      <Link className="hover:opacity-90" href="/wishlist">
+      <Link className="hover:opacity-90" href="/wishlist" title="Перейти в избарнные">
         <i className="text-[30px]">
           <FaRegHeart />
         </i>

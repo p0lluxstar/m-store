@@ -19,6 +19,7 @@ const HeaderCartBtn = (): JSX.Element => {
         className="hover:cursor-pointer hover:opacity-90"
         type="button"
         onClick={handleCartButton}
+        title="Открыть корзину"
       >
         <i className="text-[32px] hover:opacity-90">
           <RiShoppingBagLine />

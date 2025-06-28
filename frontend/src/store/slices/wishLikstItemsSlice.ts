@@ -22,13 +22,15 @@ const wishlistItemsSlice = createSlice({
     },
 
     addItemToWishlist(state, action: PayloadAction<ICartItem>) {
-      state.items.push(action.payload);
-      localStorage.setItem('wishlist', JSON.stringify(state.items));
+      const itemExists = state.items.some((item) => item.id === action.payload.id);
+      if (!itemExists) {
+        state.items.push(action.payload);
+        localStorage.setItem('wishlist', JSON.stringify(state.items));
+      }
     },
 
     delItemFromWishlist(state, action: PayloadAction<string>) {
       state.items = state.items.filter((item) => item.id !== action.payload);
-
       localStorage.setItem('wishlist', JSON.stringify(state.items));
     },
 
@@ -39,10 +41,6 @@ const wishlistItemsSlice = createSlice({
   },
 });
 
-export const {
-  setWishlistItems,
-  addItemToWishlist,
-  delItemFromWishlist,
-  clearWishlist,
-} = wishlistItemsSlice.actions;
+export const { setWishlistItems, addItemToWishlist, delItemFromWishlist, clearWishlist } =
+  wishlistItemsSlice.actions;
 export const wishlistReducer = wishlistItemsSlice.reducer;

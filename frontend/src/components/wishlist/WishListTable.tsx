@@ -7,7 +7,6 @@ import { RiDeleteBinLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useAddToCartFromWishlist } from '@/app/hooks/useAddToCartFromWishlist';
-import { useDelToCartFromWishlist } from '@/app/hooks/useDelToCartFromWishlist';
 import { RootState } from '@/store';
 import { delItemFromWishlist, clearWishlist } from '@/store/slices/wishLikstItemsSlice';
 
@@ -18,7 +17,6 @@ const WishListTable = (): JSX.Element => {
   const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
   const { handleAddProduct } = useAddToCartFromWishlist();
-  const { handleDelProduct } = useDelToCartFromWishlist();
 
   const handleClearCart = (): void => {
     dispatch(clearWishlist());
@@ -62,6 +60,7 @@ const WishListTable = (): JSX.Element => {
               <button
                 className="text-[20px] hover:cursor-pointer hover:opacity-80"
                 onClick={() => handleDelItemFromWishList(item.id)}
+                title='Удалить товар из избранных'
               >
                 <RiDeleteBinLine />
               </button>
@@ -88,24 +87,21 @@ const WishListTable = (): JSX.Element => {
             <td className="text-center text-[18px] font-medium">{item.price}₽</td>
             <td className="text-right text-[18px] font-medium">
               {isInCart(item.id) ? (
-                <button
-                  className="w-[150px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleDelProduct(item.id);
-                  }}
+                <Link
+                  className="inline-block w-[120px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] text-center font-medium cursor-pointer hover:opacity-90"
+                  href={'/cart'}
                 >
-                  Удалить из корзины
-                </button>
+                  В корзине
+                </Link>
               ) : (
                 <button
-                  className="w-[150px] border-[1px] border-solid border-[#8a8a8a] text-[14px] p-[6px] cursor-pointer hover:opacity-90"
+                  className="w-[120px] bg-[#8a8a8a] border-[1px] border-solid border-[#8a8a8a] text-white text-[14px] p-[6px] cursor-pointer text-center font-medium hover:opacity-90"
                   onClick={(e) => {
                     e.preventDefault();
                     handleAddProduct(item);
                   }}
                 >
-                  Добавить в корзину
+                  Купить
                 </button>
               )}
             </td>

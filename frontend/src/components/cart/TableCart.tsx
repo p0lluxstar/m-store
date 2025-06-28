@@ -68,6 +68,7 @@ const TableCart = (): JSX.Element => {
               <button
                 className="text-[20px] hover:cursor-pointer hover:opacity-80"
                 onClick={() => handleDelItemFromCart(item.id)}
+                title='Удалить товар из корзины'
               >
                 <RiDeleteBinLine />
               </button>
