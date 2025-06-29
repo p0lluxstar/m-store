@@ -12,7 +12,7 @@ export default function ShopPage(): JSX.Element {
       <PageHeaderArea />
       <div className="flex gap-[40px]">
         <CatalogFilters />
-        <div>
+        <div className='w-[100%]'>
           <CatalogSort />
           <ProductsList fetchUrl="http://localhost:4000/products" />
         </div>

@@ -11,10 +11,22 @@ export class CategoryController {
   }
 
   @Get('products')
-  async getProductsByCategory(@Query('handle') handle: string) {
+  async getProductsByCategory(
+    @Query('handle') handle: string,
+    @Query('sortBy') sortBy?: string,
+    @Query('minPrice') minPrice?: string,
+    @Query('maxPrice') maxPrice?: string
+  ) {
     if (!handle) {
       return { error: 'categoryId query parameter is required' };
     }
-    return this.medusaService.getProductsByCategoryHandle('reg_01JWRDG8DY2GDMAK48EY1BJ9MF', handle);
+
+    return this.medusaService.getProductsByCategory(
+      'reg_01JWRDG8DY2GDMAK48EY1BJ9MF',
+      handle,
+      sortBy ?? 'title_asc',
+      minPrice ? Number(minPrice) : undefined,
+      maxPrice ? Number(maxPrice) : undefined
+    );
   }
 }

@@ -19,7 +19,7 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   return (
     <>
       {products.length > 0 ? (
-        <div className='flex gap-[30px]'>
+        <div className='grid grid-cols-3 gap-4'>
           {products.map((product: IProduct) => {
             return (
               <div key={product.id}>

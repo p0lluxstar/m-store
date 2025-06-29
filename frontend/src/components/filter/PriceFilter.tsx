@@ -1,22 +1,36 @@
 'use client';
 
+import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { JSX, useState } from 'react';
 
 const MIN = 0;
 const MAX = 10000;
 
 const PriceFilter = (): JSX.Element => {
-  const [minPrice, setMinPrice] = useState(1000);
-  const [maxPrice, setMaxPrice] = useState(7000);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(10000);
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = Math.min(Number(e.target.value), maxPrice - 100);
     setMinPrice(value);
+    updateUrlParams(value, maxPrice);
   };
 
   const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = Math.max(Number(e.target.value), minPrice + 100);
     setMaxPrice(value);
+    updateUrlParams(minPrice, value);
+  };
+
+  const updateUrlParams = (min: number, max: number): void => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('minPrice', min.toString());
+    params.set('maxPrice', max.toString());
+    router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
   const getPercent = (value: number): number => Math.round(((value - MIN) / (MAX - MIN)) * 100);
@@ -34,10 +48,8 @@ const PriceFilter = (): JSX.Element => {
           <strong>{maxPrice} ₽</strong>
         </span>
       </div>
-      <div className="relative h-8 mb-6">
-        {/* Полоса фона */}
+      <div className="relative h-8">
         <div className="absolute top-1/2 w-full h-1 bg-gray-300 rounded -translate-y-1/2" />
-        {/* Активная полоса между значениями */}
         <div
           className="absolute top-1/2 h-1 bg-[var(--theme-color)] rounded -translate-y-1/2"
           style={{
@@ -45,7 +57,6 @@ const PriceFilter = (): JSX.Element => {
             width: `${getPercent(maxPrice) - getPercent(minPrice)}%`,
           }}
         />
-        {/* Левый ползунок */}
         <input
           type="range"
           min={MIN}
@@ -53,9 +64,7 @@ const PriceFilter = (): JSX.Element => {
           value={minPrice}
           onChange={handleMinChange}
           className="absolute w-full top-[14px] pointer-events-none appearance-none z-10"
-          style={{ WebkitAppearance: 'none' }}
         />
-        {/* Правый ползунок */}
         <input
           type="range"
           min={MIN}
@@ -63,7 +72,6 @@ const PriceFilter = (): JSX.Element => {
           value={maxPrice}
           onChange={handleMaxChange}
           className="absolute w-full top-[14px] pointer-events-none appearance-none z-10"
-          style={{ WebkitAppearance: 'none' }}
         />
       </div>
     </div>

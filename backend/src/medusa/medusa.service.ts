@@ -16,6 +16,7 @@ interface OrderData {
 @Injectable()
 export class MedusaService {
   async getProducts(regionId: string) {
+    medusa.store.category.retrieve;
     try {
       const { products } = await medusa.store.product.list({
         region_id: regionId,
@@ -51,28 +52,62 @@ export class MedusaService {
     }
   }
 
-  async getProductsByCategoryHandle(regionId: string, handle: string) {
-    try {
-      // 1. находим категорию по handle
-      const categoryRes = await medusa.store.category.list();
-      const category = categoryRes.product_categories.find((cat) => cat.handle === handle);
+  async getProductsByCategory(
+  regionId: string,
+  handle: string,
+  sortBy: string = 'title_asc',
+  minPrice?: number,
+  maxPrice?: number
+) {
+  try {
+    const categoryRes = await medusa.store.category.list();
+    const category = categoryRes.product_categories.find((cat) => cat.handle === handle);
 
-      if (!category) {
-        throw new Error(`Category with handle "${handle}" not found`);
-      }
-
-      // 2. Получаем товары по category_id
-      const { products } = await medusa.store.product.list({
-        region_id: regionId,
-        fields: '*variants.calculated_price',
-        category_id: [category.id],
-      });
-
-      return products;
-    } catch (error) {
-      throw new Error(`Failed to fetch products by category handle: ${error.message}`);
+    if (!category) {
+      throw new Error(`Category with handle "${handle}" not found`);
     }
+
+    const { products } = await medusa.store.product.list({
+      region_id: regionId,
+      fields: '*variants.calculated_price',
+      category_id: [category.id],
+    });
+
+    // Фильтрация по цене
+    const filteredProducts = products.filter((product) => {
+      const price = product.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
+      return (
+        (minPrice === undefined || price >= minPrice) &&
+        (maxPrice === undefined || price <= maxPrice)
+      );
+    });
+
+    // Сортировка
+    const sortedProducts = filteredProducts.sort((a, b) => {
+      const priceA = a.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
+      const priceB = b.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
+      const titleA = a.title.toLowerCase();
+      const titleB = b.title.toLowerCase();
+
+      switch (sortBy) {
+        case 'price_asc':
+          return priceA - priceB;
+        case 'price_desc':
+          return priceB - priceA;
+        case 'title_asc':
+          return titleA.localeCompare(titleB);
+        case 'title_desc':
+          return titleB.localeCompare(titleA);
+        default:
+          return 0;
+      }
+    });
+
+    return sortedProducts;
+  } catch (error) {
+    throw new Error(`Failed to fetch products by category handle: ${error.message}`);
   }
+}
 
   // создание заказа
   async createOrder(data: OrderData) {
