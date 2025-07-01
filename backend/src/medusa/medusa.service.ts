@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { medusa } from '../../medusa-config';
+import { FilterAndSortProducts } from 'src/utils/FilterAndSortProducts';
 
 interface CartItem {
   variant_id: string;
@@ -15,16 +16,36 @@ interface OrderData {
 
 @Injectable()
 export class MedusaService {
-  async getProducts(regionId: string) {
+  // async getProducts(regionId: string) {
+  //   medusa.store.category.retrieve;
+  //   try {
+  //     const { products } = await medusa.store.product.list({
+  //       region_id: regionId,
+  //       fields: '*variants.calculated_price',
+  //     });
+
+  //     return products;
+  //   } catch (error) {
+  //     throw new Error(`Failed to fetch products: ${error.message}`);
+  //   }
+  // }
+
+  async getProducts(
+    regionId: string,
+    sortBy: string = 'title_asc',
+    minPrice?: number,
+    maxPrice?: number
+  ) {
     try {
       const { products } = await medusa.store.product.list({
         region_id: regionId,
         fields: '*variants.calculated_price',
       });
 
-      return products;
+      const sortedProducts = FilterAndSortProducts(products, sortBy, minPrice, maxPrice);
+      return sortedProducts;
     } catch (error) {
-      throw new Error(`Failed to fetch products: ${error.message}`);
+      throw new Error(`Failed to fetch products by category handle: ${error.message}`);
     }
   }
 
@@ -51,9 +72,14 @@ export class MedusaService {
     }
   }
 
-  async getProductsByCategoryHandle(regionId: string, handle: string) {
+  async getProductsByCategory(
+    regionId: string,
+    handle: string,
+    sortBy: string = 'title_asc',
+    minPrice?: number,
+    maxPrice?: number
+  ) {
     try {
-      // 1. находим категорию по handle
       const categoryRes = await medusa.store.category.list();
       const category = categoryRes.product_categories.find((cat) => cat.handle === handle);
 
@@ -61,14 +87,14 @@ export class MedusaService {
         throw new Error(`Category with handle "${handle}" not found`);
       }
 
-      // 2. Получаем товары по category_id
       const { products } = await medusa.store.product.list({
         region_id: regionId,
         fields: '*variants.calculated_price',
         category_id: [category.id],
       });
 
-      return products;
+      const sortedProducts = FilterAndSortProducts(products, sortBy, minPrice, maxPrice);
+      return sortedProducts;
     } catch (error) {
       throw new Error(`Failed to fetch products by category handle: ${error.message}`);
     }

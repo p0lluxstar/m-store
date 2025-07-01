@@ -14,6 +14,11 @@ export const useAddToCartOrWishListFromProductItem = (): IUseAddToCartOrWishList
   const handleAddProduct = (product: IProduct, action: 'cart' | 'wishlist'): void => {
     const price = product.variants?.[0]?.calculated_price?.calculated_amount;
     const variantId = product.variants?.[0]?.id;
+    const imagesUrl = product.images;
+
+    if (imagesUrl.length === 0) {
+      imagesUrl.push({ id: '', url: '' });
+    }
 
     if (!price || !variantId) {
       alert('Цена или вариант товара недоступны');

@@ -3,11 +3,18 @@ export interface IProduct {
   title: string;
   description: string;
   handle: string;
+  collection: {
+    title: string;
+    handle: string;
+  }
   images: Array<{
     id: string;
     url: string;
   }>;
-  variants?: Array<{
+  tags: Array<{
+    value: string;
+  }>;
+  variants: Array<{
     id: string;
     calculated_price: {
       calculated_amount: number;

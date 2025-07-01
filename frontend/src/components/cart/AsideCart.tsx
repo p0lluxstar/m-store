@@ -77,7 +77,7 @@ const AsideCart = (): JSX.Element | null => {
                         <IoMdClose />
                       </button>
                       <p>
-                        {item.quantity} × {item.price}₽
+                        {item.quantity} × {item.price.toFixed(2)}₽
                       </p>
                     </div>
                   </li>
