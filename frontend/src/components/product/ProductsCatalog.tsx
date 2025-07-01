@@ -5,7 +5,8 @@ import { JSX, useMemo } from 'react';
 
 import ProductsList from './ProductsList';
 
-const ProductsCategoryList = (): JSX.Element => {
+const ProductsCatalog = (): JSX.Element => {
+  
   const { category } = useParams() as { category: string };
   const searchParams = useSearchParams();
 
@@ -16,17 +17,20 @@ const ProductsCategoryList = (): JSX.Element => {
   const fetchUrl = useMemo(() => {
     const params = new URLSearchParams();
 
-    params.set('handle', category);
+    // Устанавливаем параметры, если они есть
+    params.set('handle', category); // set() возвращает void, поэтому не нужно присваивать
 
-    // Добавляем параметры, только если они есть
     if (sortBy) params.set('sortBy', sortBy);
     if (minPrice) params.set('minPrice', minPrice.toString());
     if (maxPrice) params.set('maxPrice', maxPrice.toString());
 
-    return `http://localhost:4000/categories/products?${params.toString()}`;
+    // Если есть категория, используем URL с категорией, иначе общий URL
+    return category
+      ? `http://localhost:4000/categories/products?${params.toString()}`
+      : `http://localhost:4000/products?${params.toString()}`;
   }, [category, sortBy, minPrice, maxPrice]);
 
   return <ProductsList fetchUrl={fetchUrl} />;
 };
 
-export default ProductsCategoryList;
+export default ProductsCatalog;

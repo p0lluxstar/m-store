@@ -1,6 +1,6 @@
 import { JSX } from 'react';
 
-import ProductsList from './product/ProductsList';
+import ProductsListMainPage from './product/ProductsListMainPage';
 
 const FeaturedItems = (): JSX.Element => {
   return (
@@ -11,7 +11,7 @@ const FeaturedItems = (): JSX.Element => {
           Популярные товары, которые выбирают наши покупатели
         </p>
       </div>
-      <ProductsList fetchUrl="http://localhost:4000/products" />
+      <ProductsListMainPage fetchUrl="http://localhost:4000/products" />
     </section>
   );
 };

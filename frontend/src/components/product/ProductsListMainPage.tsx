@@ -1,12 +1,8 @@
 'use client';
 import { JSX } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { useFetch } from '@/app/hooks/useFetch';
-import { setNumberProductsFound } from '@/store/slices/numberProductsFound';
 import { IProduct } from '@/types';
-
-import Loader from '../Loader';
 
 import ProductItem from './ProductItem';
 
@@ -14,24 +10,16 @@ interface IProps {
   fetchUrl: string;
 }
 
-const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
-  const dispatch = useDispatch();
+const ProductsListMainPage = ({ fetchUrl }: IProps): JSX.Element => {
   const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
 
-  if (loading)
-    return (
-      <div>
-        <Loader backgroundColor="#eb3e32" />
-      </div>
-    );
+  if (loading) return <div>Loading products...</div>;
   if (error) return <div>Error: {error}</div>;
-
-  dispatch(setNumberProductsFound(products.length));
 
   return (
     <>
       {products.length > 0 ? (
-        <div className="grid grid-cols-3 gap-4">
+        <div className='grid grid-cols-4 gap-10'>
           {products.map((product: IProduct) => {
             return (
               <div key={product.id}>
@@ -41,10 +29,10 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
           })}
         </div>
       ) : (
-        <p className="font-medium text-center">Товары не найдены</p>
+        <p>Товары не найдены</p>
       )}
     </>
   );
 };
 
-export default ProductsList;
+export default ProductsListMainPage;

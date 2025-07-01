@@ -10,6 +10,8 @@ import { useDelToCartOrWishListFromProductItem } from '@/app/hooks/useDelToCartO
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
 
+import ProductTags from './ProductTags';
+
 interface IProps {
   product: IProduct;
 }
@@ -35,7 +37,10 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
   return (
     <div className="relative group">
       <div className="relative">
-        <Link href={`/catalog/${product.handle}/${product.id}`}>
+        <div className="absolute flex gap-[5px] ml-[10px] mt-[10px]">
+          <ProductTags tags={product.tags}/>
+        </div>
+        <Link href={`/catalog/${product.collection.handle}/${product.id}`}>
           <Image
             className="rounded-[10px] mb-[10px] group-hover:opacity-90 transition-opacity"
             src={'/img/webp/product.webp'}
@@ -81,15 +86,13 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
           )}
         </div>
       </div>
-      <Link className="text-[#666]" href={`/catalog/${product.handle}`}>
-        {product.tags.map((tag) => {
-          return <span key={tag.value}>{tag.value}</span>;
-        })}
+      <Link className="text-[#666]" href={`/catalog/${product.collection.handle}`}>
+        <span>{product.collection.title}</span>
       </Link>
       <h3>
         <Link
           className="text-[#000] text-[18px] font-bold hover:text-[var(--theme-color)] transition-colors"
-          href={`/catalog/${product.handle}/${product.id}`}
+          href={`/catalog/${product.collection.handle}/${product.id}`}
         >
           {product.title}
         </Link>

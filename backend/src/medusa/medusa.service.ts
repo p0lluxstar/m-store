@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { medusa } from '../../medusa-config';
+import { FilterAndSortProducts } from 'src/utils/FilterAndSortProducts';
 
 interface CartItem {
   variant_id: string;
@@ -15,17 +16,54 @@ interface OrderData {
 
 @Injectable()
 export class MedusaService {
-  async getProducts(regionId: string) {
-    medusa.store.category.retrieve;
+  // async getProducts(regionId: string) {
+  //   medusa.store.category.retrieve;
+  //   try {
+  //     const { products } = await medusa.store.product.list({
+  //       region_id: regionId,
+  //       fields: '*variants.calculated_price',
+  //     });
+
+  //     return products;
+  //   } catch (error) {
+  //     throw new Error(`Failed to fetch products: ${error.message}`);
+  //   }
+  // }
+
+  // async getProductsTest(regionId: string) {
+  //   medusa.store.category.retrieve;
+  //   try {
+  //     const products = await medusa.store.product.retrieve('prod_01JWRDG8SE0KQ48SAPJPS8R75Y', {
+  //       fields: 'id,category',
+  //     });
+
+  //     medusa.store.product.retrieve('prod_01JWRDG8SE0KQ48SAPJPS8R75Y').then(({ product }) => {
+  //       // product.categories — массив категорий, к которым относится продукт
+  //       console.log(product.categories);
+  //     });
+
+  //     return products;
+  //   } catch (error) {
+  //     throw new Error(`Failed to fetch products: ${error.message}`);
+  //   }
+  // }
+
+  async getProducts(
+    regionId: string,
+    sortBy: string = 'title_asc',
+    minPrice?: number,
+    maxPrice?: number
+  ) {
     try {
       const { products } = await medusa.store.product.list({
         region_id: regionId,
         fields: '*variants.calculated_price',
       });
 
-      return products;
+      const sortedProducts = FilterAndSortProducts(products, sortBy, minPrice, maxPrice);
+      return sortedProducts;
     } catch (error) {
-      throw new Error(`Failed to fetch products: ${error.message}`);
+      throw new Error(`Failed to fetch products by category handle: ${error.message}`);
     }
   }
 
@@ -53,61 +91,32 @@ export class MedusaService {
   }
 
   async getProductsByCategory(
-  regionId: string,
-  handle: string,
-  sortBy: string = 'title_asc',
-  minPrice?: number,
-  maxPrice?: number
-) {
-  try {
-    const categoryRes = await medusa.store.category.list();
-    const category = categoryRes.product_categories.find((cat) => cat.handle === handle);
+    regionId: string,
+    handle: string,
+    sortBy: string = 'title_asc',
+    minPrice?: number,
+    maxPrice?: number
+  ) {
+    try {
+      const categoryRes = await medusa.store.category.list();
+      const category = categoryRes.product_categories.find((cat) => cat.handle === handle);
 
-    if (!category) {
-      throw new Error(`Category with handle "${handle}" not found`);
-    }
-
-    const { products } = await medusa.store.product.list({
-      region_id: regionId,
-      fields: '*variants.calculated_price',
-      category_id: [category.id],
-    });
-
-    // Фильтрация по цене
-    const filteredProducts = products.filter((product) => {
-      const price = product.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
-      return (
-        (minPrice === undefined || price >= minPrice) &&
-        (maxPrice === undefined || price <= maxPrice)
-      );
-    });
-
-    // Сортировка
-    const sortedProducts = filteredProducts.sort((a, b) => {
-      const priceA = a.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
-      const priceB = b.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
-      const titleA = a.title.toLowerCase();
-      const titleB = b.title.toLowerCase();
-
-      switch (sortBy) {
-        case 'price_asc':
-          return priceA - priceB;
-        case 'price_desc':
-          return priceB - priceA;
-        case 'title_asc':
-          return titleA.localeCompare(titleB);
-        case 'title_desc':
-          return titleB.localeCompare(titleA);
-        default:
-          return 0;
+      if (!category) {
+        throw new Error(`Category with handle "${handle}" not found`);
       }
-    });
 
-    return sortedProducts;
-  } catch (error) {
-    throw new Error(`Failed to fetch products by category handle: ${error.message}`);
+      const { products } = await medusa.store.product.list({
+        region_id: regionId,
+        fields: '*variants.calculated_price',
+        category_id: [category.id],
+      });
+
+      const sortedProducts = FilterAndSortProducts(products, sortBy, minPrice, maxPrice);
+      return sortedProducts;
+    } catch (error) {
+      throw new Error(`Failed to fetch products by category handle: ${error.message}`);
+    }
   }
-}
 
   // создание заказа
   async createOrder(data: OrderData) {

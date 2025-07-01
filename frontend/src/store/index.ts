@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { cartItemsReducer } from './slices/cartItemsSlice';
+import { numberProductsFoundReducer } from './slices/numberProductsFound';
 import { toggleAsideCartReducer } from './slices/toggleAsideCartSlice';
 import { wishlistReducer } from './slices/wishLikstItemsSlice';
 
@@ -9,6 +10,7 @@ export const store = configureStore({
     cartItems: cartItemsReducer,
     toggle: toggleAsideCartReducer,
     wishlistItems: wishlistReducer,
+    numberProductsFound: numberProductsFoundReducer,
   },
 });
 

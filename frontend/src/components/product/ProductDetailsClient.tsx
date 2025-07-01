@@ -11,6 +11,8 @@ import { useDelToCartOrWishListFromProductItem } from '@/app/hooks/useDelToCartO
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
 
+import ProductTags from './ProductTags';
+
 interface Props {
   product: IProduct;
 }
@@ -76,16 +78,20 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           {product.variants?.[0]?.calculated_price?.calculated_amount.toFixed(2)}₽
         </div>
         <div className="[border-bottom:1px_solid_#c8c8c8] my-[20px]"></div>
+        {product.tags.length > 0 && (
+          <div className="flex gap-[10px] mb-[10px]">
+            <ProductTags tags={product.tags} />
+          </div>
+        )}
+
         <div className="text-[18px] mb-[15px]">{product.description}</div>
         <div>
           <span className="font-medium">Артикул</span>: {product.id.slice(-6)}
         </div>
         <div className="mb-[20px]">
           <span className="font-medium">Категория</span>:{' '}
-          <Link href={`/catalog/${product.handle}`}>
-            {product.tags.map((tag) => {
-              return <span key={tag.value}>{tag.value}</span>;
-            })}
+          <Link href={`/catalog/${product.collection.handle}`}>
+            <span>{product.collection.title}</span>
           </Link>
         </div>
         <div className="flex gap-[10px]">
@@ -110,7 +116,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
             </button>
           )}
           <button
-            className={`bg-gray-500 p-2 text-white cursor-pointer hover:opacity-90 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
+            className={`bg-[#8A8A8A] p-2 text-white cursor-pointer hover:opacity-90 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
             onClick={(e) => {
               e.preventDefault();
               if (inWishList) {

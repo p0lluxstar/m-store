@@ -3,6 +3,10 @@ export interface IProduct {
   title: string;
   description: string;
   handle: string;
+  collection: {
+    title: string;
+    handle: string;
+  }
   images: Array<{
     id: string;
     url: string;

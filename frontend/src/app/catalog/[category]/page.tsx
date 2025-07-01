@@ -4,7 +4,7 @@ import CatalogFilters from '@/components/filter/CatalogFilters';
 import CatalogSort from '@/components/filter/CatalogSort';
 import MainWrapper from '@/components/main/MainWrapper';
 import PageHeaderArea from '@/components/PageHeaderArea';
-import ProductsCategoryList from '@/components/product/ProductsCategoryList';
+import ProductsCatalog from '@/components/product/ProductsCatalog';
 
 export const metadata = {
   title: 'Категория товаров — M-Store',
@@ -19,7 +19,7 @@ const CategoryProductPage = (): JSX.Element => {
         <CatalogFilters />
         <div className='w-[100%]'>
           <CatalogSort />
-          <ProductsCategoryList />
+          <ProductsCatalog />
         </div>
       </div>
     </MainWrapper>

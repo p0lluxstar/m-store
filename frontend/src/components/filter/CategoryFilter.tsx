@@ -7,6 +7,8 @@ import { JSX } from 'react';
 import { useFetch } from '@/app/hooks/useFetch';
 import { ICategory } from '@/types';
 
+import Loader from '../Loader';
+
 const CategoryFilter = (): JSX.Element => {
   const params = useParams();
   const categorySlug = params?.category;
@@ -17,7 +19,12 @@ const CategoryFilter = (): JSX.Element => {
     error,
   } = useFetch<ICategory[]>('http://localhost:4000/categories');
 
-  if (loading) return <div>Loading products...</div>;
+  if (loading)
+    return (
+      <div>
+        <Loader backgroundColor="#eb3e32" />
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
 
   return (
@@ -28,7 +35,10 @@ const CategoryFilter = (): JSX.Element => {
       {categories.length > 0 ? (
         <ul>
           {categories.map((category: ICategory) => (
-            <li className="mb-[5px] text-[18px] font-medium text-[#8a8a8a]" key={category.id}>
+            <li
+              className="mb-[5px] text-[18px] font-medium text-[#8a8a8a] hover:text-[#555]"
+              key={category.id}
+            >
               <Link
                 href={`/catalog/${category.handle}`}
                 className={`${category.handle === categorySlug ? 'font-medium text-[#000]' : ''}`}
