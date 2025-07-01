@@ -4,7 +4,10 @@ import { JSX } from 'react';
 import { useFetch } from '@/app/hooks/useFetch';
 import { IProduct } from '@/types';
 
+import Loader from '../Loader';
+
 import ProductItem from './ProductItem';
+
 
 interface IProps {
   fetchUrl: string;
@@ -13,13 +16,18 @@ interface IProps {
 const ProductsListMainPage = ({ fetchUrl }: IProps): JSX.Element => {
   const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
 
-  if (loading) return <div>Loading products...</div>;
+  if (loading)
+    return (
+      <div>
+        <Loader backgroundColor="#eb3e32" />
+      </div>
+    );
   if (error) return <div>Error: {error}</div>;
 
   return (
     <>
       {products.length > 0 ? (
-        <div className='grid grid-cols-4 gap-10'>
+        <div className="grid grid-cols-4 gap-10">
           {products.map((product: IProduct) => {
             return (
               <div key={product.id}>

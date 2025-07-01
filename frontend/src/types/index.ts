@@ -14,7 +14,7 @@ export interface IProduct {
   tags: Array<{
     value: string;
   }>;
-  variants?: Array<{
+  variants: Array<{
     id: string;
     calculated_price: {
       calculated_amount: number;

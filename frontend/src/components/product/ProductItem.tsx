@@ -19,7 +19,7 @@ interface IProps {
 const ProductItem = ({ product }: IProps): JSX.Element => {
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
   const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
-  const price = product.variants?.[0]?.calculated_price?.calculated_amount;
+  const price = product.variants[0].calculated_price?.calculated_amount;
   const { handleAddProduct } = useAddToCartOrWishListFromProductItem();
   const { handleDelProduct } = useDelToCartOrWishListFromProductItem();
 

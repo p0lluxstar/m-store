@@ -30,24 +30,6 @@ export class MedusaService {
   //   }
   // }
 
-  // async getProductsTest(regionId: string) {
-  //   medusa.store.category.retrieve;
-  //   try {
-  //     const products = await medusa.store.product.retrieve('prod_01JWRDG8SE0KQ48SAPJPS8R75Y', {
-  //       fields: 'id,category',
-  //     });
-
-  //     medusa.store.product.retrieve('prod_01JWRDG8SE0KQ48SAPJPS8R75Y').then(({ product }) => {
-  //       // product.categories — массив категорий, к которым относится продукт
-  //       console.log(product.categories);
-  //     });
-
-  //     return products;
-  //   } catch (error) {
-  //     throw new Error(`Failed to fetch products: ${error.message}`);
-  //   }
-  // }
-
   async getProducts(
     regionId: string,
     sortBy: string = 'title_asc',
