@@ -23,7 +23,7 @@ const SpecialOffer = (): JSX.Element => {
               Скидка до 30% на все спортивные сумки
             </p>
             <Link
-              className="inline-block bg-[#eb3e32] text-white px-[50px] py-[15px] text-[24px] font-bold"
+              className="inline-block bg-[#eb3e32] text-white px-[50px] pt-[15px] pb-[20px] text-[24px] font-bold hover:opacity-90"
               href="/"
             >
               Перейти
