@@ -1,0 +1,44 @@
+.checkmarkWrapper {
+  position: relative;
+}
+
+.checkmark:after {
+  animation-duration: 800ms;
+  animation-timing-function: ease;
+  animation-name: checkmark;
+  transform: scaleX(-1) rotate(135deg);
+}
+.checkmark:after {
+  position: absolute;
+  opacity: 1;
+  width: 20px;
+  height: 40px;
+  transform-origin: left top;
+  margin-left: -14px;
+  border-right: 8px solid var(--checkmark-color);
+  border-top: 8px solid var(--checkmark-color);
+  content: '';
+}
+
+@keyframes checkmark {
+  0% {
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  20% {
+    width: 10px;
+    height: 0px;
+    opacity: 1;
+  }
+  40% {
+    width: 20px;
+    height: 40px;
+    opacity: 1;
+  }
+  100% {
+    width: 20px;
+    height: 40px;
+    opacity: 1;
+  }
+}
