@@ -7,16 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useCreateOrder } from '@/hooks/useCreateOrder';
 import { RootState } from '@/store';
 import { clearCart } from '@/store/slices/cartItemsSlice';
+import { IUserFormCart } from '@/types';
 import { useTotalCartItems } from '@/utils/totalCartItems';
 
 import Loader from '../Loader';
-
-interface IUserFormCart {
-  name: string;
-  email: string;
-  phone: string;
-  comment: string;
-}
 
 interface IOrderSubmitProps {
   onOrderSuccess: (orderId: string) => void;

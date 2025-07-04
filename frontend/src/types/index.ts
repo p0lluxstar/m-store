@@ -6,7 +6,7 @@ export interface IProduct {
   collection: {
     title: string;
     handle: string;
-  }
+  };
   images: Array<{
     id: string;
     url: string;
@@ -39,3 +39,17 @@ export interface ICartItem {
 }
 
 export type TCartItemEssentials = Pick<ICartItem, 'variant_id' | 'quantity'>;
+
+export interface IUserFormCart {
+  name: string;
+  email: string;
+  phone: string;
+  comment: string;
+}
+
+export interface IContactForm {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
