@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 
 import { IContactForm } from '@/types';
 
-import styles from '../../styles/components/contactForm.module.css';
+import styles from '../../styles/components/contactForm.module.scss';
 import Checkmark from '../Checkmark';
 import Loader from '../Loader';
 
@@ -50,15 +50,10 @@ const ContactForm = (): JSX.Element => {
     reset,
   } = useForm<IContactForm>();
 
-  console.log('sytles', styles);
+  console.log(styles);
 
   return (
     <div className="flex gap-[20px]">
-      <div>
-        <p className={styles.commonText}>Один</p>
-        <p>Два</p>
-        <p>Три</p>
-      </div>
       <div className="w-[75%] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] p-[60px] rounded-[15px]">
         <div>
           <h2 className="font-medium text-[34px] text-black leading-[1.2] mb-[40px]">
@@ -146,7 +141,7 @@ const ContactForm = (): JSX.Element => {
         </div>
       </div>
       <div className="flex flex-col justify-between w-[25%]">
-        <div className="flex justify-center flex-col items-center p-[30px] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] rounded-[10px]">
+        <div className={styles.singleСontact}>
           <div className="mb-[20px]">
             <Image src={'/img/webp/home.webp'} alt="" width={70} height={70} />
           </div>
@@ -155,7 +150,7 @@ const ContactForm = (): JSX.Element => {
             <p className="font-medium  text-[#2e2e2e]">г. Москва, ул. Бауманская</p>
           </div>
         </div>
-        <div className="flex justify-center flex-col items-center p-[30px] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] rounded-[10px]">
+        <div className={styles.singleСontact}>
           <div className="mb-[20px]">
             <Image src={'/img/webp/phone.webp'} alt="" width={70} height={70} />
           </div>
@@ -164,7 +159,7 @@ const ContactForm = (): JSX.Element => {
             <p className="font-medium  text-[#2e2e2e]">+00 123 456 789</p>
           </div>
         </div>
-        <div className="flex justify-center flex-col items-center p-[30px] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] rounded-[10px]">
+        <div className={styles.singleСontact}>
           <div className="mb-[20px]">
             <Image src={'/img/webp/email.webp'} alt="" width={70} height={70} />
           </div>
