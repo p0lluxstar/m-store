@@ -1,13 +1,12 @@
 'use client';
 import { JSX } from 'react';
 
-import { useFetch } from '@/app/hooks/useFetch';
+import { useFetch } from '@/hooks/useFetch';
 import { IProduct } from '@/types';
 
 import Loader from '../Loader';
 
 import ProductItem from './ProductItem';
-
 
 interface IProps {
   fetchUrl: string;

@@ -1,7 +1,7 @@
 'use client';
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { JSX, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 
 const MIN = 0;
 const MAX = 10000;
@@ -9,10 +9,21 @@ const MAX = 10000;
 const PriceFilter = (): JSX.Element => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+  const urlParams = useSearchParams();
 
-  const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(10000);
+  // Получаем текущие параметры из URL
+  const currentMinPrice = Number(urlParams.get('minPrice')) || MIN;
+  const currentMaxPrice = Number(urlParams.get('maxPrice')) || MAX;
+
+  // Инициализируем состояние текущими значениями из URL
+  const [minPrice, setMinPrice] = useState(currentMinPrice);
+  const [maxPrice, setMaxPrice] = useState(currentMaxPrice);
+
+  // Эффект для синхронизации состояния при изменении URL
+  useEffect(() => {
+    setMinPrice(currentMinPrice);
+    setMaxPrice(currentMaxPrice);
+  }, [currentMinPrice, currentMaxPrice]);
 
   const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const value = Math.min(Number(e.target.value), maxPrice - 100);
@@ -27,7 +38,7 @@ const PriceFilter = (): JSX.Element => {
   };
 
   const updateUrlParams = (min: number, max: number): void => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(urlParams.toString());
     params.set('minPrice', min.toString());
     params.set('maxPrice', max.toString());
     router.push(`${pathname}?${params.toString()}`, { scroll: false });

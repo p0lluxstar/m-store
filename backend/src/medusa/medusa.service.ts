@@ -16,25 +16,13 @@ interface OrderData {
 
 @Injectable()
 export class MedusaService {
-  // async getProducts(regionId: string) {
-  //   medusa.store.category.retrieve;
-  //   try {
-  //     const { products } = await medusa.store.product.list({
-  //       region_id: regionId,
-  //       fields: '*variants.calculated_price',
-  //     });
-
-  //     return products;
-  //   } catch (error) {
-  //     throw new Error(`Failed to fetch products: ${error.message}`);
-  //   }
-  // }
-
+  // получение товаров надо переделать путем создания кастомного endpoint в Medusa поскольку сейчас приходят все товары и сортировка и фильтрация происходят на стороне nextjs
   async getProducts(
     regionId: string,
     sortBy: string = 'title_asc',
     minPrice?: number,
-    maxPrice?: number
+    maxPrice?: number,
+    searchParam?: string
   ) {
     try {
       const { products } = await medusa.store.product.list({
@@ -42,7 +30,13 @@ export class MedusaService {
         fields: '*variants.calculated_price',
       });
 
-      const sortedProducts = FilterAndSortProducts(products, sortBy, minPrice, maxPrice);
+      const sortedProducts = FilterAndSortProducts(
+        products,
+        sortBy,
+        minPrice,
+        maxPrice,
+        searchParam
+      );
       return sortedProducts;
     } catch (error) {
       throw new Error(`Failed to fetch products by category handle: ${error.message}`);
@@ -77,7 +71,8 @@ export class MedusaService {
     handle: string,
     sortBy: string = 'title_asc',
     minPrice?: number,
-    maxPrice?: number
+    maxPrice?: number,
+    searchParam?: string
   ) {
     try {
       const categoryRes = await medusa.store.category.list();
@@ -93,7 +88,13 @@ export class MedusaService {
         category_id: [category.id],
       });
 
-      const sortedProducts = FilterAndSortProducts(products, sortBy, minPrice, maxPrice);
+      const sortedProducts = FilterAndSortProducts(
+        products,
+        sortBy,
+        minPrice,
+        maxPrice,
+        searchParam
+      );
       return sortedProducts;
     } catch (error) {
       throw new Error(`Failed to fetch products by category handle: ${error.message}`);
@@ -173,6 +174,23 @@ export class MedusaService {
     } catch (err) {
       console.error('❌ Ошибка создания заказа:', err.message);
       throw new Error(`Не удалось создать заказ: ${err.message}`);
+    }
+  }
+
+  // не используется оставил для образца
+  async getProductsSearch(name: string, regionId: string, limit: number = 10, offset: number = 0) {
+    try {
+      const { products } = await medusa.store.product.list({
+        q: name, // Параметр поиска по названию
+        region_id: regionId,
+        limit,
+        offset,
+        fields: '*variants.calculated_price',
+      });
+
+      return products;
+    } catch (error) {
+      throw new Error(`Failed to search products by name: ${error.message}`);
     }
   }
 }

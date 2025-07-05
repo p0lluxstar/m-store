@@ -5,8 +5,8 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { GrCart } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
 
-import { useAddToCartOrWishListFromProductItem } from '@/app/hooks/useAddToCartOrWishListFromProductItem';
-import { useDelToCartOrWishListFromProductItem } from '@/app/hooks/useDelToCartOrWishListFromProductItem';
+import { useAddToCartOrWishListFromProductItem } from '@/hooks/useAddToCartOrWishListFromProductItem';
+import { useDelToCartOrWishListFromProductItem } from '@/hooks/useDelToCartOrWishListFromProductItem';
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
 
@@ -38,7 +38,7 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
     <div className="relative group">
       <div className="relative">
         <div className="absolute flex gap-[5px] ml-[10px] mt-[10px]">
-          <ProductTags tags={product.tags}/>
+          <ProductTags tags={product.tags} />
         </div>
         <Link href={`/catalog/${product.collection.handle}/${product.id}`}>
           <Image

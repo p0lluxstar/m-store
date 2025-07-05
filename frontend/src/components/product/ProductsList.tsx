@@ -2,7 +2,7 @@
 import { JSX } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useFetch } from '@/app/hooks/useFetch';
+import { useFetch } from '@/hooks/useFetch';
 import { setNumberProductsFound } from '@/store/slices/numberProductsFound';
 import { IProduct } from '@/types';
 
