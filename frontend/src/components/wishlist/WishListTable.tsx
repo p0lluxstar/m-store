@@ -6,7 +6,7 @@ import { JSX } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useAddToCartFromWishlist } from '@/app/hooks/useAddToCartFromWishlist';
+import { useAddToCartFromWishlist } from '@/hooks/useAddToCartFromWishlist';
 import { RootState } from '@/store';
 import { delItemFromWishlist, clearWishlist } from '@/store/slices/wishLikstItemsSlice';
 

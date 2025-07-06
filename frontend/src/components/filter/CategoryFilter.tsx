@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { JSX } from 'react';
 
-import { useFetch } from '@/app/hooks/useFetch';
+import { useFetch } from '@/hooks/useFetch';
 import { ICategory } from '@/types';
 
 import Loader from '../Loader';
@@ -41,6 +41,7 @@ const CategoryFilter = (): JSX.Element => {
             >
               <Link
                 href={`/catalog/${category.handle}`}
+                scroll={false}
                 className={`${category.handle === categorySlug ? 'font-medium text-[#000]' : ''}`}
               >
                 {category.name}

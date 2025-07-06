@@ -1,6 +1,26 @@
-export const FilterAndSortProducts = (products, sortBy, minPrice, maxPrice) => {
+export const FilterAndSortProducts = (
+  products,
+  sortBy: string,
+  minPrice: number,
+  maxPrice: number,
+  nameProduct: string
+) => {
+  // Фильтрация по имени товара или ID
+  const filteredByNameOrId = nameProduct
+    ? products.filter((product) => {
+        // Ищем по названию
+        const matchesName = product.title.toLowerCase().includes(nameProduct);
+
+        // Ищем по последним 6 символам ID
+        const productId = product.id || '';
+        const matchesId = productId.slice(-6).toUpperCase() === nameProduct;
+
+        return matchesName || matchesId;
+      })
+    : products;
+
   // Фильтрация по цене
-  const filteredProducts = products.filter((product) => {
+  const filteredProducts = filteredByNameOrId.filter((product) => {
     const price = product.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
     return (
       (minPrice === undefined || price >= minPrice) && (maxPrice === undefined || price <= maxPrice)

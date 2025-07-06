@@ -6,8 +6,8 @@ import { JSX } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 
-import { useAddToCartOrWishListFromProductItem } from '@/app/hooks/useAddToCartOrWishListFromProductItem';
-import { useDelToCartOrWishListFromProductItem } from '@/app/hooks/useDelToCartOrWishListFromProductItem';
+import { useAddToCartOrWishListFromProductItem } from '@/hooks/useAddToCartOrWishListFromProductItem';
+import { useDelToCartOrWishListFromProductItem } from '@/hooks/useDelToCartOrWishListFromProductItem';
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
 
