@@ -6,10 +6,9 @@ import { useForm } from 'react-hook-form';
 
 import { IContactForm } from '@/types';
 
-import styles from '../../styles/components/contactForm.module.scss';
+import styles from '../../styles/components/contactForm.module.css';
 import Checkmark from '../Checkmark';
 import Loader from '../Loader';
-
 
 const ContactForm = (): JSX.Element => {
   const [isLoding, setIsLoading] = useState(false);
@@ -50,8 +49,6 @@ const ContactForm = (): JSX.Element => {
     reset,
   } = useForm<IContactForm>();
 
-  console.log(styles);
-
   return (
     <div className="flex gap-[20px]">
       <div className="w-[75%] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] p-[60px] rounded-[15px]">
@@ -75,11 +72,7 @@ const ContactForm = (): JSX.Element => {
                     required: 'Введите ваше имя',
                   })}
                 />
-                {errors.name && (
-                  <p className="absolute bottom-[-16px] text-red-500 text-[12px]">
-                    {errors.name.message}
-                  </p>
-                )}
+                {errors.name && <p className={styles.errorMessage}>{errors.name.message}</p>}
               </div>
               <div className="relative w-[50%]">
                 <input
@@ -96,11 +89,7 @@ const ContactForm = (): JSX.Element => {
                     },
                   })}
                 />
-                {errors.email && (
-                  <p className="absolute bottom-[-16px] text-red-500 text-[12px]">
-                    {errors.email.message}
-                  </p>
-                )}
+                {errors.email && <p className={styles.errorMessage}>{errors.email.message}</p>}
               </div>
             </div>
             <input
@@ -121,11 +110,7 @@ const ContactForm = (): JSX.Element => {
                   required: 'Введите текст сообщения',
                 })}
               />
-              {errors.message && (
-                <p className="absolute bottom-[-16px] text-red-500 text-[12px]">
-                  {errors.message.message}
-                </p>
-              )}
+              {errors.message && <p className={styles.errorMessage}>{errors.message.message}</p>}
             </div>
           </form>
         </div>
