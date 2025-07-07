@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import { breadcrumbsLinksReducer } from './slices/breadcrumbsLinksSlice';
 import { cartItemsReducer } from './slices/cartItemsSlice';
 import { numberProductsFoundReducer } from './slices/numberProductsFound';
 import { toggleAsideCartReducer } from './slices/toggleAsideCartSlice';
@@ -11,6 +12,7 @@ export const store = configureStore({
     toggle: toggleAsideCartReducer,
     wishlistItems: wishlistReducer,
     numberProductsFound: numberProductsFoundReducer,
+    breadcrumbsLinks: breadcrumbsLinksReducer
   },
 });
 

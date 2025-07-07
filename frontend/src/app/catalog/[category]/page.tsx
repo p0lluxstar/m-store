@@ -1,5 +1,6 @@
 import { JSX } from 'react';
 
+import Breadcrumbs from '@/components/Breadcrumbs';
 import CatalogFilters from '@/components/filter/CatalogFilters';
 import CatalogSort from '@/components/filter/CatalogSort';
 import MainWrapper from '@/components/main/MainWrapper';
@@ -11,13 +12,16 @@ export const metadata = {
   description: 'Страница категории товаров',
 };
 
+const pageLink = [{ label: 'Каталог', href: '/catalog' }];
+
 const CategoryProductPage = (): JSX.Element => {
   return (
     <MainWrapper>
       <PageHeaderArea />
+      <Breadcrumbs pageLink={pageLink} />
       <div className="flex gap-[40px]">
         <CatalogFilters />
-        <div className='w-[100%]'>
+        <div className="w-[100%]">
           <CatalogSort />
           <ProductsCatalog />
         </div>
