@@ -2,16 +2,18 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { JSX } from 'react';
+import { JSX, useEffect } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useAddToCartOrWishListFromProductItem } from '@/hooks/useAddToCartOrWishListFromProductItem';
 import { useDelToCartOrWishListFromProductItem } from '@/hooks/useDelToCartOrWishListFromProductItem';
 import { RootState } from '@/store';
+import { setBreadcrumbsLinks } from '@/store/slices/breadcrumbsLinksSlice';
 import { IProduct } from '@/types';
 
 import ProductTags from './ProductTags';
+
 
 interface Props {
   product: IProduct;
@@ -19,6 +21,7 @@ interface Props {
 
 const ProductDetailsClient = ({ product }: Props): JSX.Element => {
   const { handleAddProduct } = useAddToCartOrWishListFromProductItem();
+  const dispatch = useDispatch();
 
   const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
@@ -35,6 +38,23 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
 
   const inCart = isInCart(product.id);
   const inWishList = isInWishList(product.id);
+
+  useEffect(() => {
+    if (product?.collection) {
+      dispatch(
+        setBreadcrumbsLinks([
+          {
+            label: product.collection.title,
+            href: `/catalog/${product.collection.handle}`,
+          },
+          {
+            label: product.title,
+            href: product.id,
+          },
+        ])
+      );
+    }
+  }, [product, dispatch]);
 
   return (
     <div className="flex gap-[40px]">

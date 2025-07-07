@@ -1,8 +1,10 @@
 'use client';
-import { JSX } from 'react';
+import { usePathname } from 'next/navigation';
+import { JSX, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useFetch } from '@/hooks/useFetch';
+import { setBreadcrumbsLinks } from '@/store/slices/breadcrumbsLinksSlice';
 import { setNumberProductsFound } from '@/store/slices/numberProductsFound';
 import { IProduct } from '@/types';
 
@@ -18,6 +20,29 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   const dispatch = useDispatch();
   const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
 
+  function useUrlSegments(): string[] {
+    const pathname = usePathname();
+    return pathname.split('/').filter(Boolean);
+  }
+
+  const segments = useUrlSegments();
+
+  useEffect(() => {
+    if (products && products.length > 0) {
+      dispatch(setNumberProductsFound(products.length));
+
+      if (segments.length > 1) {
+        dispatch(
+          setBreadcrumbsLinks([
+            { label: products[0].collection.title, href: products[0].collection.handle },
+          ])
+        );
+      } else {
+        dispatch(setBreadcrumbsLinks([]));
+      }
+    }
+  }, [products, dispatch]);
+
   if (loading)
     return (
       <div>
@@ -25,8 +50,6 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
       </div>
     );
   if (error) return <div>Error: {error}</div>;
-
-  dispatch(setNumberProductsFound(products.length));
 
   return (
     <>
