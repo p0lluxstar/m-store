@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { JSX, useEffect } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -12,8 +12,8 @@ import { RootState } from '@/store';
 import { setBreadcrumbsLinks } from '@/store/slices/breadcrumbsLinksSlice';
 import { IProduct } from '@/types';
 
+import ProductImageSlider from './ProductImageSlider';
 import ProductTags from './ProductTags';
-
 
 interface Props {
   product: IProduct;
@@ -25,6 +25,26 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
 
   const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
+
+  const [isSliderOpen, setIsSliderOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Массив изображений продукта (можно заменить на данные из product.images если они есть)
+  const productImages = [
+    {
+      id: '',
+      url: '/img/webp/product-item-page-big.webp',
+    },
+    { id: '', url: '/img/webp/product-item-page-small.webp' },
+    {
+      id: '',
+      url: '/img/webp/product-item-page-small.webp',
+    },
+    {
+      id: '',
+      url: '/img/webp/product-item-page-small.webp',
+    },
+  ];
 
   const { handleDelProduct } = useDelToCartOrWishListFromProductItem();
 
@@ -56,42 +76,60 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
     }
   }, [product, dispatch]);
 
+  const openSlider = (index: number): void => {
+    setCurrentImageIndex(index);
+    setIsSliderOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeSlider = (): void => {
+    setIsSliderOpen(false);
+    document.body.style.overflow = 'auto';
+  };
+
   return (
-    <div className="flex gap-[40px]">
+    <div className="flex gap-[40px] relative">
+      {isSliderOpen && (
+        <ProductImageSlider
+          images={productImages}
+          initialIndex={currentImageIndex}
+          onClose={closeSlider}
+        />
+      )}
+
       <div className="flex flex-col gap-[20px] w-[50%]">
-        <div>
+        <div
+          className="cursor-pointer hover:opacity-90 transition-opacity"
+          onClick={() => openSlider(0)}
+        >
           <Image
             className="rounded-[15px]"
-            src={'/img/webp/product-item-page-big.webp'}
-            alt=""
+            src={productImages[0].url}
+            alt="Main product"
             width={570}
             height={541}
+            priority
           />
         </div>
         <div className="flex gap-[20px]">
-          <Image
-            className="rounded-[10px]"
-            src={'/img/webp/product-item-page-small.webp'}
-            alt=""
-            width={127}
-            height={127}
-          />
-          <Image
-            className="rounded-[10px]"
-            src={'/img/webp/product-item-page-small.webp'}
-            alt=""
-            width={127}
-            height={127}
-          />
-          <Image
-            className="rounded-[10px]"
-            src={'/img/webp/product-item-page-small.webp'}
-            alt=""
-            width={127}
-            height={127}
-          />
+          {productImages.slice(1).map((image, index) => (
+            <div
+              key={index}
+              className="cursor-pointer hover:opacity-90 transition-opacity"
+              onClick={() => openSlider(index + 1)}
+            >
+              <Image
+                className="rounded-[10px]"
+                src={image.url}
+                alt={`Thumbnail ${index + 1}`}
+                width={127}
+                height={127}
+              />
+            </div>
+          ))}
         </div>
       </div>
+
       <div className="w-[50%]">
         <h3 className="text-[36px] font-medium text-black">{product.title}</h3>
         <div className="text-[30px] font-bold text-black">

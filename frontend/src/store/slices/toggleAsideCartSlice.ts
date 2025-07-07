@@ -14,6 +14,7 @@ const toggleAsideCartSlice = createSlice({
   reducers: {
     toggleVisibility(state) {
       state.visible = !state.visible;
+      document.body.style.overflow = state.visible ? 'hidden' : 'auto';
     },
     setVisible(state, action) {
       state.visible = action.payload;
