@@ -2,14 +2,19 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import { JSX } from 'react';
-import { useSelector } from 'react-redux';
+import { FaTableList } from 'react-icons/fa6';
+import { FaTableCells } from 'react-icons/fa6';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '@/store';
+import { toggleViewMode } from '@/store/slices/toggleViewModeSlice';
 
 const CatalogSort = (): JSX.Element => {
+  const dispatch = useDispatch();
   const router = useRouter();
   const searchParams = useSearchParams();
   const numberProductsFound = useSelector((state: RootState) => state.numberProductsFound.quantity);
+  const currentViewMode = useSelector((state: RootState) => state.toggleViewMode.mode);
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     const selected = e.target.value;
@@ -17,6 +22,10 @@ const CatalogSort = (): JSX.Element => {
 
     params.set('sortBy', selected);
     router.push(`?${params.toString()}`, { scroll: false });
+  };
+
+  const handleViweModeChange = (): void => {
+    dispatch(toggleViewMode());
   };
 
   return (
@@ -28,6 +37,22 @@ const CatalogSort = (): JSX.Element => {
             {numberProductsFound}
           </span>
         </p>
+      </div>
+      <div className="flex gap-[8px] text-[22px] ">
+        <button
+          className={`${currentViewMode === 'table' ? 'text-[var(--theme-color)]' : 'text-[#c1c1c1] cursor-pointer'}`}
+          onClick={handleViweModeChange}
+          disabled={currentViewMode === 'table'}
+        >
+          <FaTableCells />
+        </button>
+        <button
+          className={`${currentViewMode === 'list' ? 'text-[var(--theme-color)]' : 'text-[#c1c1c1] cursor-pointer'}`}
+          onClick={handleViweModeChange}
+          disabled={currentViewMode === 'list'}
+        >
+          <FaTableList />
+        </button>
       </div>
       <div className="flex gap-2 items-center font-medium text-[#6c6c6c]">
         <span>Сортировка:</span>
