@@ -43,7 +43,7 @@ const HeaderMiddle = (): JSX.Element => {
                   onChange={(e) => setSearchParam(e.target.value)}
                 />
                 <button
-                  className="flex justify-center items-center w-16 bg-[var(--theme-color)] rounded-l-none rounded-r-[8px] absolute right-0 top-0 h-11 cursor-pointer hover:opacity-[50]"
+                  className="flex justify-center items-center w-16 bg-[var(--theme-color)] rounded-l-none rounded-r-[8px] absolute right-0 top-0 h-11 cursor-pointer hover:opacity-90"
                   type="submit"
                   onClick={heandleProductSearch}
                 >
