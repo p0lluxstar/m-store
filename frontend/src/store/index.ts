@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { breadcrumbsLinksReducer } from './slices/breadcrumbsLinksSlice';
 import { cartItemsReducer } from './slices/cartItemsSlice';
+import { categoriesListReducer } from './slices/categoriesListSlice';
 import { numberProductsFoundReducer } from './slices/numberProductsFound';
 import { toggleAsideCartReducer } from './slices/toggleAsideCartSlice';
 import { toggleViewModeReducer } from './slices/toggleViewModeSlice';
@@ -15,6 +16,7 @@ export const store = configureStore({
     numberProductsFound: numberProductsFoundReducer,
     breadcrumbsLinks: breadcrumbsLinksReducer,
     toggleViewMode: toggleViewModeReducer,
+    categoriesList: categoriesListReducer,
   },
 });
 

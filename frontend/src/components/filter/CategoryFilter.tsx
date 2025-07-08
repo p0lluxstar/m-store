@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { JSX } from 'react';
 
-import { useFetch } from '@/hooks/useFetch';
+import { useLoadCategories } from '@/hooks/useLoadCategories';
 import { ICategory } from '@/types';
 
 import Loader from '../Loader';
@@ -12,13 +12,8 @@ import Loader from '../Loader';
 const CategoryFilter = (): JSX.Element => {
   const params = useParams();
   const categorySlug = params?.category;
-
-  const {
-    data: categories,
-    loading,
-    error,
-  } = useFetch<ICategory[]>('http://localhost:4000/categories');
-
+  const { loading, error, categories } = useLoadCategories();
+  
   if (loading)
     return (
       <div>
