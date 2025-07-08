@@ -1,0 +1,11 @@
+.tableMode{
+    @apply grid-cols-3
+}
+
+.listMode{
+    @apply grid-cols-1
+}
+
+.listItem {
+   @apply p-[20px] border-[2px] border-solid border-[#e8e8e8] rounded-[13px]
+}

@@ -12,6 +12,7 @@ import { RootState } from '@/store';
 import { setBreadcrumbsLinks } from '@/store/slices/breadcrumbsLinksSlice';
 import { IProduct } from '@/types';
 
+import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductImageSlider from './ProductImageSlider';
 import ProductTags from './ProductTags';
 
@@ -153,26 +154,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           </Link>
         </div>
         <div className="flex gap-[10px]">
-          {inCart ? (
-            <Link
-              className="w-[120px] border-[1px] border-solid text-white bg-[var(--theme-color)] text-[14px] p-[6px] text-center font-medium cursor-pointer hover:opacity-90"
-              href={'/cart'}
-              title="Перейти в корзину"
-            >
-              В корзине
-            </Link>
-          ) : (
-            <button
-              className="w-[120px] bg-[#8a8a8a] border-[1px] border-solid border-[#8a8a8a] text-white text-[14px] p-[6px] cursor-pointer text-center font-medium hover:opacity-90"
-              onClick={(e) => {
-                e.preventDefault();
-                handleAddProduct(product, 'cart');
-              }}
-              title="Добавить в корзину"
-            >
-              Купить
-            </button>
-          )}
+          <ProductAddCartBtn inCart={inCart} product={product} />
           <button
             className={`bg-[#8A8A8A] p-2 text-white cursor-pointer hover:opacity-90 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
             onClick={(e) => {

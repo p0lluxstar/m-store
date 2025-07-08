@@ -1,23 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-enum EViewModeProductsList {
-  Table = 'table',
-  List = 'list',
-}
+import { EViewMode } from '@/types';
 
 interface IViewModeState {
-  mode: EViewModeProductsList;
+  mode: EViewMode;
 }
 
 const initialState: IViewModeState = {
   mode:
     typeof window !== 'undefined' && localStorage.getItem('viewMode')
-      ? (localStorage.getItem('viewMode') as EViewModeProductsList)
-      : EViewModeProductsList.Table,
+      ? (localStorage.getItem('viewMode') as EViewMode)
+      : EViewMode.Table,
 };
 
 if (!localStorage.getItem('viewMode')) {
-  localStorage.setItem('viewMode', EViewModeProductsList.Table);
+  localStorage.setItem('viewMode', EViewMode.Table);
 }
 
 // Использование в Redux slice
@@ -27,9 +24,9 @@ const viewModeSlice = createSlice({
   reducers: {
     toggleViewMode(state) {
       state.mode =
-        state.mode === EViewModeProductsList.Table
-          ? EViewModeProductsList.List
-          : EViewModeProductsList.Table;
+        state.mode === EViewMode.Table
+          ? EViewMode.List
+          : EViewMode.Table;
 
       // Сохраняем в localStorage
       try {
@@ -39,7 +36,7 @@ const viewModeSlice = createSlice({
       }
     },
     // Редьюсер для явного установления режима
-    setViewMode(state, action: PayloadAction<EViewModeProductsList>) {
+    setViewMode(state, action: PayloadAction<EViewMode>) {
       state.mode = action.payload;
       try {
         localStorage.setItem('viewMode', action.payload);

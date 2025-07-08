@@ -9,16 +9,20 @@ import { useAddToCartOrWishListFromProductItem } from '@/hooks/useAddToCartOrWis
 import { useDelToCartOrWishListFromProductItem } from '@/hooks/useDelToCartOrWishListFromProductItem';
 import { RootState } from '@/store';
 import { IProduct } from '@/types';
+import { EViewMode } from '@/types';
 
+import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductTags from './ProductTags';
 
 interface IProps {
   product: IProduct;
+  isViewModeLocked?: boolean;
 }
 
-const ProductItem = ({ product }: IProps): JSX.Element => {
+const ProductItem = ({ product, isViewModeLocked = false }: IProps): JSX.Element => {
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
   const wishListItems = useSelector((state: RootState) => state.wishlistItems.items);
+  const viewMode = useSelector((state: RootState) => state.toggleViewMode.mode);
   const price = product.variants[0].calculated_price?.calculated_amount;
   const { handleAddProduct } = useAddToCartOrWishListFromProductItem();
   const { handleDelProduct } = useDelToCartOrWishListFromProductItem();
@@ -34,9 +38,11 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
   const inCart = isInCart(product.id);
   const inWishList = isInWishList(product.id);
 
+  const isTableOrLocked = viewMode === EViewMode.Table || isViewModeLocked;
+
   return (
-    <div className="relative group">
-      <div className="relative">
+    <div className={`relative group ${isTableOrLocked ? '' : 'flex gap-[10px]'}`}>
+      <div className={`relative ${isTableOrLocked ? '' : 'w-[30%]'}`}>
         <div className="absolute flex gap-[5px] ml-[10px] mt-[10px]">
           <ProductTags tags={product.tags} />
         </div>
@@ -86,18 +92,26 @@ const ProductItem = ({ product }: IProps): JSX.Element => {
           )}
         </div>
       </div>
-      <Link className="text-[#666]" href={`/catalog/${product.collection.handle}`}>
-        <span>{product.collection.title}</span>
-      </Link>
-      <h3>
-        <Link
-          className="text-[#000] text-[18px] font-bold hover:text-[var(--theme-color)] transition-colors"
-          href={`/catalog/${product.collection.handle}/${product.id}`}
-        >
-          {product.title}
+      <div className={`${isTableOrLocked ? '' : 'w-[70%]'}`}>
+        <Link className="text-[#666]" href={`/catalog/${product.collection.handle}`}>
+          <span>{product.collection.title}</span>
         </Link>
-      </h3>
-      <p className="text-[#666] text-[20px] font-medium">{price.toFixed(2)}₽</p>
+        <h3>
+          <Link
+            className="text-[#000] text-[18px] font-bold hover:text-[var(--theme-color)] transition-colors"
+            href={`/catalog/${product.collection.handle}/${product.id}`}
+          >
+            {product.title}
+          </Link>
+        </h3>
+        <p className="text-[#666] text-[20px] font-medium">{price.toFixed(2)}₽</p>
+        {viewMode === EViewMode.List && !isViewModeLocked && (
+          <>
+            <p className="mb-[10px]">{product.description}</p>
+            <ProductAddCartBtn inCart={inCart} product={product} />
+          </>
+        )}
+      </div>
     </div>
   );
 };

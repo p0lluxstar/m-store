@@ -8,7 +8,7 @@ import { toggleVisibility } from '@/store/slices/toggleAsideCartSlice';
 
 const Blackout = (): JSX.Element => {
   const dispatch = useDispatch();
-  const visible = useSelector((state: RootState) => state.toggle.visible);
+  const visible = useSelector((state: RootState) => state.toggleAsideCart.visible);
 
   const handleClick = (): void => {
     dispatch(toggleVisibility());

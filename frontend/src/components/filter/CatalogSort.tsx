@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '@/store';
 import { toggleViewMode } from '@/store/slices/toggleViewModeSlice';
+import { EViewMode } from '@/types';
 
 const CatalogSort = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -40,16 +41,16 @@ const CatalogSort = (): JSX.Element => {
       </div>
       <div className="flex gap-[8px] text-[22px] ">
         <button
-          className={`${currentViewMode === 'table' ? 'text-[var(--theme-color)]' : 'text-[#c1c1c1] cursor-pointer'}`}
+          className={`${currentViewMode === EViewMode.Table ? 'text-[var(--theme-color)]' : 'text-[#c1c1c1] cursor-pointer'}`}
           onClick={handleViweModeChange}
-          disabled={currentViewMode === 'table'}
+          disabled={currentViewMode === EViewMode.Table}
         >
           <FaTableCells />
         </button>
         <button
           className={`${currentViewMode === 'list' ? 'text-[var(--theme-color)]' : 'text-[#c1c1c1] cursor-pointer'}`}
           onClick={handleViweModeChange}
-          disabled={currentViewMode === 'list'}
+          disabled={currentViewMode === EViewMode.List}
         >
           <FaTableList />
         </button>

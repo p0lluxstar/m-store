@@ -10,7 +10,7 @@ import { wishlistReducer } from './slices/wishLikstItemsSlice';
 export const store = configureStore({
   reducer: {
     cartItems: cartItemsReducer,
-    toggle: toggleAsideCartReducer,
+    toggleAsideCart: toggleAsideCartReducer,
     wishlistItems: wishlistReducer,
     numberProductsFound: numberProductsFoundReducer,
     breadcrumbsLinks: breadcrumbsLinksReducer,

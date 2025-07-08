@@ -1,13 +1,16 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { JSX, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { useFetch } from '@/hooks/useFetch';
+import { RootState } from '@/store';
 import { setBreadcrumbsLinks } from '@/store/slices/breadcrumbsLinksSlice';
 import { setNumberProductsFound } from '@/store/slices/numberProductsFound';
 import { IProduct } from '@/types';
+import { EViewMode } from '@/types';
 
+import styles from '../../styles/components/product/productList.module.css';
 import Loader from '../Loader';
 
 import ProductItem from './ProductItem';
@@ -19,6 +22,7 @@ interface IProps {
 const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   const dispatch = useDispatch();
   const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
+  const viewMode = useSelector((state: RootState) => state.toggleViewMode.mode);
 
   function useUrlSegments(): string[] {
     const pathname = usePathname();
@@ -54,10 +58,15 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   return (
     <>
       {products.length > 0 ? (
-        <div className="grid grid-cols-3 gap-4">
+        <div
+          className={`grid gap-4 ${viewMode === EViewMode.Table ? styles.tableMode : styles.listMode}`}
+        >
           {products.map((product: IProduct) => {
             return (
-              <div key={product.id}>
+              <div
+                className={`${viewMode === EViewMode.Table ? '' : styles.listItem}`}
+                key={product.id}
+              >
                 <ProductItem product={product} />
               </div>
             );
