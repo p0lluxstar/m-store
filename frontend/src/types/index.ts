@@ -53,3 +53,8 @@ export interface IContactForm {
   subject: string;
   message: string;
 }
+
+export enum EViewMode {
+  Table = 'table',
+  List = 'list',
+}

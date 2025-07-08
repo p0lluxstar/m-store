@@ -30,7 +30,7 @@ const ProductsListMainPage = ({ fetchUrl }: IProps): JSX.Element => {
           {products.map((product: IProduct) => {
             return (
               <div key={product.id}>
-                <ProductItem product={product} />
+                <ProductItem product={product} isViewModeLocked={true}/>
               </div>
             );
           })}
