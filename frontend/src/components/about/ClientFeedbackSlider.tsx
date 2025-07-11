@@ -61,9 +61,9 @@ const ClientFeedbackSlider = (): JSX.Element => {
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
             {feedbacks.map((feedback) => (
-              <div className="flex-[0_0_32%] mx-[10px]" key={feedback.id}>
+              <div className="flex-[0_0_32%] mx-[10px] max-[900px]:flex-[0_0_48%] max-[600px]:flex-[0_0_100%]" key={feedback.id}>
                 <div className="flex flex-col p-[10px] bg-[#F2F8FD] rounded-[10px]">
-                  <p className="italic font-medium mb-[10px]  bg-[url('/img/webp/feedback.webp')] bg-no-repeat pl-[40px]">
+                  <p className="italic font-medium mb-[10px] bg-[url('/img/webp/feedback.webp')] bg-no-repeat pl-[40px]">
                     {feedback.text}
                   </p>
                   <div className="flex gap-[10px] pl-[40px]">

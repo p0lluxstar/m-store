@@ -50,8 +50,8 @@ const ContactForm = (): JSX.Element => {
   } = useForm<IContactForm>();
 
   return (
-    <div className="flex gap-[20px]">
-      <div className="w-[75%] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] p-[60px] rounded-[15px]">
+    <div className="flex gap-[20px] max-[1100px]:justify-center max-[1100px]:items-center max-[1100px]:flex-col">
+      <div className="w-[75%] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] p-[60px] rounded-[15px]  max-[1100px]:w-[90%] max-[600px]:p-[40px]">
         <div>
           <h2 className="font-medium text-[34px] text-black leading-[1.2] mb-[40px]">
             Мы здесь! <br />
@@ -60,8 +60,8 @@ const ContactForm = (): JSX.Element => {
         </div>
         <div>
           <form className="flex flex-col gap-[30px]">
-            <div className="flex gap-[30px]">
-              <div className="relative w-[50%]">
+            <div className="flex gap-[30px] max-[700px]:flex-col">
+              <div className="relative w-[50%] max-[700px]:w-[100%]">
                 <input
                   className={`w-[100%] px-[24px] py-[8px] border-[1px] border-solid focus:bg-[#f5f5f5] focus-visible:outline-none ${
                     errors.name ? 'border-red-500' : 'border-[#d7d7d7]'
@@ -74,7 +74,7 @@ const ContactForm = (): JSX.Element => {
                 />
                 {errors.name && <p className={styles.errorMessage}>{errors.name.message}</p>}
               </div>
-              <div className="relative w-[50%]">
+              <div className="relative w-[50%] max-[700px]:w-[100%]">
                 <input
                   className={`w-[100%] px-[24px] py-[8px] border-[1px] border-solid focus:bg-[#f5f5f5] focus-visible:outline-none ${
                     errors.email ? 'border-red-500' : 'border-[#d7d7d7]'
@@ -114,7 +114,7 @@ const ContactForm = (): JSX.Element => {
             </div>
           </form>
         </div>
-        <div className="flex">
+        <div className="flex max-[700px]:justify-center">
           <button
             className="flex justify-center items-center bg-[#eb3e32] text-white w-[180px] h-[66px] text-[24px] font-bold mt-[60px] cursor-pointer hover:opacity-90"
             onClick={!isLoding ? handleSubmit(onSubmit) : undefined}
@@ -125,8 +125,8 @@ const ContactForm = (): JSX.Element => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col justify-between w-[25%]">
-        <div className={styles.singleСontact}>
+      <div className="flex flex-col justify-between w-[25%] max-[1100px]:flex-row max-[1100px]:w-[90%] max-[1100px]:gap-[20px] max-[900px]:flex-col">
+        <div className={`max-[1100px]:w-[33%] max-[900px]:w-[100%] ${styles.singleСontact}`}>
           <div className="mb-[20px]">
             <Image src={'/img/webp/home.webp'} alt="" width={70} height={70} />
           </div>
@@ -135,7 +135,7 @@ const ContactForm = (): JSX.Element => {
             <p className="font-medium  text-[#2e2e2e]">г. Москва, ул. Бауманская</p>
           </div>
         </div>
-        <div className={styles.singleСontact}>
+        <div className={`max-[1100px]:w-[33%] max-[900px]:w-[100%] ${styles.singleСontact}`}>
           <div className="mb-[20px]">
             <Image src={'/img/webp/phone.webp'} alt="" width={70} height={70} />
           </div>
@@ -144,7 +144,7 @@ const ContactForm = (): JSX.Element => {
             <p className="font-medium  text-[#2e2e2e]">+00 123 456 789</p>
           </div>
         </div>
-        <div className={styles.singleСontact}>
+        <div className={`max-[1100px]:w-[33%] max-[900px]:w-[100%] ${styles.singleСontact}`}>
           <div className="mb-[20px]">
             <Image src={'/img/webp/email.webp'} alt="" width={70} height={70} />
           </div>

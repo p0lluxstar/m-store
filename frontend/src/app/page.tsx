@@ -11,10 +11,12 @@ export default function HomePage(): JSX.Element {
   return (
     <MainWrapper>
       <MainSlider />
-      <ServiceInfo />
-      <FeaturedItems />
-      <SpecialOffer />
-      <BrandSlider />
+      <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
+        <ServiceInfo />
+        <FeaturedItems />
+        <SpecialOffer />
+        <BrandSlider />
+      </div>
     </MainWrapper>
   );
 }

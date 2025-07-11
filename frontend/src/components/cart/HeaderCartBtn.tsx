@@ -14,7 +14,7 @@ const HeaderCartBtn = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className='relative'>
       <button
         className="hover:cursor-pointer hover:opacity-90"
         type="button"

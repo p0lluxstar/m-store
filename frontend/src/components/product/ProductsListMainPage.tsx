@@ -26,11 +26,11 @@ const ProductsListMainPage = ({ fetchUrl }: IProps): JSX.Element => {
   return (
     <>
       {products.length > 0 ? (
-        <div className="grid grid-cols-4 gap-10">
+        <div className="grid grid-cols-4 gap-10 max-[900px]:grid-cols-3 max-[700px]:grid-cols-2 max-[500px]:grid-cols-1">
           {products.map((product: IProduct) => {
             return (
               <div key={product.id}>
-                <ProductItem product={product} isViewModeLocked={true}/>
+                <ProductItem product={product} isViewModeLocked={true} />
               </div>
             );
           })}

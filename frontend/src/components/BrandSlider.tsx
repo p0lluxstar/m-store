@@ -29,7 +29,7 @@ const BrandSlider = (): JSX.Element => {
     <div className="overflow-hidden mb-[60px]" ref={emblaRef}>
       <div className="flex">
         {brands.map((brand) => (
-          <div className=" flex-[0_0_20%] min-w-0 pl-4" key={brand.id}>
+          <div className="flex-[0_0_20%] min-w-0 pl-4 max-[900px]:flex-[0_0_33%]" key={brand.id}>
             <div className="flex items-center justify-center h-24 p-4 bg-white">
               <Image src={'/img/webp/brand-logo.jpg'} alt='brand-logo' width={241} height={99}/>
             </div>
