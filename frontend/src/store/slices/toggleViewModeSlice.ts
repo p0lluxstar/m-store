@@ -13,9 +13,9 @@ const initialState: IViewModeState = {
       : EViewMode.Table,
 };
 
-if (!localStorage.getItem('viewMode')) {
-  localStorage.setItem('viewMode', EViewMode.Table);
-}
+// if (!localStorage.getItem('viewMode')) {
+//   localStorage.setItem('viewMode', EViewMode.Table);
+// }
 
 // Использование в Redux slice
 const viewModeSlice = createSlice({

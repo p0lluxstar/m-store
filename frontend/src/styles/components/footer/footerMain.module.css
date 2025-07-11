@@ -1,0 +1,79 @@
+/* Добавляем в ваш CSS-модуль */
+.mobileMenuTrigger {
+  display: none;
+}
+
+.menuList {
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+}
+
+@media (max-width: 699px) {
+  .widgetTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    background-color: #36393f;
+    border: 1px solid #36393f;
+    height: 65px;
+    line-height: 64px;
+    padding: 0 24px;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 22px;
+    margin-bottom: 0;
+    color: #fff;
+    font-weight: 500;
+  }
+  
+  .menuList {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 20px;
+  border: 1px solid #36393f;
+  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+  }
+  
+  .menuList.open {
+  max-height: 500px; /* максимум, который нужен */
+  opacity: 1;
+  padding: 20px;
+  }
+}
+
+
+/* // @use '../../common/variables' as *;
+
+// .footer-main {
+//   padding: 100px 0px;
+//   color: $white-ca;
+
+//   .container {
+//     max-width: $container-width;
+//     margin: 0 auto;
+
+//     .row {
+//       display: flex;
+
+//       a {
+//         color: $white-ca;
+//         text-decoration: none;
+//       }
+
+//       .footer-main-item {
+//         display: flex 0 0 auto;
+//         width: 25%;
+//         padding: 0px 15px;
+
+//         .nav-menu {
+//           list-style: none;
+//         }
+
+//         .widget-contact-list {
+//           list-style: none;
+//         }
+//       }
+//     }
+//   }
+// } */

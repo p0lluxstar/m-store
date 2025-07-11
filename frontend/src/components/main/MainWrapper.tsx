@@ -9,7 +9,7 @@ interface MainWrapperProps {
 const MainWrapper = ({ children }: MainWrapperProps): JSX.Element => {
   return (
     <main className={styles['main']}>
-      <div className="max-w-[var(--content-max-width)] mx-auto">{children}</div>
+      <div className="mx-auto">{children}</div>
     </main>
   );
 };

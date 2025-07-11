@@ -20,8 +20,10 @@ const CartPage = (): JSX.Element => {
   return (
     <MainWrapper>
       <PageHeaderArea />
-      <Breadcrumbs pageLink={pageLink} />
-      {hasMounted ? <OrderFlow /> : <Loader backgroundColor="#eb3e32" />}
+      <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
+        <Breadcrumbs pageLink={pageLink} />
+        {hasMounted ? <OrderFlow /> : <Loader backgroundColor="#eb3e32" />}
+      </div>
     </MainWrapper>
   );
 };
