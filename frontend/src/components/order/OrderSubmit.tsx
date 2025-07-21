@@ -10,6 +10,7 @@ import { clearCart } from '@/store/slices/cartItemsSlice';
 import { IUserFormCart } from '@/types';
 import { useTotalCartItems } from '@/utils/totalCartItems';
 
+import styles from '../../styles/components/order/orderSubmin.module.css';
 import Loader from '../Loader';
 
 interface IOrderSubmitProps {
@@ -77,7 +78,7 @@ const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null 
             />
             {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
-          <div>
+          <div className="relative">
             <input
               id="phone"
               type="tel"
@@ -92,10 +93,11 @@ const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null 
                   message: 'Номер должен содержать минимум 10 цифр',
                 },
               })}
-              className="border-[1px] border-solid border-[#e8e8e8] p-2 w-full"
+              className={`border-[1px] border-solid border-[#e8e8e8] p-2 w-full focus:bg-[#f5f5f5] focus-visible:outline-none ${
+                  errors.phone ? 'border-red-500' : 'border-[#d7d7d7]'}`}
               placeholder="+7 (XXX) XXX-XX-XX"
             />
-            {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>}
+            {errors.phone && <p className={styles.errorMessage}>{errors.phone.message}</p>}
           </div>
         </div>
         <div className="w-[50%] pr-[50px] max-[900px]:p-[0px] max-[700px]:w-[100%]">

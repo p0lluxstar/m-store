@@ -1,10 +1,13 @@
 import { JSX } from 'react';
 
-import AsideCart from '@/components/cart/AsideCart';
+import AsideMainMenu from '@/components/AsideMainMenu';
+import AsideProductSearch from '@/components/AsideProductSearch';
 import Blackout from '@/components/Blackout';
+import AsideCart from '@/components/cart/AsideCart';
 import FooterWrapper from '@/components/footer/FooterWrapper';
 import HeaderWrapper from '@/components/header/HeaderWrapper';
 import { StoreProviders } from '@/store/StoreProvaider';
+
 
 import '../styles/globals.css';
 // import '../styles/normalize.css';
@@ -29,6 +32,8 @@ export default function RootLayout({
           {children}
           <FooterWrapper />
           <AsideCart />
+          <AsideMainMenu />
+          <AsideProductSearch />
           <Blackout />
         </StoreProviders>
       </body>

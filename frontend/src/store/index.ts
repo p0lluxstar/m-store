@@ -5,6 +5,8 @@ import { cartItemsReducer } from './slices/cartItemsSlice';
 import { categoriesListReducer } from './slices/categoriesListSlice';
 import { numberProductsFoundReducer } from './slices/numberProductsFound';
 import { toggleAsideCartReducer } from './slices/toggleAsideCartSlice';
+import { toggleAsideMainMenuReducer } from './slices/toggleAsideMainMenu';
+import { toggleAsideProductSearchReducer } from './slices/toggleAsideProductSearch';
 import { toggleViewModeReducer } from './slices/toggleViewModeSlice';
 import { wishlistReducer } from './slices/wishLikstItemsSlice';
 
@@ -17,6 +19,8 @@ export const store = configureStore({
     breadcrumbsLinks: breadcrumbsLinksReducer,
     toggleViewMode: toggleViewModeReducer,
     categoriesList: categoriesListReducer,
+    toggleAsideMainMenu: toggleAsideMainMenuReducer,
+    toggleAsideProductSearch: toggleAsideProductSearchReducer,
   },
 });
 

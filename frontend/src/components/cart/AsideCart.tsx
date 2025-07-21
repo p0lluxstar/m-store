@@ -36,7 +36,7 @@ const AsideCart = (): JSX.Element | null => {
 
   return (
     <div
-      className={` ${toggleAsideCart ? 'translate-x-0' : 'translate-x-full'} fixed top-0 right-0 z-20 w-[400px] overflow-auto h-screen bg-white transition-transform duration-100 ease-in-out`}
+      className={`${toggleAsideCart ? 'translate-x-0' : 'translate-x-full'} fixed top-0 right-0 z-20 w-[400px] overflow-auto h-screen bg-white transition-transform duration-100 ease-in-out max-[400px]:w-[320px] max-[400px]:right-[0px]`}
     >
       <div className="relative h-[60px] bg-[#f7f7f7] [border-bottom:1px_solid_#e8e8e8]">
         <button

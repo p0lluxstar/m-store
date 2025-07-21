@@ -1,0 +1,3 @@
+.errorMessage {
+  @apply absolute bottom-[-16px] text-[#FB2C36] text-[12px];
+}

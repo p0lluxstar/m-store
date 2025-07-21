@@ -18,12 +18,14 @@ const CategoryProductPage = (): JSX.Element => {
   return (
     <MainWrapper>
       <PageHeaderArea />
-      <Breadcrumbs pageLink={pageLink} />
-      <div className="flex gap-[40px]">
-        <CatalogFilters />
-        <div className="w-[100%]">
-          <CatalogSort />
-          <ProductsCatalog />
+      <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
+        <Breadcrumbs pageLink={pageLink} />
+        <div className="flex gap-[40px] max-[900px]:flex-col">
+          <CatalogFilters />
+          <div className="w-[100%]">
+            <CatalogSort />
+            <ProductsCatalog />
+          </div>
         </div>
       </div>
     </MainWrapper>

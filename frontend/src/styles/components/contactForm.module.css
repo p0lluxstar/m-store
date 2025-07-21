@@ -5,9 +5,3 @@
 .errorMessage {
   @apply absolute bottom-[-16px] text-[#FB2C36] text-[12px];
 }
-
-@media (max-width: 1000px) {
-  .errorMessage {
-    @apply text-[#00FF00];
-  }
-}
