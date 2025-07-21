@@ -36,14 +36,14 @@ const AsideMainMenu = (): JSX.Element => {
         </i>
       </button>
       <InfoTopItems />
-      <ul className="flex-col items-center justify-center [border-top:1px_solid_#373737] max-[900px]:flex-col max-[900px]:justify-start max-[900px]:bg-transparent mt-[20px]">
+      <ul className="[border-top:1px_solid_#373737] mt-[20px]">
         {MAIN_MENU_ITEMS.map((item) => {
           const isActive = pathname === item.url || (item.url === '/catalog' && isCatalogActive);
 
           return (
             <li
               key={item.name}
-              className="w-[100%] [border-bottom:1px_solid_#373737]"
+              className="w-[100%] [border-bottom:1px_solid_#373737] hover:bg-[#2c2c2c]"
             >
               <Link
                 className={`no-underline ${isActive ? 'text-[#c0c0c0]' : 'text-white'} inline-block w-full p-[20px] hover:opacity-90`}

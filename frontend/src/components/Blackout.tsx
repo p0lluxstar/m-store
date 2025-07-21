@@ -17,17 +17,9 @@ const Blackout = (): JSX.Element => {
   );
 
   const handleClick = (): void => {
-    if (visibleAsideCart) {
-      dispatch(toggleVisibility());
-    }
-
-    if (visibleAsideMainMenu) {
-      dispatch(toggleVisibilityAsideMainMenu());
-    }
-
-    if (visibilityAsideProductSearch) {
-      dispatch(toggleVisibilityAsideProductSearch());
-    }
+    if (visibleAsideCart) dispatch(toggleVisibility());
+    if (visibleAsideMainMenu) dispatch(toggleVisibilityAsideMainMenu());
+    if (visibilityAsideProductSearch) dispatch(toggleVisibilityAsideProductSearch());
   };
 
   return (
