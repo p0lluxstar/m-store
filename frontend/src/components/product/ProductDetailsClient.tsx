@@ -89,7 +89,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
   };
 
   return (
-    <div className="flex gap-[40px] relative">
+    <div className="flex gap-[40px] relative max-[800px]:flex-col">
       {isSliderOpen && (
         <ProductImageSlider
           images={productImages}
@@ -98,7 +98,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
         />
       )}
 
-      <div className="flex flex-col gap-[20px] w-[50%]">
+      <div className="flex flex-col gap-[20px] w-[50%] max-[800px]:w-[100%]">
         <div
           className="cursor-pointer hover:opacity-90 transition-opacity"
           onClick={() => openSlider(0)}
@@ -131,7 +131,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
         </div>
       </div>
 
-      <div className="w-[50%]">
+      <div className="w-[50%] max-[800px]:w-[100%]">
         <h3 className="text-[36px] font-medium text-black">{product.title}</h3>
         <div className="text-[30px] font-bold text-black">
           {product.variants?.[0]?.calculated_price?.calculated_amount.toFixed(2)}₽

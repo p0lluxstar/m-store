@@ -5,22 +5,38 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '@/store';
 import { toggleVisibility } from '@/store/slices/toggleAsideCartSlice';
+import { toggleVisibilityAsideMainMenu } from '@/store/slices/toggleAsideMainMenu';
+import { toggleVisibilityAsideProductSearch } from '@/store/slices/toggleAsideProductSearch';
 
 const Blackout = (): JSX.Element => {
   const dispatch = useDispatch();
-  const visible = useSelector((state: RootState) => state.toggleAsideCart.visible);
+  const visibleAsideCart = useSelector((state: RootState) => state.toggleAsideCart.visible);
+  const visibleAsideMainMenu = useSelector((state: RootState) => state.toggleAsideMainMenu.visible);
+  const visibilityAsideProductSearch = useSelector(
+    (state: RootState) => state.toggleAsideProductSearch.visible
+  );
 
   const handleClick = (): void => {
-    dispatch(toggleVisibility());
+    if (visibleAsideCart) {
+      dispatch(toggleVisibility());
+    }
+
+    if (visibleAsideMainMenu) {
+      dispatch(toggleVisibilityAsideMainMenu());
+    }
+
+    if (visibilityAsideProductSearch) {
+      dispatch(toggleVisibilityAsideProductSearch());
+    }
   };
 
   return (
     <div
       onClick={handleClick}
-       className={`
+      className={`
         fixed top-0 left-0 w-full h-full z-10 bg-[#292929]/80
         transition-opacity duration-300 ease-in-out
-        ${visible ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
+        ${visibleAsideCart || visibleAsideMainMenu || visibilityAsideProductSearch ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
       `}
     ></div>
   );

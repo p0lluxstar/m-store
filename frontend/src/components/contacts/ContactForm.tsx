@@ -67,10 +67,8 @@ const ContactForm = (): JSX.Element => {
                     errors.name ? 'border-red-500' : 'border-[#d7d7d7]'
                   }`}
                   id="name"
-                  placeholder="Ваше имя*"
-                  {...register('name', {
-                    required: 'Введите ваше имя',
-                  })}
+                  placeholder="Ваше имя"
+                  {...register('name')}
                 />
                 {errors.name && <p className={styles.errorMessage}>{errors.name.message}</p>}
               </div>

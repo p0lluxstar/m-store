@@ -41,58 +41,64 @@ const ProductItem = ({ product, isViewModeLocked = false }: IProps): JSX.Element
   const isTableOrLocked = viewMode === EViewMode.Table || isViewModeLocked;
 
   return (
-    <div className={`relative group ${isTableOrLocked ? '' : 'flex gap-[10px]'}`}>
-      <div className={`relative ${isTableOrLocked ? '' : 'w-[30%]'}`}>
-        <div className="absolute flex gap-[5px] ml-[10px] mt-[10px]">
-          <ProductTags tags={product.tags} />
-        </div>
-        <Link href={`/catalog/${product.collection.handle}/${product.id}`}>
-          <Image
-            className="rounded-[10px] mb-[10px] group-hover:opacity-90 transition-opacity"
-            src={'/img/webp/product.webp'}
-            alt="product"
-            width={270}
-            height={274}
-          />
-        </Link>
-        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button
-            className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
-            onClick={(e) => {
-              e.preventDefault();
-              if (inWishList) {
-                handleDelProduct(product.id, 'wishlist');
-              } else {
-                handleAddProduct(product, 'wishlist');
-              }
-            }}
-            title={inWishList ? 'Удалить из избранного' : 'Добавить в избранное'}
-          >
-            <FaRegHeart />
-          </button>
-          {inCart ? (
-            <Link
-              href={'/cart'}
-              className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
-              title="Перейти в корзину"
-            >
-              <GrCart />
-            </Link>
-          ) : (
+    <div
+      className={`relative group ${isTableOrLocked ? '' : 'flex gap-[10px] max-[700px]:flex-col'}`}
+    >
+      <div
+        className={`relative ${isTableOrLocked ? '' : 'flex w-[30%] max-[700px]:mx-[auto] max-[700px]:w-[100%] max-[700px]:justify-center'}`}
+      >
+        <div className="relative">
+          <div className="absolute flex gap-[5px] ml-[10px] mt-[10px]">
+            <ProductTags tags={product.tags} />
+          </div>
+          <Link href={`/catalog/${product.collection.handle}/${product.id}`}>
+            <Image
+              className="w-[100%] rounded-[10px] mb-[10px] group-hover:opacity-90 transition-opacity"
+              src={'/img/webp/product.webp'}
+              alt="product"
+              width={270}
+              height={274}
+            />
+          </Link>
+          <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity touch-opaque">
             <button
-              className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
+              className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
-                handleAddProduct(product, 'cart');
+                if (inWishList) {
+                  handleDelProduct(product.id, 'wishlist');
+                } else {
+                  handleAddProduct(product, 'wishlist');
+                }
               }}
-              title="Добавить в корзину"
+              title={inWishList ? 'Удалить из избранного' : 'Добавить в избранное'}
             >
-              <GrCart />
+              <FaRegHeart />
             </button>
-          )}
+            {inCart ? (
+              <Link
+                href={'/cart'}
+                className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
+                title="Перейти в корзину"
+              >
+                <GrCart />
+              </Link>
+            ) : (
+              <button
+                className={`bg-white p-2 rounded-full shadow-md cursor-pointer hover:bg-gray-100 transition-colors ${inCart ? '!bg-red-500 text-white' : ''}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleAddProduct(product, 'cart');
+                }}
+                title="Добавить в корзину"
+              >
+                <GrCart />
+              </button>
+            )}
+          </div>
         </div>
       </div>
-      <div className={`${isTableOrLocked ? '' : 'w-[70%]'}`}>
+      <div className={`${isTableOrLocked ? '' : 'w-[70%] max-[700px]:w-[100%]'}`}>
         <Link className="text-[#666]" href={`/catalog/${product.collection.handle}`}>
           <span>{product.collection.title}</span>
         </Link>

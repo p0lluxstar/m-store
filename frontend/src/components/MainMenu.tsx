@@ -11,7 +11,7 @@ const MainMenu = (): JSX.Element => {
   const isCatalogActive = pathname.startsWith('/catalog');
 
   return (
-    <ul className="flex items-center justify-center gap-5 h-12 list-none bg-[var(--theme-color)] rounded-t-lg max-[900px]:hidden">
+    <ul className="flex items-center justify-center gap-5 h-12 list-none bg-[var(--theme-color)] rounded-t-lg">
       {MAIN_MENU_ITEMS.map((item) => {
         const isActive = pathname === item.url || (item.url === '/catalog' && isCatalogActive);
 
