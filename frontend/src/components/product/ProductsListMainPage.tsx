@@ -13,7 +13,7 @@ interface IProps {
 }
 
 const ProductsListMainPage = ({ fetchUrl }: IProps): JSX.Element => {
-  const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
+  const { data: products, loading, error } = useFetch<IProduct[] | []>(fetchUrl);
 
   if (loading)
     return (

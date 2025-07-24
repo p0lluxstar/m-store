@@ -7,7 +7,7 @@ interface IUseAddToCartFromWishlist {
   handleAddProduct: (product: ICartItem) => void;
 }
 
-export const useAddToCartFromWishlist = ():IUseAddToCartFromWishlist => {
+export const useAddToCartFromWishlist = (): IUseAddToCartFromWishlist => {
   const dispatch = useDispatch();
 
   const handleAddProduct = (product: ICartItem): void => {

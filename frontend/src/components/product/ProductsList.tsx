@@ -23,7 +23,7 @@ const countItmes = 4;
 
 const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   const dispatch = useDispatch();
-  const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
+  const { data: products, loading, error } = useFetch<IProduct[] | []>(fetchUrl);
   const viewMode = useSelector((state: RootState) => state.toggleViewMode.mode);
   const [loadingMore, setLoadingMore] = useState(false);
   const [visibleCount, setVisibleCount] = useState(countItmes);
@@ -36,6 +36,10 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   const segments = useUrlSegments();
 
   useEffect(() => {
+    if (products.length === 0) {
+      dispatch(setNumberProductsFound(0));
+    }
+
     if (products && products.length > 0) {
       dispatch(setNumberProductsFound(products.length));
 
@@ -70,9 +74,10 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   if (error) return <div>Error: {error}</div>;
 
   // Получаем только видимые элементы
-  const visibleProducts = products.slice(0, visibleCount);
+  const visibleProducts = products?.slice(0, visibleCount) || [];
+
   // Проверяем, есть ли еще элементы для загрузки
-  const hasMoreProducts = visibleCount < products.length;
+  const hasMoreProducts = products ? visibleCount < products.length : false;
 
   return (
     <>

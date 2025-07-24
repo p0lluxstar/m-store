@@ -51,6 +51,7 @@ export class ProductController {
 
   @Get(':id')
   async getProductById(@Param('id') id: string) {
+    console.log('id', id);
     return this.medusaService.getProductById(id, 'reg_01JWRDG8DY2GDMAK48EY1BJ9MF');
   }
 }

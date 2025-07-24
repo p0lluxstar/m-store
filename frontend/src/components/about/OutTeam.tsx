@@ -5,7 +5,9 @@ const OurTeam = (): JSX.Element => {
   return (
     <section className="mb-[60px]">
       <div className="flex flex-col justify-center items-center mb-[60px]">
-        <h2 className="text-xl font-bold mb-2 text-[42px] leading-none text-center">Наша команда</h2>
+        <h2 className="text-xl font-bold mb-2 text-[42px] leading-none text-center">
+          Наша команда
+        </h2>
         <p className="text-gray-600 text-[22px] text-center">
           Мы помогаем выбрать идеальный товар для ваших приключений
         </p>

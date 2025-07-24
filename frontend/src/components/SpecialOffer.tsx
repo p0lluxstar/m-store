@@ -8,13 +8,25 @@ const SpecialOffer = (): JSX.Element => {
       <div className="flex gap-[30px] max-[800px]:flex-col-reverse">
         <div>
           <Link href="/">
-            <Image className='max-[800px]:w-[100%]' src={'/img/webp/special-offer-1.webp'} alt="" width={570} height={700}></Image>
+            <Image
+              className="max-[800px]:w-[100%]"
+              src={'/img/webp/special-offer-1.webp'}
+              alt=""
+              width={570}
+              height={700}
+            ></Image>
           </Link>
         </div>
         <div>
           <div className="mb-[40px]">
             <Link href="/">
-              <Image className='max-[800px]:w-[100%]' src={'/img/webp/special-offer-2.webp'} alt="" width={570} height={350}></Image>
+              <Image
+                className="max-[800px]:w-[100%]"
+                src={'/img/webp/special-offer-2.webp'}
+                alt=""
+                width={570}
+                height={350}
+              ></Image>
             </Link>
           </div>
           <div className="ml-[40px] max-[800px]:ml-[0px]">

@@ -5,7 +5,13 @@ import { RootState } from '@/store';
 import { setCategories } from '@/store/slices/categoriesListSlice';
 import { ICategory } from '@/types';
 
-export const useLoadCategories = (): any => {
+interface IUseLoadCategories {
+  categories: ICategory[];
+  loading: boolean;
+  error: string | null;
+}
+
+export const useLoadCategories = (): IUseLoadCategories => {
   const dispatch = useDispatch();
   const categories = useSelector((state: RootState) => state.categoriesList.categories);
   const [loading, setLoading] = useState(categories.length === 0);

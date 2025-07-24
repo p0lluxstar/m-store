@@ -13,7 +13,7 @@ const CategoryFilter = (): JSX.Element => {
   const params = useParams();
   const categorySlug = params?.category;
   const { loading, error, categories } = useLoadCategories();
-  
+
   if (loading)
     return (
       <div>

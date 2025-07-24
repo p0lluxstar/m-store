@@ -50,7 +50,7 @@ const TableCart = (): JSX.Element => {
   }
 
   return (
-    <div className='mb-[30px] overflow-x-auto'>
+    <div className="mb-[30px] overflow-x-auto">
       <table className="mb-[30px] min-w-[700px]">
         <thead className="table-header-group bg-[#F7F7F7]">
           <tr>

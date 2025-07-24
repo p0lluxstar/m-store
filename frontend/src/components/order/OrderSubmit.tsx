@@ -17,6 +17,12 @@ interface IOrderSubmitProps {
   onOrderSuccess: (orderId: string) => void;
 }
 
+interface IOrderResult {
+  order: {
+    id: string;
+  };
+}
+
 const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null => {
   const {
     register,
@@ -35,7 +41,7 @@ const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null 
 
   const onSubmit = async (data: IUserFormCart): Promise<void> => {
     try {
-      const result = await createOrder(data.name, data.phone);
+      const result = (await createOrder(data.name, data.phone)) as IOrderResult | undefined;
 
       if (result) {
         dispatch(clearCart());
@@ -43,8 +49,7 @@ const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null 
         onOrderSuccess(shortOrderId);
       }
 
-      console.log('Заказ создан:', result);
-      // Перенаправление или очистка корзины
+      // console.log('Заказ создан:', result);
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +99,8 @@ const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null 
                 },
               })}
               className={`border-[1px] border-solid border-[#e8e8e8] p-2 w-full focus:bg-[#f5f5f5] focus-visible:outline-none ${
-                  errors.phone ? 'border-red-500' : 'border-[#d7d7d7]'}`}
+                errors.phone ? 'border-red-500' : 'border-[#d7d7d7]'
+              }`}
               placeholder="+7 (XXX) XXX-XX-XX"
             />
             {errors.phone && <p className={styles.errorMessage}>{errors.phone.message}</p>}

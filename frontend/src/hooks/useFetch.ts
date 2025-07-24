@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
 
-export function useFetch<T>(url: string): any {
-  const [data, setData] = useState<T | null>(null);
+interface IUseFetch<T> {
+  data: T | [];
+  loading: boolean;
+  error: string | null;
+}
+
+export function useFetch<T>(url: string): IUseFetch<T> {
+  const [data, setData] = useState<T | []>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | string>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -21,9 +27,13 @@ export function useFetch<T>(url: string): any {
         if (isMounted) {
           setData(data);
         }
-      } catch (err: any) {
+      } catch (err: unknown) {
         if (isMounted) {
-          setError(err.message || 'Неизвестная ошибка');
+          if (err instanceof Error) {
+            setError(err.message);
+          } else {
+            setError('Неизвестная ошибка');
+          }
         }
       } finally {
         if (isMounted) {

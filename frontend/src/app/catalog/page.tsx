@@ -1,4 +1,5 @@
 import { JSX } from 'react';
+import { Suspense } from 'react';
 
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CatalogFilters from '@/components/filter/CatalogFilters';
@@ -21,10 +22,14 @@ export default function ShopPage(): JSX.Element {
       <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
         <Breadcrumbs pageLink={pageLink} />
         <div className="flex gap-[40px] max-[900px]:flex-col">
-          <CatalogFilters />
+            <CatalogFilters />
           <div className="w-[100%]">
-            <CatalogSort />
-            <ProductsCatalog />
+            <Suspense fallback={<div>Загрузка сортировки...</div>}>
+              <CatalogSort />
+            </Suspense>
+            <Suspense fallback={<div>Загрузка каталога...</div>}>
+              <ProductsCatalog />
+            </Suspense>
           </div>
         </div>
       </div>
