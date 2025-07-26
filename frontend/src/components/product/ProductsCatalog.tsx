@@ -27,8 +27,8 @@ const ProductsCatalog = (): JSX.Element => {
 
     // Если есть категория, используем URL с категорией, иначе общий URL
     return category
-      ? `http://localhost:4000/categories/products?${params.toString()}`
-      : `http://localhost:4000/products?${params.toString()}`;
+      ? `${process.env.NEXT_PUBLIC_API_HOST}/categories/products?${params.toString()}`
+      : `${process.env.NEXT_PUBLIC_API_HOST}/products?${params.toString()}`;
   }, [category, sortBy, minPrice, maxPrice, searchParam]);
 
   return <ProductsList fetchUrl={fetchUrl} />;

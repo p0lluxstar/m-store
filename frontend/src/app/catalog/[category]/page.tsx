@@ -6,9 +6,10 @@ import CatalogSort from '@/components/filter/CatalogSort';
 import MainWrapper from '@/components/main/MainWrapper';
 import PageHeaderArea from '@/components/PageHeaderArea';
 import ProductsCatalog from '@/components/product/ProductsCatalog';
+import { STORE_NAME } from '@/constants';
 
 export const metadata = {
-  title: 'Категория товаров — M-Store',
+  title: `Каталог | ${STORE_NAME}`,
   description: 'Страница категории товаров',
 };
 

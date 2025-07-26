@@ -11,15 +11,15 @@ const MainMenu = (): JSX.Element => {
   const isCatalogActive = pathname.startsWith('/catalog');
 
   return (
-    <ul className="flex items-center justify-center gap-5 h-12 list-none bg-[var(--theme-color)] rounded-t-lg">
+    <ul className="flex items-center justify-center h-12 list-none bg-[var(--theme-color)] rounded-t-lg">
       {MAIN_MENU_ITEMS.map((item) => {
         const isActive = pathname === item.url || (item.url === '/catalog' && isCatalogActive);
 
         return (
-          <li key={item.name}>
+          <li className={`h-[100%]  aitemsno-underline }`} key={item.name}>
             <Link
-              className={`no-underline ${isActive ? 'text-[#c0c0c0]' : 'text-white'}`}
               href={item.url}
+              className={`flex items-center h-[100%] px-[20px] text-white [transition:background_0.2s_ease-in-out] ${isActive ? 'bg-[#dd1414] cursor-default' : 'hover:bg-[#e75349]'}`}
             >
               <span className="font-semibold uppercase">{item.name}</span>
             </Link>

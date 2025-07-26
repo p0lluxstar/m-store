@@ -1,8 +1,10 @@
 import { JSX } from 'react';
 
-import ProductsListMainPage from './product/ProductsListMainPage';
+import { PRODUCT_TAGS } from '@/constants';
 
-const FeaturedItems = (): JSX.Element => {
+import ProductsHitList from './ProductsHitList';
+
+const ProductsHitSection = (): JSX.Element => {
   return (
     <section className="flex flex-col justify-center items-center mb-[60px]">
       <div className="flex flex-col justify-center items-center mb-[60px]">
@@ -11,9 +13,11 @@ const FeaturedItems = (): JSX.Element => {
           Популярные товары, которые выбирают наши покупатели
         </p>
       </div>
-      <ProductsListMainPage fetchUrl="http://localhost:4000/products" />
+      <ProductsHitList
+        fetchUrl={`${process.env.NEXT_PUBLIC_API_HOST}/products/tag/${PRODUCT_TAGS.HIT.id}`}
+      />
     </section>
   );
 };
 
-export default FeaturedItems;
+export default ProductsHitSection;

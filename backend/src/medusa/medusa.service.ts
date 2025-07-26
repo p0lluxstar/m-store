@@ -1,18 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { medusa } from '../../medusa-config';
-import { FilterAndSortProducts } from 'src/utils/FilterAndSortProducts';
-
-interface CartItem {
-  variant_id: string;
-  quantity: number;
-}
-
-interface OrderData {
-  items: CartItem[];
-  customer_name: string;
-  customer_phone: string;
-  region_id: string;
-}
+import { IOrderData } from '../types/index';
+import { FilterAndSortProducts } from '../utils/FilterAndSortProducts';
 
 @Injectable()
 export class MedusaService {
@@ -51,6 +40,21 @@ export class MedusaService {
       });
 
       return product;
+    } catch (error) {
+      throw new Error(`Failed to fetch products: ${error.message}`);
+    }
+  }
+
+  async getProductByTag(tag: string, regionId: string) {
+    try {
+      const { products } = await medusa.store.product.list({
+        region_id: regionId,
+        tag_id: tag,
+        fields: '*variants.calculated_price',
+        limit: 8,
+      });
+
+      return products;
     } catch (error) {
       throw new Error(`Failed to fetch products: ${error.message}`);
     }
@@ -102,7 +106,7 @@ export class MedusaService {
   }
 
   // создание заказа
-  async createOrder(data: OrderData) {
+  async createOrder(data: IOrderData) {
     try {
       // 1. Проверка входных данных
       if (!data.region_id || !data.items?.length) {
@@ -149,7 +153,7 @@ export class MedusaService {
       // 5. Устновить метод доставки
       try {
         await medusa.store.cart.addShippingMethod(cart.id, {
-          option_id: 'so_01JYHRVXE94YZ435P9SMAEQXCE',
+          option_id: process.env.STORE_OPTION_ID,
         });
       } catch (err) {
         throw new Error(`Ошибка установки метода доставки: ${err.message}`);

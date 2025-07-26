@@ -4,6 +4,12 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import ContactForm from '@/components/contacts/ContactForm';
 import MainWrapper from '@/components/main/MainWrapper';
 import PageHeaderArea from '@/components/PageHeaderArea';
+import { STORE_NAME } from '@/constants';
+
+export const metadata = {
+  title: `Контакты | ${STORE_NAME}`,
+  description: 'Узнайте больше о нашей компании и команде.',
+};
 
 const pageLink = [{ label: 'Контакты', href: '/contact' }];
 

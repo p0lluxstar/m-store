@@ -20,7 +20,7 @@ export const useLoadCategories = (): IUseLoadCategories => {
   useEffect(() => {
     const fetchCategories = async (): Promise<void> => {
       try {
-        const res = await fetch('http://localhost:4000/categories');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/categories`);
         if (!res.ok) throw new Error('Ошибка при загрузке категорий');
         const data: ICategory[] = await res.json();
         dispatch(setCategories(data));
