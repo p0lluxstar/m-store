@@ -18,8 +18,7 @@ const ProductsCatalog = (): JSX.Element => {
     const params = new URLSearchParams();
 
     // Устанавливаем параметры, если они есть
-    params.set('handle', category); // set() возвращает void, поэтому не нужно присваивать
-
+    if (category) params.set('handle', category); // set() возвращает void, поэтому не нужно присваивать
     if (sortBy) params.set('sortBy', sortBy);
     if (minPrice) params.set('minPrice', minPrice.toString());
     if (maxPrice) params.set('maxPrice', maxPrice.toString());
