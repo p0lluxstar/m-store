@@ -18,8 +18,7 @@ const ProductsCatalog = (): JSX.Element => {
     const params = new URLSearchParams();
 
     // Устанавливаем параметры, если они есть
-    params.set('handle', category); // set() возвращает void, поэтому не нужно присваивать
-
+    if (category) params.set('handle', category); // set() возвращает void, поэтому не нужно присваивать
     if (sortBy) params.set('sortBy', sortBy);
     if (minPrice) params.set('minPrice', minPrice.toString());
     if (maxPrice) params.set('maxPrice', maxPrice.toString());
@@ -27,8 +26,8 @@ const ProductsCatalog = (): JSX.Element => {
 
     // Если есть категория, используем URL с категорией, иначе общий URL
     return category
-      ? `http://localhost:4000/categories/products?${params.toString()}`
-      : `http://localhost:4000/products?${params.toString()}`;
+      ? `${process.env.NEXT_PUBLIC_API_HOST}/categories/products?${params.toString()}`
+      : `${process.env.NEXT_PUBLIC_API_HOST}/products?${params.toString()}`;
   }, [category, sortBy, minPrice, maxPrice, searchParam]);
 
   return <ProductsList fetchUrl={fetchUrl} />;

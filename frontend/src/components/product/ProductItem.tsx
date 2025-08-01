@@ -54,7 +54,7 @@ const ProductItem = ({ product, isViewModeLocked = false }: IProps): JSX.Element
           <Link href={`/catalog/${product.collection.handle}/${product.id}`}>
             <Image
               className="w-[100%] rounded-[10px] mb-[10px] group-hover:opacity-90 transition-opacity"
-              src={'/img/webp/product.webp'}
+              src={product.images[0]?.url || '/img/webp/product.webp'}
               alt="product"
               width={270}
               height={274}

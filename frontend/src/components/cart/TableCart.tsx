@@ -50,7 +50,7 @@ const TableCart = (): JSX.Element => {
   }
 
   return (
-    <div className='mb-[30px] overflow-x-auto'>
+    <div className="mb-[30px] overflow-x-auto">
       <table className="mb-[30px] min-w-[700px]">
         <thead className="table-header-group bg-[#F7F7F7]">
           <tr>
@@ -76,7 +76,7 @@ const TableCart = (): JSX.Element => {
               </td>
               <td>
                 <Image
-                  src={'/img/webp/aside-cart-img-product.webp'}
+                  src={item.imagesUrl || '/img/webp/aside-cart-img-product.webp'}
                   alt="product img"
                   width={90}
                   height={110}

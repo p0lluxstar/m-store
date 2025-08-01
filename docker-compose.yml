@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  backend:
+    container_name: mstore-backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.app
+    environment:
+      - API_PORT='4000'
+      - API_HOST='localhost'
+    networks:
+      - mstore
+    ports:
+      - '4000:4000'  
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.app
+    container_name: mstore-frontend
+    environment:
+      - NODE_ENV=production
+    command: ['npm', 'run', 'start']
+    networks:
+      - mstore
+    ports:
+      - '3000:3000'  
+
+networks:
+  mstore:
+    driver: bridge

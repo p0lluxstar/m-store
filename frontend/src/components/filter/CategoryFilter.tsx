@@ -13,7 +13,7 @@ const CategoryFilter = (): JSX.Element => {
   const params = useParams();
   const categorySlug = params?.category;
   const { loading, error, categories } = useLoadCategories();
-  
+
   if (loading)
     return (
       <div>
@@ -37,7 +37,12 @@ const CategoryFilter = (): JSX.Element => {
               <Link
                 href={`/catalog/${category.handle}`}
                 scroll={false}
-                className={`${category.handle === categorySlug ? 'font-medium text-[#000]' : ''}`}
+                className={`${category.handle === categorySlug ? 'font-medium text-[#000] pointer-events-none' : ''}`}
+                onClick={(e) => {
+                  if (category.handle === categorySlug) {
+                    e.preventDefault(); // Блокируем переход
+                  }
+                }}
               >
                 {category.name}
               </Link>

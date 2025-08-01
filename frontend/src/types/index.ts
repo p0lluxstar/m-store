@@ -36,6 +36,8 @@ export interface ICartItem {
   imagesUrl: string;
   quantity: number;
   price: number;
+  collectionHandle: string;
+  collectionTitle: string;
 }
 
 export type TCartItemEssentials = Pick<ICartItem, 'variant_id' | 'quantity'>;

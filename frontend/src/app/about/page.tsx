@@ -6,9 +6,10 @@ import OurTeam from '@/components/about/OutTeam';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import MainWrapper from '@/components/main/MainWrapper';
 import PageHeaderArea from '@/components/PageHeaderArea';
+import { STORE_NAME } from '@/constants';
 
 export const metadata = {
-  title: 'О нас — M-Store',
+  title: `О нас | ${STORE_NAME}`,
   description: 'Узнайте больше о нашей компании и команде.',
 };
 

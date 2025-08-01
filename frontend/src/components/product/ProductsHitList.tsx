@@ -12,8 +12,8 @@ interface IProps {
   fetchUrl: string;
 }
 
-const ProductsListMainPage = ({ fetchUrl }: IProps): JSX.Element => {
-  const { data: products, loading, error } = useFetch<IProduct[]>(fetchUrl);
+const ProductsHitList = ({ fetchUrl }: IProps): JSX.Element => {
+  const { data: products, loading, error } = useFetch<IProduct[] | []>(fetchUrl);
 
   if (loading)
     return (
@@ -42,4 +42,4 @@ const ProductsListMainPage = ({ fetchUrl }: IProps): JSX.Element => {
   );
 };
 
-export default ProductsListMainPage;
+export default ProductsHitList;

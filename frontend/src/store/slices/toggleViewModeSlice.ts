@@ -23,10 +23,7 @@ const viewModeSlice = createSlice({
   initialState,
   reducers: {
     toggleViewMode(state) {
-      state.mode =
-        state.mode === EViewMode.Table
-          ? EViewMode.List
-          : EViewMode.Table;
+      state.mode = state.mode === EViewMode.Table ? EViewMode.List : EViewMode.Table;
 
       // Сохраняем в localStorage
       try {

@@ -20,6 +20,23 @@ interface Props {
   product: IProduct;
 }
 
+// Массив изображений продукта (можно заменить на данные из product.images если они есть)
+// const productImages = [
+//   {
+//     id: '',
+//     url: '/img/webp/product-item-page-big.webp',
+//   },
+//   { id: '', url: '/img/webp/product-item-page-small.webp' },
+//   {
+//     id: '',
+//     url: '/img/webp/product-item-page-small.webp',
+//   },
+//   {
+//     id: '',
+//     url: '/img/webp/product-item-page-small.webp',
+//   },
+// ];
+
 const ProductDetailsClient = ({ product }: Props): JSX.Element => {
   const { handleAddProduct } = useAddToCartOrWishListFromProductItem();
   const dispatch = useDispatch();
@@ -29,23 +46,6 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
 
   const [isSliderOpen, setIsSliderOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // Массив изображений продукта (можно заменить на данные из product.images если они есть)
-  const productImages = [
-    {
-      id: '',
-      url: '/img/webp/product-item-page-big.webp',
-    },
-    { id: '', url: '/img/webp/product-item-page-small.webp' },
-    {
-      id: '',
-      url: '/img/webp/product-item-page-small.webp',
-    },
-    {
-      id: '',
-      url: '/img/webp/product-item-page-small.webp',
-    },
-  ];
 
   const { handleDelProduct } = useDelToCartOrWishListFromProductItem();
 
@@ -92,7 +92,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
     <div className="flex gap-[40px] relative max-[800px]:flex-col">
       {isSliderOpen && (
         <ProductImageSlider
-          images={productImages}
+          images={product.images}
           initialIndex={currentImageIndex}
           onClose={closeSlider}
         />
@@ -105,7 +105,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
         >
           <Image
             className="rounded-[15px]"
-            src={productImages[0].url}
+            src={product.images[0]?.url || '/img/webp/product.webp'}
             alt="Main product"
             width={570}
             height={541}
@@ -113,7 +113,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           />
         </div>
         <div className="flex gap-[20px]">
-          {productImages.slice(1).map((image, index) => (
+          {product.images.slice(1).map((image, index) => (
             <div
               key={index}
               className="cursor-pointer hover:opacity-90 transition-opacity"

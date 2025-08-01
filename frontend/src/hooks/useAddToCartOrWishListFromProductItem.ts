@@ -33,6 +33,8 @@ export const useAddToCartOrWishListFromProductItem = (): IUseAddToCartOrWishList
       imagesUrl: product.images[0].url,
       quantity: 1,
       price,
+      collectionHandle: product.collection.handle,
+      collectionTitle: product.collection.title,
     };
 
     if (action === 'cart') dispatch(addItemToCart(item));

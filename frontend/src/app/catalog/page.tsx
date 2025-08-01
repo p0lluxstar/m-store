@@ -1,4 +1,5 @@
 import { JSX } from 'react';
+import { Suspense } from 'react';
 
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CatalogFilters from '@/components/filter/CatalogFilters';
@@ -6,9 +7,10 @@ import CatalogSort from '@/components/filter/CatalogSort';
 import MainWrapper from '@/components/main/MainWrapper';
 import PageHeaderArea from '@/components/PageHeaderArea';
 import ProductsCatalog from '@/components/product/ProductsCatalog';
+import { STORE_NAME } from '@/constants';
 
 export const metadata = {
-  title: 'Каталог — M-Store',
+  title: `Каталог | ${STORE_NAME}`,
   description: 'Узнайте больше о нашей компании и команде.',
 };
 
@@ -23,8 +25,12 @@ export default function ShopPage(): JSX.Element {
         <div className="flex gap-[40px] max-[900px]:flex-col">
           <CatalogFilters />
           <div className="w-[100%]">
-            <CatalogSort />
-            <ProductsCatalog />
+            <Suspense fallback={<div>Загрузка сортировки...</div>}>
+              <CatalogSort />
+            </Suspense>
+            <Suspense fallback={<div>Загрузка каталога...</div>}>
+              <ProductsCatalog />
+            </Suspense>
           </div>
         </div>
       </div>

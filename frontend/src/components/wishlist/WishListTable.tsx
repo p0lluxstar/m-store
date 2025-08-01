@@ -68,7 +68,7 @@ const WishListTable = (): JSX.Element => {
               </td>
               <td>
                 <Image
-                  src={'/img/webp/aside-cart-img-product.webp'}
+                  src={item.imagesUrl || '/img/webp/aside-cart-img-product.webp'}
                   alt="product img"
                   width={90}
                   height={110}
@@ -83,7 +83,12 @@ const WishListTable = (): JSX.Element => {
                 </Link>
               </td>
               <td className="text-[18px] font-medium">
-                <span>{item.handle}</span>
+                <Link
+                  className="hover:text-[var(--theme-color)] transition-colors"
+                  href={`/catalog/${item.collectionHandle}`}
+                >
+                  <span>{item.collectionTitle}</span>
+                </Link>
               </td>
               <td className="text-center text-[18px] font-medium">{item.price.toFixed(2)}₽</td>
               <td className="text-right text-[18px] font-medium">

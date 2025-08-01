@@ -4,17 +4,23 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { TCartItemEssentials } from '@/types';
 
-export const useCreateOrder = (): any => {
+interface IUseCreateOrder {
+  createOrder: (customerName: string, customerPhone: string) => Promise<void>;
+  isLoading: boolean;
+  error: Error | null;
+}
+
+export const useCreateOrder = (): IUseCreateOrder => {
   const cartItems = useSelector((state: RootState) => state.cartItems.items);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
 
-  const createOrder = async (customerName: string, customerPhone: string): Promise<any> => {
+  const createOrder = async (customerName: string, customerPhone: string): Promise<void> => {
     setIsLoading(true);
     setError(null);
 
     const orderData = {
-      region_id: 'reg_01JWRDG8DY2GDMAK48EY1BJ9MF',
+      region_id: process.env.NEXT_PUBLIC_REGION_ID,
       customer_name: customerName,
       customer_phone: customerPhone,
       items: cartItems.map((item: TCartItemEssentials) => ({
@@ -24,7 +30,7 @@ export const useCreateOrder = (): any => {
     };
 
     try {
-      const res = await fetch('http://localhost:4000/order', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_HOST}/order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(orderData),
@@ -36,6 +42,7 @@ export const useCreateOrder = (): any => {
       }
 
       const result = await res.json();
+
       return result;
     } catch (error) {
       setError(error as Error);

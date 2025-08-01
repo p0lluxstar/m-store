@@ -4,7 +4,9 @@
 }
 
 .menuList {
-  transition: max-height 0.3s ease, opacity 0.2s ease;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease;
 }
 
 @media (max-width: 699px) {
@@ -25,23 +27,25 @@
     color: #fff;
     font-weight: 500;
   }
-  
+
   .menuList {
-  max-height: 0;
-  opacity: 0;
-  overflow: hidden;
-  padding: 0 20px;
-  border: 1px solid #36393f;
-  transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.5s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    padding: 0 20px;
+    border: 1px solid #36393f;
+    transition:
+      max-height 0.5s ease,
+      opacity 0.5s ease,
+      padding 0.5s ease;
   }
-  
+
   .menuList.open {
-  max-height: 500px; /* максимум, который нужен */
-  opacity: 1;
-  padding: 20px;
+    max-height: 500px; /* максимум, который нужен */
+    opacity: 1;
+    padding: 20px;
   }
 }
-
 
 /* // @use '../../common/variables' as *;
 

@@ -22,7 +22,7 @@ export class CategoryController {
     }
 
     return this.medusaService.getProductsByCategory(
-      'reg_01JWRDG8DY2GDMAK48EY1BJ9MF',
+      process.env.REGION_ID,
       handle,
       sortBy ?? 'title_asc',
       minPrice ? Number(minPrice) : undefined,

@@ -43,7 +43,7 @@ const AsideMainMenu = (): JSX.Element => {
           return (
             <li
               key={item.name}
-              className="w-[100%] [border-bottom:1px_solid_#373737] hover:bg-[#2c2c2c]"
+              className="w-[100%] [border-bottom:1px_solid_#373737] [transition:background_0.2s_ease-in-out] hover:bg-[#2c2c2c]"
             >
               <Link
                 className={`no-underline ${isActive ? 'text-[#c0c0c0]' : 'text-white'} inline-block w-full p-[20px] hover:opacity-90`}
