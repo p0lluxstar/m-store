@@ -19,15 +19,15 @@ export const MAIN_MENU_ITEMS = [
 
 export const PRODUCT_TAGS = {
   SALE: {
-    id: 'ptag_01JZ0AGH2BKXBAX186K6ZG3MA7',
+    id: '',
     value: 'sale',
   },
   NEW: {
-    id: 'ptag_01JZ0AFZARFH3QCSDK7KFZ41S5',
+    id: '',
     value: 'new',
   },
   HIT: {
-    id: 'ptag_01K10JJNQYQZDNEN4RVJBDE5MM',
+    id: 'ptag_01K1JD5MJPF8TS29YXMMP5S381',
     value: 'hit',
   },
 };

@@ -153,7 +153,7 @@ export class MedusaService {
       // 5. Устновить метод доставки
       try {
         await medusa.store.cart.addShippingMethod(cart.id, {
-          option_id: process.env.STORE_OPTION_ID,
+          option_id: process.env.STORE_SHIPPING_OPTION_ID,
         });
       } catch (err) {
         throw new Error(`Ошибка установки метода доставки: ${err.message}`);

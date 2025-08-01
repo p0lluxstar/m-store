@@ -40,6 +40,8 @@ const ProductItem = ({ product, isViewModeLocked = false }: IProps): JSX.Element
 
   const isTableOrLocked = viewMode === EViewMode.Table || isViewModeLocked;
 
+  console.log('product', product);
+
   return (
     <div
       className={`relative group ${isTableOrLocked ? '' : 'flex gap-[10px] max-[700px]:flex-col'}`}
