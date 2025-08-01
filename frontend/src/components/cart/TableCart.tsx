@@ -76,7 +76,7 @@ const TableCart = (): JSX.Element => {
               </td>
               <td>
                 <Image
-                  src={'/img/webp/aside-cart-img-product.webp'}
+                  src={item.imagesUrl || '/img/webp/aside-cart-img-product.webp'}
                   alt="product img"
                   width={90}
                   height={110}

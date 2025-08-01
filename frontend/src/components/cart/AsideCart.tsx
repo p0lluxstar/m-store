@@ -58,7 +58,7 @@ const AsideCart = (): JSX.Element | null => {
                   <li className="flex mb-[30px]" key={item.id}>
                     <Image
                       className="mr-[20px]"
-                      src={'/img/webp/aside-cart-img-product.webp'}
+                      src={item.imagesUrl || '/img/webp/aside-cart-img-product.webp'}
                       alt=""
                       width={70}
                       height={70}
