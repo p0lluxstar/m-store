@@ -67,6 +67,7 @@ const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null 
               id="name"
               {...register('name')}
               className="border-[1px] border-solid border-[#e8e8e8] p-2 w-full mb-[20px]"
+              placeholder="Ваше имя"
             />
             {errors.name && <p className="text-red-500">{errors.name.message}</p>}
           </div>
@@ -80,6 +81,7 @@ const OrderSubmit = ({ onOrderSuccess }: IOrderSubmitProps): JSX.Element | null 
                 },
               })}
               className="border-[1px] border-solid border-[#e8e8e8] p-2 w-full mb-[20px]"
+              placeholder="Ваш email"
             />
             {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>

@@ -57,7 +57,7 @@ const ProductItem = ({ product, isViewModeLocked = false }: IProps): JSX.Element
               src={product.images[0]?.url || '/img/webp/product.webp'}
               alt="product"
               width={270}
-              height={274}
+              height={270}
             />
           </Link>
           <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity touch-opaque">

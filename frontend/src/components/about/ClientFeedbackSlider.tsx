@@ -4,6 +4,10 @@ import Autoplay from 'embla-carousel-autoplay';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 import React, { JSX, useCallback, useEffect } from 'react';
+import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+
+import { CLIENT_FEEDBACK_ITEMS } from '@/constants';
+
 
 const ClientFeedbackSlider = (): JSX.Element => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 60000 })]);
@@ -15,35 +19,6 @@ const ClientFeedbackSlider = (): JSX.Element => {
   const scrollNext = useCallback(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-
-  const feedbacks = [
-    {
-      id: 1,
-      client: 'Петр Петров',
-      text: 'Швы прочные, ткань плотная и водоотталкивающая — даже в ливень вещи внутри остались сухими. Куча карманов (даже для ноутбука и бутылки с водой), все молнии работают плавно',
-      avatar: '',
-    },
-    {
-      id: 2,
-      client: 'Петр Петров',
-      text: 'Швы прочные, ткань плотная и водоотталкивающая — даже в ливень вещи внутри остались сухими. Куча карманов (даже для ноутбука и бутылки с водой), все молнии работают плавно',
-    },
-    {
-      id: 3,
-      client: 'Петр Петров',
-      text: 'Швы прочные, ткань плотная и водоотталкивающая — даже в ливень вещи внутри остались сухими. Куча карманов (даже для ноутбука и бутылки с водой), все молнии работают плавно',
-    },
-    {
-      id: 4,
-      client: 'Петр Петров',
-      text: 'Швы прочные, ткань плотная и водоотталкивающая — даже в ливень вещи внутри остались сухими. Куча карманов (даже для ноутбука и бутылки с водой), все молнии работают плавно',
-    },
-    {
-      id: 5,
-      client: 'Петр Петров',
-      text: 'Швы прочные, ткань плотная и водоотталкивающая — даже в ливень вещи внутри остались сухими. Куча карманов (даже для ноутбука и бутылки с водой), все молнии работают плавно',
-    },
-  ];
 
   useEffect(() => {
     if (emblaApi) {
@@ -60,18 +35,18 @@ const ClientFeedbackSlider = (): JSX.Element => {
       <div className="relative">
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
-            {feedbacks.map((feedback) => (
+            {CLIENT_FEEDBACK_ITEMS.map((feedback) => (
               <div
-                className="flex-[0_0_32%] mx-[10px] max-[900px]:flex-[0_0_48%] max-[600px]:flex-[0_0_100%]"
+                className="flex-[0_0_32%] mx-[10px] min-h-[220px] max-[900px]:flex-[0_0_48%] max-[600px]:flex-[0_0_100%]"
                 key={feedback.id}
               >
-                <div className="flex flex-col p-[10px] bg-[#F2F8FD] rounded-[10px]">
+                <div className="flex flex-col justify-between min-h-[220px] p-[10px] bg-[#F2F8FD] rounded-[10px]">
                   <p className="italic font-medium mb-[10px] bg-[url('/img/webp/feedback.webp')] bg-no-repeat pl-[40px]">
                     {feedback.text}
                   </p>
                   <div className="flex gap-[10px] pl-[40px]">
                     <Image
-                      src={`/img/webp/avatar.png`}
+                      src={feedback.imgUrl || `/img/webp/avatar.png`}
                       alt="avatar"
                       width={70}
                       height={70}
@@ -86,17 +61,21 @@ const ClientFeedbackSlider = (): JSX.Element => {
             ))}
           </div>
         </div>
-        <div className="flex justify-center items-center gap-4 mt-6">
+        <div className="flex justify-center items-center gap-2 mt-4">
           <button
             onClick={scrollPrev}
-            className="bg-[#f0f0f0] p-2 rounded-full shadow-md hover:bg-gray-100 transition hover:cursor-pointer"
+            className="bg-[#f0f0f0] p-[2px] text-[#cccccc] rounded-full shadow-md hover:bg-gray-100 transition hover:cursor-pointer"
             aria-label="Previous slide"
-          ></button>
+          >
+            <MdChevronLeft />
+          </button>
           <button
             onClick={scrollNext}
-            className="bg-[#f0f0f0] p-2 rounded-full shadow-md hover:bg-gray-100 transition hover:cursor-pointer"
+            className="bg-[#f0f0f0] p-[2px] text-[#cccccc] rounded-full shadow-md hover:bg-gray-100 transition hover:cursor-pointer"
             aria-label="Next slide"
-          ></button>
+          >
+            <MdChevronRight />
+          </button>
         </div>
       </div>
     </>

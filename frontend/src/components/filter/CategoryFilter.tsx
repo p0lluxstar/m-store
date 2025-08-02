@@ -25,7 +25,7 @@ const CategoryFilter = (): JSX.Element => {
   return (
     <div className="border-[2px] border-solid border-[#e1e1e1] px-[40px] py-[30px] rounded-[15px]">
       <h3 className="text-[#535353] text-[22px] font-medium [border-bottom:2px_solid_#e1e1e1] pb-[15px] mb-[15px]">
-        Категории
+        Бренд
       </h3>
       {categories.length > 0 ? (
         <ul>

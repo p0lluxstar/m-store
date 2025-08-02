@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { JSX, useEffect, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
+import { VscDebugBreakpointLog } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useAddToCartOrWishListFromProductItem } from '@/hooks/useAddToCartOrWishListFromProductItem';
@@ -19,23 +20,6 @@ import ProductTags from './ProductTags';
 interface Props {
   product: IProduct;
 }
-
-// Массив изображений продукта (можно заменить на данные из product.images если они есть)
-// const productImages = [
-//   {
-//     id: '',
-//     url: '/img/webp/product-item-page-big.webp',
-//   },
-//   { id: '', url: '/img/webp/product-item-page-small.webp' },
-//   {
-//     id: '',
-//     url: '/img/webp/product-item-page-small.webp',
-//   },
-//   {
-//     id: '',
-//     url: '/img/webp/product-item-page-small.webp',
-//   },
-// ];
 
 const ProductDetailsClient = ({ product }: Props): JSX.Element => {
   const { handleAddProduct } = useAddToCartOrWishListFromProductItem();
@@ -59,6 +43,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
 
   const inCart = isInCart(product.id);
   const inWishList = isInWishList(product.id);
+  const propertyList = product.mid_code?.split(/[;.]/).map((item) => item.trim());
 
   useEffect(() => {
     if (product?.collection) {
@@ -104,11 +89,11 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           onClick={() => openSlider(0)}
         >
           <Image
-            className="rounded-[15px]"
+            className="rounded-[15px] border-[1px] border-solid border-[#e1e1e1]"
             src={product.images[0]?.url || '/img/webp/product.webp'}
             alt="Main product"
-            width={570}
-            height={541}
+            width={550}
+            height={550}
             priority
           />
         </div>
@@ -120,7 +105,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
               onClick={() => openSlider(index + 1)}
             >
               <Image
-                className="rounded-[10px]"
+                className="rounded-[10px] border-[1px] border-solid border-[#e1e1e1]"
                 src={image.url}
                 alt={`Thumbnail ${index + 1}`}
                 width={127}
@@ -130,7 +115,6 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           ))}
         </div>
       </div>
-
       <div className="w-[50%] max-[800px]:w-[100%]">
         <h3 className="text-[36px] font-medium text-black">{product.title}</h3>
         <div className="text-[30px] font-bold text-black">
@@ -142,8 +126,19 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
             <ProductTags tags={product.tags} />
           </div>
         )}
-
         <div className="text-[18px] mb-[15px]">{product.description}</div>
+        {propertyList && (
+          <ul className="my-[20px] text-[14px]">
+            {propertyList.map((property, index) => (
+              <li className="flex items-center mb-[6px] ml-[-4px] leading-none" key={index}>
+                <>
+                  <VscDebugBreakpointLog />
+                  <span className=" ml-[2px]">{property}</span>
+                </>
+              </li>
+            ))}
+          </ul>
+        )}
         <div>
           <span className="font-medium">Артикул</span>: {product.id.slice(-6)}
         </div>

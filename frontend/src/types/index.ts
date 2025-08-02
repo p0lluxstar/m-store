@@ -2,6 +2,7 @@ export interface IProduct {
   id: string;
   title: string;
   description: string;
+  mid_code: string;
   handle: string;
   collection: {
     title: string;
@@ -26,6 +27,7 @@ export interface ICategory {
   id: string;
   name: string;
   handle: string;
+  description: string;
 }
 
 export interface ICartItem {
