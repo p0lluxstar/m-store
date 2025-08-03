@@ -8,6 +8,7 @@ export const MAIN_MENU_ITEMS = [
     url: '/catalog',
   },
   {
+    key: 'about',
     name: 'О нас',
     url: '/about',
   },

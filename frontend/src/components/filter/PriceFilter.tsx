@@ -3,8 +3,8 @@
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { JSX, useEffect, useRef, useState } from 'react';
 
-const MIN = 0;
-const MAX = 10000;
+const MIN = 3000;
+const MAX = 15000;
 
 const PriceFilter = (): JSX.Element => {
   const router = useRouter();
@@ -69,7 +69,7 @@ const PriceFilter = (): JSX.Element => {
   const getPercent = (value: number): number => Math.round(((value - MIN) / (MAX - MIN)) * 100);
 
   return (
-    <div className="border-[2px] border-solid border-[#e1e1e1] px-[40px] py-[30px] rounded-[15px]">
+    <div className="border-[2px] border-solid border-[#e1e1e1] px-[40px] py-[30px] rounded-[15px] max-[1000px]:px-[20px] max-[1000px]:py-[15px]">
       <h3 className="text-[#535353] text-[22px] font-medium [border-bottom:2px_solid_#e1e1e1] pb-[15px] mb-[15px]">
         Фильтр по цене
       </h3>

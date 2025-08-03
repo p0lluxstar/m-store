@@ -30,7 +30,7 @@ const CatalogSort = (): JSX.Element => {
   };
 
   return (
-    <div className="flex justify-between items-center border-[2px] border-solid border-[#e1e1e1] mb-[40px] rounded-[5px] px-[30px] py-[10px] max-[700px]:flex-col max-[700px]:gap-[10px]">
+    <div className="flex justify-between items-center border-[2px] border-solid border-[#e1e1e1] mb-[20px] rounded-[5px] px-[30px] py-[10px] max-[700px]:flex-col max-[700px]:gap-[10px]">
       <div>
         <p className="font-medium text-[#6c6c6c]">
           <span>Товаров найдено:</span>

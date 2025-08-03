@@ -10,6 +10,11 @@ export class CategoryController {
     return this.medusaService.getCategories();
   }
 
+  @Get('category')
+  async getCategoryByHandel(@Query('handle') handle: string) {
+    return this.medusaService.getCategoryByHandle(handle);
+  }
+
   @Get('products')
   async getProductsByCategory(
     @Query('handle') handle: string,

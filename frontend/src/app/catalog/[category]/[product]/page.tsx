@@ -12,7 +12,8 @@ interface IParams {
   params: Promise<{ product: string }>;
 }
 
-const pageLink = [{ label: 'Каталог', href: '/catalog' }];
+const title = 'О товаре';
+const pageLink = [{ label: title, href: '/catalog' }];
 
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   const { product } = await params;
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
 const ProductPage = ({ params }: IParams): JSX.Element => {
   return (
     <MainWrapper>
-      <PageHeaderArea />
+      <PageHeaderArea title={title} />
       <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
         <Breadcrumbs pageLink={pageLink} />
         <ProductDetailsServer params={params} />

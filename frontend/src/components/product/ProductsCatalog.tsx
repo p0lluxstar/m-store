@@ -3,6 +3,8 @@
 import { useParams, useSearchParams } from 'next/navigation';
 import { JSX, useMemo } from 'react';
 
+import CategoryDesk from '../CategoryDesk';
+
 import ProductsList from './ProductsList';
 
 const ProductsCatalog = (): JSX.Element => {
@@ -18,7 +20,7 @@ const ProductsCatalog = (): JSX.Element => {
     const params = new URLSearchParams();
 
     // Устанавливаем параметры, если они есть
-    if (category) params.set('handle', category); // set() возвращает void, поэтому не нужно присваивать
+    if (category) params.set('handle', category);
     if (sortBy) params.set('sortBy', sortBy);
     if (minPrice) params.set('minPrice', minPrice.toString());
     if (maxPrice) params.set('maxPrice', maxPrice.toString());
@@ -30,7 +32,17 @@ const ProductsCatalog = (): JSX.Element => {
       : `${process.env.NEXT_PUBLIC_API_HOST}/products?${params.toString()}`;
   }, [category, sortBy, minPrice, maxPrice, searchParam]);
 
-  return <ProductsList fetchUrl={fetchUrl} />;
+  return (
+    <>
+      <CategoryDesk categoryHandle={category} />
+      {searchParam && (
+        <p className="bg-[#f5f5f5] rounded-[10px] p-[6px] text-[14px] mb-[20px]">
+          Результаты поиска: <span>{searchParam}</span>
+        </p>
+      )}
+      <ProductsList fetchUrl={fetchUrl} />
+    </>
+  );
 };
 
 export default ProductsCatalog;

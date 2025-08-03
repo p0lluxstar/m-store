@@ -19,7 +19,8 @@ interface IProps {
   fetchUrl: string;
 }
 
-const countItmes = 4;
+// сколько показывать товаров по умолчанию и по скольку догружать
+const countItmes = 9;
 
 const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   const dispatch = useDispatch();
@@ -104,7 +105,7 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
           <button
             onClick={handleLoadMore}
             disabled={loadingMore}
-            className="lock w-[120px] h-[50px] border-[1px] border-solid text-white bg-[#232324] text-[14px] p-[6px] text-center font-medium cursor-pointer hover:opacity-90"
+            className="lock w-[120px] h-[50px] border-[1px] border-solid text-white bg-[#232324] text-[16px] p-[6px] text-center font-medium cursor-pointer hover:opacity-90"
           >
             {loadingMore ? <Loader backgroundColor="#ffffff" /> : 'Показать ещё'}
           </button>

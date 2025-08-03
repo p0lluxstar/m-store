@@ -70,6 +70,16 @@ export class MedusaService {
     }
   }
 
+  async getCategoryByHandle(handle: string) {
+    try {
+      const category = await medusa.store.category.list({
+        handle,
+      });
+
+      return category.product_categories
+    } catch (error) {}
+  }
+
   async getProductsByCategory(
     regionId: string,
     handle: string,

@@ -22,8 +22,8 @@ const Breadcrumbs = ({ pageLink }: IProps): JSX.Element => {
     dispatch(setBreadcrumbsLinks([]));
   }, [dispatch, pageLink]);
 
-  const breadcrumbsSusubLinks = useSelector((state: RootState) => state.breadcrumbsLinks.subLinks);
-  const totalLinks = pageLink.concat(breadcrumbsSusubLinks);
+  const breadcrumbsSubLinks = useSelector((state: RootState) => state.breadcrumbsLinks.subLinks);
+  const totalLinks = pageLink.concat(breadcrumbsSubLinks);
 
   return (
     <div className="mb-[10px]">
