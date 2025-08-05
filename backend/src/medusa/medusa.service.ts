@@ -11,7 +11,8 @@ export class MedusaService {
     sortBy: string = 'title_asc',
     minPrice?: number,
     maxPrice?: number,
-    searchParam?: string
+    searchParam?: string,
+    tag?: string | string[]
   ) {
     try {
       const { products } = await medusa.store.product.list({
@@ -24,7 +25,8 @@ export class MedusaService {
         sortBy,
         minPrice,
         maxPrice,
-        searchParam
+        searchParam,
+        tag
       );
       return sortedProducts;
     } catch (error) {
@@ -76,7 +78,7 @@ export class MedusaService {
         handle,
       });
 
-      return category.product_categories
+      return category.product_categories;
     } catch (error) {}
   }
 
@@ -86,6 +88,7 @@ export class MedusaService {
     sortBy: string = 'title_asc',
     minPrice?: number,
     maxPrice?: number,
+    tag?: string | string[],
     searchParam?: string
   ) {
     try {
@@ -107,7 +110,8 @@ export class MedusaService {
         sortBy,
         minPrice,
         maxPrice,
-        searchParam
+        searchParam,
+        tag
       );
       return sortedProducts;
     } catch (error) {

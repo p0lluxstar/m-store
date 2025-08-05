@@ -5,6 +5,7 @@ import { FaRegHeart } from 'react-icons/fa6';
 import { GrCart } from 'react-icons/gr';
 import { useSelector } from 'react-redux';
 
+import { DISCOUNT_VALUE } from '@/constants';
 import { useAddToCartOrWishListFromProductItem } from '@/hooks/useAddToCartOrWishListFromProductItem';
 import { useDelToCartOrWishListFromProductItem } from '@/hooks/useDelToCartOrWishListFromProductItem';
 import { RootState } from '@/store';
@@ -13,6 +14,7 @@ import { EViewMode } from '@/types';
 
 import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductTags from './ProductTags';
+
 
 interface IProps {
   product: IProduct;
@@ -110,7 +112,14 @@ const ProductItem = ({ product, isViewModeLocked = false }: IProps): JSX.Element
             {product.title}
           </Link>
         </h3>
-        <p className="text-[#666] text-[20px] font-medium">{price.toFixed(2)}₽</p>
+        <div className="flex gap-[10px]">
+          <p className="text-[#666] text-[20px] font-medium">{price.toFixed(2)}₽</p>
+          {product.tags.some((tag) => tag.value === 'sale') && (
+            <p className="text-[#a9a9a9] text-[16px] font-normal line-through">
+              {(price + DISCOUNT_VALUE).toFixed(2)}₽
+            </p>
+          )}
+        </div>
         {viewMode === EViewMode.List && !isViewModeLocked && (
           <>
             <p className="mb-[10px]">{product.description}</p>

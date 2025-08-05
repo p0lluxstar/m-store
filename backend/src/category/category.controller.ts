@@ -20,7 +20,8 @@ export class CategoryController {
     @Query('handle') handle: string,
     @Query('sortBy') sortBy?: string,
     @Query('minPrice') minPrice?: string,
-    @Query('maxPrice') maxPrice?: string
+    @Query('maxPrice') maxPrice?: string,
+    @Query('tag') tag?: string | string[]
   ) {
     if (!handle) {
       return { error: 'categoryId query parameter is required' };
@@ -31,7 +32,8 @@ export class CategoryController {
       handle,
       sortBy ?? 'title_asc',
       minPrice ? Number(minPrice) : undefined,
-      maxPrice ? Number(maxPrice) : undefined
+      maxPrice ? Number(maxPrice) : undefined,
+      tag
     );
   }
 }

@@ -5,20 +5,22 @@ import { RxCross2 } from 'react-icons/rx';
 
 import CategoryFilter from './CategoryFilter';
 import PriceFilter from './PriceFilter';
+import TagFilter from './TagFilter';
 
 const CatalogFilters = (): JSX.Element => {
   return (
     <div className="flex-[0_0_auto] flex flex-col w-1/4 max-[900px]:w-[100%]">
-      <div className="sticky flex flex-col gap-[40px] top-[20px]">
+      <div className="flex flex-col gap-[40px] top-[20px]">
         <CategoryFilter />
         <Suspense fallback={<div>Загрузка фильтров...</div>}>
           <PriceFilter />
+          <TagFilter />
         </Suspense>
         <div className="mt-[-20px] text-center">
           <Link href="/catalog" scroll={false}>
             <div className="flex justify-center items-center">
               <RxCross2 />
-              Сбросить все
+              Сбросить фильтры
             </div>
           </Link>
         </div>

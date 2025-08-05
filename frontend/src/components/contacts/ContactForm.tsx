@@ -54,8 +54,9 @@ const ContactForm = (): JSX.Element => {
       <div className="w-[75%] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] p-[60px] rounded-[15px]  max-[1100px]:w-[90%] max-[600px]:p-[40px]">
         <div>
           <h2 className="font-medium text-[34px] text-black leading-[1.2] mb-[40px]">
-            Мы здесь! <br />
-            Пожалуйста, отправьте сообщение
+            Есть вопросы?
+            <br />
+            Напишите – с радостью поможем!
           </h2>
         </div>
         <div>

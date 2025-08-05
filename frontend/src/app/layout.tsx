@@ -6,9 +6,9 @@ import Blackout from '@/components/Blackout';
 import AsideCart from '@/components/cart/AsideCart';
 import FooterWrapper from '@/components/footer/FooterWrapper';
 import HeaderWrapper from '@/components/header/HeaderWrapper';
+import ScrollTop from '@/components/ScrollTop';
 import { STORE_NAME } from '@/constants';
 import { StoreProviders } from '@/store/StoreProvaider';
-
 
 import '../styles/globals.css';
 // import '../styles/normalize.css';
@@ -32,6 +32,7 @@ export default function RootLayout({
           <HeaderWrapper />
           {children}
           <FooterWrapper />
+          <ScrollTop />
           <AsideCart />
           <AsideMainMenu />
           <AsideProductSearch />

@@ -85,7 +85,7 @@ const TableCart = (): JSX.Element => {
               <td className="text-[18px] font-medium">
                 <Link
                   className="hover:text-[var(--theme-color)] transition-colors"
-                  href={`/catalog/${item.handle}/${item.id}`}
+                  href={`/catalog/${item.collectionTitle.toLocaleLowerCase()}/${item.id}`}
                 >
                   {item.title}
                 </Link>

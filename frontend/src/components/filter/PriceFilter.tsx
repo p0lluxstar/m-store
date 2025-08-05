@@ -3,8 +3,7 @@
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 import { JSX, useEffect, useRef, useState } from 'react';
 
-const MIN = 3000;
-const MAX = 15000;
+import { PRICE_FILTER_VALUE } from '@/constants';
 
 const PriceFilter = (): JSX.Element => {
   const router = useRouter();
@@ -12,8 +11,8 @@ const PriceFilter = (): JSX.Element => {
   const urlParams = useSearchParams();
 
   // Получаем текущие параметры из URL
-  const currentMinPrice = Number(urlParams.get('minPrice')) || MIN;
-  const currentMaxPrice = Number(urlParams.get('maxPrice')) || MAX;
+  const currentMinPrice = Number(urlParams.get('minPrice')) || PRICE_FILTER_VALUE.min;
+  const currentMaxPrice = Number(urlParams.get('maxPrice')) || PRICE_FILTER_VALUE.max;
 
   // Инициализируем состояние текущими значениями из URL
   const [minPrice, setMinPrice] = useState(currentMinPrice);
@@ -66,7 +65,10 @@ const PriceFilter = (): JSX.Element => {
     router.push(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const getPercent = (value: number): number => Math.round(((value - MIN) / (MAX - MIN)) * 100);
+  const getPercent = (value: number): number =>
+    Math.round(
+      ((value - PRICE_FILTER_VALUE.min) / (PRICE_FILTER_VALUE.max - PRICE_FILTER_VALUE.min)) * 100
+    );
 
   return (
     <div className="border-[2px] border-solid border-[#e1e1e1] px-[40px] py-[30px] rounded-[15px] max-[1000px]:px-[20px] max-[1000px]:py-[15px]">
@@ -92,16 +94,16 @@ const PriceFilter = (): JSX.Element => {
         />
         <input
           type="range"
-          min={MIN}
-          max={MAX}
+          min={PRICE_FILTER_VALUE.min}
+          max={PRICE_FILTER_VALUE.max}
           value={minPrice}
           onChange={handleMinChange}
           className="absolute w-full top-[14px] pointer-events-none appearance-none z-10"
         />
         <input
           type="range"
-          min={MIN}
-          max={MAX}
+          min={PRICE_FILTER_VALUE.min}
+          max={PRICE_FILTER_VALUE.max}
           value={maxPrice}
           onChange={handleMaxChange}
           className="absolute w-full top-[14px] pointer-events-none appearance-none z-10"

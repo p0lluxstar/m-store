@@ -3,6 +3,7 @@ import { usePathname } from 'next/navigation';
 import { JSX, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { COUNT_ITEMS_PRODUCT_LOADING } from '@/constants';
 import { useFetch } from '@/hooks/useFetch';
 import { RootState } from '@/store';
 import { setBreadcrumbsLinks } from '@/store/slices/breadcrumbsLinksSlice';
@@ -15,19 +16,17 @@ import Loader from '../Loader';
 
 import ProductItem from './ProductItem';
 
+
 interface IProps {
   fetchUrl: string;
 }
-
-// сколько показывать товаров по умолчанию и по скольку догружать
-const countItmes = 9;
 
 const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
   const dispatch = useDispatch();
   const { data: products, loading, error } = useFetch<IProduct[] | []>(fetchUrl);
   const viewMode = useSelector((state: RootState) => state.toggleViewMode.mode);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [visibleCount, setVisibleCount] = useState(countItmes);
+  const [visibleCount, setVisibleCount] = useState(COUNT_ITEMS_PRODUCT_LOADING);
 
   function useUrlSegments(): string[] {
     const pathname = usePathname();
@@ -61,7 +60,7 @@ const ProductsList = ({ fetchUrl }: IProps): JSX.Element => {
 
     // Имитация задержки загрузки
     setTimeout(() => {
-      setVisibleCount(visibleCount + countItmes);
+      setVisibleCount(visibleCount + COUNT_ITEMS_PRODUCT_LOADING);
       setLoadingMore(false);
     }, 500);
   };

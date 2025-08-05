@@ -15,6 +15,7 @@ const ProductsCatalog = (): JSX.Element => {
   const minPrice = urlParams.get('minPrice');
   const maxPrice = urlParams.get('maxPrice');
   const searchParam = urlParams.get('searchParam');
+  const tag = urlParams.getAll('tag');
 
   const fetchUrl = useMemo(() => {
     const params = new URLSearchParams();
@@ -25,12 +26,15 @@ const ProductsCatalog = (): JSX.Element => {
     if (minPrice) params.set('minPrice', minPrice.toString());
     if (maxPrice) params.set('maxPrice', maxPrice.toString());
     if (searchParam) params.set('searchParam', searchParam);
+    
+    // Добавляем все теги (если API поддерживает `?tag=tag1&tag=tag2`)
+    tag.forEach((t) => params.append('tag', t));
 
     // Если есть категория, используем URL с категорией, иначе общий URL
     return category
       ? `${process.env.NEXT_PUBLIC_API_HOST}/categories/products?${params.toString()}`
       : `${process.env.NEXT_PUBLIC_API_HOST}/products?${params.toString()}`;
-  }, [category, sortBy, minPrice, maxPrice, searchParam]);
+  }, [category, sortBy, minPrice, maxPrice, searchParam, tag]);
 
   return (
     <>

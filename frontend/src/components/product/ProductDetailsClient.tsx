@@ -7,6 +7,7 @@ import { FaRegHeart } from 'react-icons/fa';
 import { VscDebugBreakpointLog } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { DISCOUNT_VALUE } from '@/constants';
 import { useAddToCartOrWishListFromProductItem } from '@/hooks/useAddToCartOrWishListFromProductItem';
 import { useDelToCartOrWishListFromProductItem } from '@/hooks/useDelToCartOrWishListFromProductItem';
 import { RootState } from '@/store';
@@ -16,6 +17,7 @@ import { IProduct } from '@/types';
 import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductImageSlider from './ProductImageSlider';
 import ProductTags from './ProductTags';
+
 
 interface Props {
   product: IProduct;
@@ -44,6 +46,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
   const inCart = isInCart(product.id);
   const inWishList = isInWishList(product.id);
   const propertyList = product.mid_code?.split(/[;.]/).map((item) => item.trim());
+  const price = product.variants?.[0]?.calculated_price?.calculated_amount;
 
   useEffect(() => {
     if (product?.collection) {
@@ -118,7 +121,14 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
       <div className="w-[50%] max-[800px]:w-[100%]">
         <h3 className="text-[36px] font-medium text-black">{product.title}</h3>
         <div className="text-[30px] font-bold text-black">
-          {product.variants?.[0]?.calculated_price?.calculated_amount.toFixed(2)}₽
+          <div className='flex gap-[10px]'>
+            <p>{price.toFixed(2)}₽</p>
+            {product.tags.some((tag) => tag.value === 'sale') && (
+              <p className="text-[#a9a9a9] text-[22px] font-normal line-through">
+                {(price + DISCOUNT_VALUE).toFixed(2)}₽
+              </p>
+            )}
+          </div>
         </div>
         <div className="[border-bottom:1px_solid_#c8c8c8] my-[20px]"></div>
         {product.tags.length > 0 && (
@@ -132,7 +142,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
             {propertyList.map((property, index) => (
               <li className="flex items-center mb-[6px] ml-[-4px] leading-none" key={index}>
                 <>
-                  <span className='text-[16px]'>
+                  <span className="text-[16px]">
                     <VscDebugBreakpointLog />
                   </span>
                   <span className="ml-[2px]">{property}</span>
@@ -151,7 +161,6 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           </Link>
         </div>
         <div className="flex gap-[10px]">
-          <ProductAddCartBtn inCart={inCart} product={product} />
           <button
             className={`bg-[#8A8A8A] p-2 text-white cursor-pointer hover:opacity-90 transition-colors ${inWishList ? '!bg-[var(--theme-color)] text-white' : ''}`}
             onClick={(e) => {
@@ -166,6 +175,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           >
             <FaRegHeart />
           </button>
+          <ProductAddCartBtn inCart={inCart} product={product} />
         </div>
       </div>
     </div>

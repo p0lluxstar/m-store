@@ -3,7 +3,8 @@ export const FilterAndSortProducts = (
   sortBy: string,
   minPrice: number,
   maxPrice: number,
-  nameProduct: string
+  nameProduct: string,
+  tag: string | string[]
 ) => {
   // Фильтрация по имени товара или ID
   const filteredByNameOrId = nameProduct
@@ -20,15 +21,26 @@ export const FilterAndSortProducts = (
     : products;
 
   // Фильтрация по цене
-  const filteredProducts = filteredByNameOrId.filter((product) => {
+  const filteredByPriceProducts = filteredByNameOrId.filter((product) => {
     const price = product.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
     return (
       (minPrice === undefined || price >= minPrice) && (maxPrice === undefined || price <= maxPrice)
     );
   });
 
+  // фильтрация по тегу
+  const filteredByTagsProducts = tag
+    ? filteredByPriceProducts.filter((product) => {
+        // Приводим tag к массиву (если это строка - делаем массив из одного элемента)
+        const tagsToFilter = Array.isArray(tag) ? tag : [tag];
+
+        // Проверяем, что хотя бы один тег продукта совпадает с любым из искомых тегов
+        return product.tags?.some((productTag) => tagsToFilter.includes(productTag.value));
+      })
+    : filteredByPriceProducts;
+
   // Сортировка
-  const sortedProducts = filteredProducts.sort((a, b) => {
+  const sortedProducts = filteredByTagsProducts.sort((a, b) => {
     const priceA = a.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
     const priceB = b.variants?.[0]?.calculated_price?.calculated_amount ?? 0;
     const titleA = a.title.toLowerCase();

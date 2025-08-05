@@ -13,7 +13,7 @@ interface IParams {
 }
 
 const title = 'О товаре';
-const pageLink = [{ label: title, href: '/catalog' }];
+const pageLink = [{ label: 'Каталог', href: '/catalog' }];
 
 export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   const { product } = await params;

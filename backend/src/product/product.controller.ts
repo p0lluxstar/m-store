@@ -15,14 +15,16 @@ export class ProductController {
     @Query('sortBy') sortBy?: string,
     @Query('minPrice') minPrice?: string,
     @Query('maxPrice') maxPrice?: string,
-    @Query('searchParam') searchParam?: string
+    @Query('searchParam') searchParam?: string,
+    @Query('tag') tag?: string | string[]
   ) {
     return this.medusaService.getProducts(
       process.env.REGION_ID,
       sortBy ?? 'title_asc',
       minPrice ? Number(minPrice) : undefined,
       maxPrice ? Number(maxPrice) : undefined,
-      searchParam
+      searchParam,
+      tag
     );
   }
 

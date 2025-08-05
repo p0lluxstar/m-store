@@ -18,6 +18,17 @@ export const MAIN_MENU_ITEMS = [
   },
 ];
 
+export const SECONDARY_MENU_ITEMS = [
+  {
+    name: 'Изабранное',
+    url: '/wishlist',
+  },
+  {
+    name: 'Корзина',
+    url: '/cart',
+  },
+];
+
 export const PRODUCT_TAGS = {
   SALE: {
     id: '',
@@ -33,25 +44,27 @@ export const PRODUCT_TAGS = {
   },
 };
 
+export const PRODUCT_TAGS_NAME = ['sale', 'new', 'hit'];
+
 export const STORE_NAME = 'M-Store';
 
 export const MAIN_SLIDER_ITEMS = [
   {
     id: 1,
-    imgUrl: '/img/jpg/main-slider/1.jpg',
-    title: 'Эксклюзивные новые сумки',
+    imgUrl: '/main-slider/1.png',
+    title: 'Уникальные новинки',
     description: 'от классики до смелых современных форм',
   },
   {
     id: 2,
-    imgUrl: '/img/webp/main-slider/1.webp',
+    imgUrl: '/main-slider/2.png',
     title: 'Роскошные материалы',
     description: 'натуральная кожа, экокожа, металлическая фурнитура',
   },
   {
     id: 3,
-    imgUrl: '/img/webp/main-slider/1.webp',
-    title: 'Исключительный комфор',
+    imgUrl: '/main-slider/3.png',
+    title: 'Идеальный комфор',
     description: 'удобные ручки, регулируемые ремни, продуманные отделения',
   },
 ];
@@ -66,10 +79,10 @@ export const BRAND_SLIDER_ITEMS = [
 ];
 
 export const SPECIAL_OFFER = {
-  title: 'Спортивные сумки',
-  description: 'Скидка до 30% на все спортивные сумки',
+  title: 'Рюкзаки Jansport ',
+  description: 'Скидка до 30% на весь брэнд Jansport',
   imgsUrl: ['/special-offer/1.jpg', '/special-offer/2.jpg'],
-  link: '/',
+  link: '/catalog/jansport',
 };
 
 export const OUR_COMPANY = {
@@ -133,3 +146,13 @@ export const CLIENT_FEEDBACK_ITEMS = [
     imgUrl: '/client-feedback/5.jpg',
   },
 ];
+
+export const DISCOUNT_VALUE = 1500;
+
+// сколько показывать товаров по умолчанию и по скольку догружать
+export const COUNT_ITEMS_PRODUCT_LOADING = 9;
+
+export const PRICE_FILTER_VALUE = {
+  min: 3000,
+  max: 15000
+}
