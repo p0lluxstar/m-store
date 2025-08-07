@@ -40,7 +40,7 @@ const TagFilter = (): JSX.Element => {
       <h3 className="text-[#535353] text-[22px] font-medium [border-bottom:2px_solid_#e1e1e1] pb-[15px] mb-[15px]">
         Фильтр по тегу
       </h3>
-      <div className='flex flex-col gap-[6px] max-[900px]:flex-row max-[900px]:gap-[20px]'>
+      <div className="flex flex-col gap-[6px] max-[900px]:flex-row max-[900px]:gap-[20px]">
         {PRODUCT_TAGS_NAME.map((tag) => (
           <div className={styles.checkboxItem} key={tag}>
             <label className="flex items-center cursor-pointer">

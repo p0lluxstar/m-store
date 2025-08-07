@@ -8,7 +8,7 @@ import MainWrapper from '@/components/main/MainWrapper';
 import PageHeaderArea from '@/components/PageHeaderArea';
 import { STORE_NAME } from '@/constants';
 
-const title = "О нас"
+const title = 'О нас';
 
 export const metadata = {
   title: `${title} | ${STORE_NAME}`,
@@ -20,7 +20,7 @@ const pageLink = [{ label: title, href: '/about' }];
 export default function AboutPage(): JSX.Element {
   return (
     <MainWrapper>
-      <PageHeaderArea title={title}/>
+      <PageHeaderArea title={title} />
       <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
         <Breadcrumbs pageLink={pageLink} />
         <OurCompany />

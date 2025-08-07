@@ -29,9 +29,9 @@ const FooterMain = (): JSX.Element => {
   };
 
   return (
-    <div className="py-24 text-[var(--white-ca)] px-[40px] max-[500px]:px-[20px]">
-      <div className="max-w-[var(--content-max-width)] mx-auto max-[1000px]:max-w-[80%]">
-        <div className="grid grid-cols-4 gap-10 max-[1000px]:grid-cols-2 max-[700px]:grid-cols-1">
+    <div className="py-24 text-[var(--white-ca)]">
+      <div className="max-w-[var(--content-max-width)] mx-auto">
+        <div className="grid grid-cols-4 gap-10 max-[1000px]:grid-cols-2 max-[700px]:grid-cols-1 px-[40px] max-[500px]:px-[20px]">
           <div className="widget-item">
             <div className="about-widget-wrap max-[700px]:flex flex-col justify-center items-center">
               <div className="mb-[20px]">

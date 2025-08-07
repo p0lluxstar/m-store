@@ -51,19 +51,19 @@ export const STORE_NAME = 'M-Store';
 export const MAIN_SLIDER_ITEMS = [
   {
     id: 1,
-    imgUrl: '/main-slider/1.png',
+    imgUrl: '/main-slider/1.webp',
     title: 'Уникальные новинки',
     description: 'от классики до смелых современных форм',
   },
   {
     id: 2,
-    imgUrl: '/main-slider/2.png',
+    imgUrl: '/main-slider/2.webp',
     title: 'Роскошные материалы',
     description: 'натуральная кожа, экокожа, металлическая фурнитура',
   },
   {
     id: 3,
-    imgUrl: '/main-slider/3.png',
+    imgUrl: '/main-slider/3.webp',
     title: 'Идеальный комфор',
     description: 'удобные ручки, регулируемые ремни, продуманные отделения',
   },
@@ -154,5 +154,5 @@ export const COUNT_ITEMS_PRODUCT_LOADING = 9;
 
 export const PRICE_FILTER_VALUE = {
   min: 3000,
-  max: 15000
-}
+  max: 15000,
+};

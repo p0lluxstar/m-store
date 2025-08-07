@@ -26,7 +26,7 @@ const ProductsCatalog = (): JSX.Element => {
     if (minPrice) params.set('minPrice', minPrice.toString());
     if (maxPrice) params.set('maxPrice', maxPrice.toString());
     if (searchParam) params.set('searchParam', searchParam);
-    
+
     // Добавляем все теги (если API поддерживает `?tag=tag1&tag=tag2`)
     tag.forEach((t) => params.append('tag', t));
 

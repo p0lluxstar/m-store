@@ -18,7 +18,6 @@ import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductImageSlider from './ProductImageSlider';
 import ProductTags from './ProductTags';
 
-
 interface Props {
   product: IProduct;
 }
@@ -121,7 +120,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
       <div className="w-[50%] max-[800px]:w-[100%]">
         <h3 className="text-[36px] font-medium text-black">{product.title}</h3>
         <div className="text-[30px] font-bold text-black">
-          <div className='flex gap-[10px]'>
+          <div className="flex gap-[10px]">
             <p>{price.toFixed(2)}₽</p>
             {product.tags.some((tag) => tag.value === 'sale') && (
               <p className="text-[#a9a9a9] text-[22px] font-normal line-through">

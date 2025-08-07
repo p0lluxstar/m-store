@@ -8,7 +8,7 @@ import PageHeaderArea from '@/components/PageHeaderArea';
 import ProductsCatalog from '@/components/product/ProductsCatalog';
 import { STORE_NAME } from '@/constants';
 
-const title = "Каталог"
+const title = 'Каталог';
 
 export const metadata = {
   title: `${title} | ${STORE_NAME}`,
@@ -20,7 +20,7 @@ const pageLink = [{ label: title, href: '/catalog' }];
 const CategoryProductPage = (): JSX.Element => {
   return (
     <MainWrapper>
-      <PageHeaderArea title={title}/>
+      <PageHeaderArea title={title} />
       <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
         <Breadcrumbs pageLink={pageLink} />
         <div className="flex gap-[40px] max-[900px]:flex-col">

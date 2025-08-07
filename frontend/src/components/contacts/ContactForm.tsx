@@ -51,7 +51,7 @@ const ContactForm = (): JSX.Element => {
 
   return (
     <div className="flex gap-[20px] max-[1100px]:justify-center max-[1100px]:items-center max-[1100px]:flex-col">
-      <div className="w-[75%] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] p-[60px] rounded-[15px]  max-[1100px]:w-[90%] max-[600px]:p-[40px]">
+      <div className="w-[75%] [box-shadow:-4px_0px_20px_0px_rgba(0,_0,_0,_0.1)] p-[60px] rounded-[15px]  max-[1100px]:w-[100%] max-[600px]:p-[40px]">
         <div>
           <h2 className="font-medium text-[34px] text-black leading-[1.2] mb-[40px]">
             Есть вопросы?
@@ -124,7 +124,7 @@ const ContactForm = (): JSX.Element => {
           </button>
         </div>
       </div>
-      <div className="flex flex-col justify-between w-[25%] max-[1100px]:flex-row max-[1100px]:w-[90%] max-[1100px]:gap-[20px] max-[900px]:flex-col">
+      <div className="flex flex-col justify-between w-[25%] max-[1100px]:flex-row max-[1100px]:w-[100%] max-[1100px]:gap-[20px] max-[900px]:flex-col">
         <div className={`max-[1100px]:w-[33%] max-[900px]:w-[100%] ${styles.singleСontact}`}>
           <div className="mb-[20px]">
             <Image src={'/img/webp/home.webp'} alt="" width={70} height={70} />

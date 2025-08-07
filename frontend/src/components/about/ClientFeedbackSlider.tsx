@@ -8,7 +8,6 @@ import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 
 import { CLIENT_FEEDBACK_ITEMS } from '@/constants';
 
-
 const ClientFeedbackSlider = (): JSX.Element => {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 60000 })]);
 

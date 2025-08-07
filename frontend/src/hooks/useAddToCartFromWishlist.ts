@@ -27,6 +27,8 @@ export const useAddToCartFromWishlist = (): IUseAddToCartFromWishlist => {
       imagesUrl: product.imagesUrl,
       quantity: 1,
       price,
+      collectionHandle: product.collectionHandle,
+      collectionTitle: product.collectionTitle,
     };
 
     dispatch(addItemToCart(item));

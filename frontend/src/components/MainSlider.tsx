@@ -44,7 +44,7 @@ const MainSlider = (): JSX.Element => {
             </div>
           ))}
         </div>
-        <div className="flex gap-4 absolute right-[20px] bottom-[20px]">
+        <div className="flex gap-4 absolute right-[40px] bottom-[20px] max-[500px]:right-[20px]">
           <button
             onClick={scrollPrev}
             className="flex items-center justify-center border-[1px] border-solid border-[#fff] rounded-[50%] w-[40px] h-[40px] text-[white] !text-[22px] cursor-pointer hover:opacity-90"

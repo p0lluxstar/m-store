@@ -26,9 +26,9 @@ const HeaderMiddle = (): JSX.Element => {
   };
 
   return (
-    <div className="py-6.25 px-[40px] max-[500px]:px-[20px]">
+    <div className="py-6.25">
       <div className="max-w-[var(--content-max-width)] mx-auto">
-        <div className="flex justify-between items-center max-[400px]:flex-col">
+        <div className="flex justify-between items-center max-[400px]:flex-col px-[40px] max-[500px]:px-[20px]">
           <div className="flex items-center">
             <div className="max-[400px]:mb-[30px]">
               <Link href="/">

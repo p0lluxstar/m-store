@@ -23,7 +23,7 @@ const ScrollTop = (): JSX.Element => {
     };
   }, []);
   return (
-    <div className="fixed bottom-[1em] right-[1em] bg-transparent text-[1.8rem] [transition:transform_0.2s_ease-in-out]">
+    <div className="fixed bottom-[1em] right-[1em] bg-transparent text-[1.8rem] [transition:transform_0.2s_ease-in-out] max-[1200px]:right-[0.5rem]">
       {isVisible && (
         <button
           aria-label="Scroll up"

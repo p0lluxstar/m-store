@@ -1,9 +1,9 @@
 .checkboxItem {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-.checkboxItem input[type='checkbox']{
+.checkboxItem input[type='checkbox'] {
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
@@ -18,20 +18,20 @@
 }
 
 .checkboxItem input[type='checkbox']:after {
-    content: '';
-    display: block;
-    width: 70%;
-    height: 40%;
-    background-color: transparent;
-    border-bottom: 35px solid white;
-    border-left: 35px solid white;
-    transform: rotate(-45deg) translate(7%, -5%);
-    box-sizing: border-box;
-    transition: all 0.2s;
+  content: '';
+  display: block;
+  width: 70%;
+  height: 40%;
+  background-color: transparent;
+  border-bottom: 35px solid white;
+  border-left: 35px solid white;
+  transform: rotate(-45deg) translate(7%, -5%);
+  box-sizing: border-box;
+  transition: all 0.2s;
 }
 
 .checkboxItem input[type='checkbox']:checked {
-  background-color:#eb3e32;
+  background-color: #eb3e32;
   border-color: #eb3e32;
 }
 

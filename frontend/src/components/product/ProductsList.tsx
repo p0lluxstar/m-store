@@ -16,7 +16,6 @@ import Loader from '../Loader';
 
 import ProductItem from './ProductItem';
 
-
 interface IProps {
   fetchUrl: string;
 }

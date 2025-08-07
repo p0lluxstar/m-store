@@ -9,7 +9,7 @@ import PageHeaderArea from '@/components/PageHeaderArea';
 import ProductsCatalog from '@/components/product/ProductsCatalog';
 import { STORE_NAME } from '@/constants';
 
-const title = "Каталог"
+const title = 'Каталог';
 
 export const metadata = {
   title: `${title} | ${STORE_NAME}`,
@@ -21,18 +21,20 @@ const pageLink = [{ label: title, href: '/catalog' }];
 export default function ShopPage(): JSX.Element {
   return (
     <MainWrapper>
-      <PageHeaderArea title={title}/>
-      <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
-        <Breadcrumbs pageLink={pageLink} />
-        <div className="flex gap-[40px] max-[900px]:flex-col">
-          <CatalogFilters />
-          <div className="w-[100%]">
-            <Suspense fallback={<div>Загрузка сортировки...</div>}>
-              <CatalogSort />
-            </Suspense>
-            <Suspense fallback={<div>Загрузка каталога...</div>}>
-              <ProductsCatalog />
-            </Suspense>
+      <PageHeaderArea title={title} />
+      <div className="mx-[auto] my-[0] max-w-[1200px]">
+        <div className='px-[40px] max-[500px]:px-[20px]'>
+          <Breadcrumbs pageLink={pageLink} />
+          <div className="flex gap-[40px] max-[900px]:flex-col">
+            <CatalogFilters />
+            <div className="w-[100%]">
+              <Suspense fallback={<div>Загрузка сортировки...</div>}>
+                <CatalogSort />
+              </Suspense>
+              <Suspense fallback={<div>Загрузка каталога...</div>}>
+                <ProductsCatalog />
+              </Suspense>
+            </div>
           </div>
         </div>
       </div>

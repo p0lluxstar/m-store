@@ -10,13 +10,15 @@ import SpecialOffer from '@/components/SpecialOffer';
 export default function HomePage(): JSX.Element {
   return (
     <MainWrapper>
-      <MainSlider />
-      <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
-        <ServiceInfo />
-        <ProductsHitSection />
-        <SpecialOffer />
-        <BrandSlider />
-      </div>
+        <MainSlider />
+        <div className="mx-[auto] my-[0] max-w-[1200px]">
+          <div className="px-[40px] max-[500px]:px-[20px]">
+            <ServiceInfo />
+            <ProductsHitSection />
+            <SpecialOffer />
+            <BrandSlider />
+          </div>
+        </div>
     </MainWrapper>
   );
 }

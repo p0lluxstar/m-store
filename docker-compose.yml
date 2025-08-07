@@ -7,12 +7,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile.app
     environment:
-      - API_PORT='4000'
-      - API_HOST='localhost'
+      - API_PORT=${API_PORT}
+      - API_HOST=${API_HOST}
     networks:
       - mstore
     ports:
-      - '4000:4000'  
+      - '${API_PORT}:${API_PORT}'
   frontend:
     build:
       context: ./frontend
@@ -24,7 +24,7 @@ services:
     networks:
       - mstore
     ports:
-      - '3000:3000'  
+      - '${FRONTEND_PORT}:${FRONTEND_PORT}'   
 
 networks:
   mstore:

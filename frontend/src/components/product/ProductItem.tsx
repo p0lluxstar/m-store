@@ -15,7 +15,6 @@ import { EViewMode } from '@/types';
 import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductTags from './ProductTags';
 
-
 interface IProps {
   product: IProduct;
   isViewModeLocked?: boolean;

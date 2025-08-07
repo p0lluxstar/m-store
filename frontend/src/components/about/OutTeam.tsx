@@ -25,7 +25,7 @@ const OurTeam = (): JSX.Element => {
               height={270}
             />
             <h4 className="text-black font-bold text-[18px] text-center">{item.name}</h4>
-            <p className='text-center'>{item.position}</p>
+            <p className="text-center">{item.position}</p>
           </div>
         ))}
       </div>

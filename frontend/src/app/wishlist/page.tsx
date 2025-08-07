@@ -20,7 +20,7 @@ const WishListPage = (): JSX.Element => {
 
   return (
     <MainWrapper>
-      <PageHeaderArea title={title}/>
+      <PageHeaderArea title={title} />
       <div className="mx-[auto] my-[0] px-[40px] max-[500px]:px-[20px] max-w-[1200px]">
         <Breadcrumbs pageLink={pageLink} />
         {hasMounted ? <WishListTable /> : <Loader backgroundColor="#eb3e32" />}
