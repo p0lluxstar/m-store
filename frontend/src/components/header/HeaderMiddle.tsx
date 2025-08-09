@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { JSX } from 'react';
+import { JSX, Suspense } from 'react';
 import { IoSearch } from 'react-icons/io5';
 import { LuMenu } from 'react-icons/lu';
 import { useDispatch } from 'react-redux';
@@ -43,7 +43,9 @@ const HeaderMiddle = (): JSX.Element => {
             </div>
           </div>
           <div className="max-[900px]:hidden">
-            <FormProductSearch />
+            <Suspense fallback={<div>Загрузка...</div>}>
+              <FormProductSearch />
+            </Suspense>
           </div>
           <div className="max-[400px]:w-[100%]">
             <div className="flex gap-5 relative max-[400px]:justify-around">

@@ -1,6 +1,22 @@
 version: '3.8'
 
 services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: mstore-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - '${POSTGRES_PORT}:${POSTGRES_PORT}'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - postgres-logs:/var/log/postgresql
+    networks:
+      - mstore
+
   backend:
     container_name: mstore-backend
     build:
@@ -13,11 +29,12 @@ services:
       - mstore
     ports:
       - '${API_PORT}:${API_PORT}'
+
   frontend:
+    container_name: mstore-frontend
     build:
       context: ./frontend
       dockerfile: Dockerfile.app
-    container_name: mstore-frontend
     environment:
       - NODE_ENV=production
     command: ['npm', 'run', 'start']
@@ -26,6 +43,27 @@ services:
     ports:
       - '${FRONTEND_PORT}:${FRONTEND_PORT}'   
 
+  medusajs:
+    container_name: mstore-medusajs
+    build:
+      context: ./medusa
+      dockerfile: Dockerfile.app
+    environment:
+      NODE_ENV: production
+      MEDUSA_ADMIN_CORS: ${MEDUSA_ADMIN_CORS}
+      MEDUSA_STORE_CORS: ${MEDUSA_STORE_CORS}
+      DATABASE_URL: ${MEDUSA_DATABASE_URL}
+    networks:
+      - mstore  
+    ports:
+      - '${MEDUSA_BACKAND_PORT}:${MEDUSA_BACKAND_PORT}' 
+    depends_on:
+      - postgres
+      
 networks:
   mstore:
     driver: bridge
+
+volumes:
+  postgres-data:
+  postgres-logs:    

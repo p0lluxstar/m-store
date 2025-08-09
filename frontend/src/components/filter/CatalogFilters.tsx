@@ -11,7 +11,9 @@ const CatalogFilters = (): JSX.Element => {
   return (
     <div className="flex-[0_0_auto] flex flex-col w-1/4 max-[900px]:w-[100%]">
       <div className="flex flex-col gap-[40px] top-[20px]">
-        <CategoryFilter />
+        <Suspense fallback={<div>Загрузка брэндов...</div>}>
+          <CategoryFilter />
+        </Suspense>
         <Suspense fallback={<div>Загрузка фильтров...</div>}>
           <PriceFilter />
           <TagFilter />

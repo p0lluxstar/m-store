@@ -23,7 +23,7 @@ export default function ShopPage(): JSX.Element {
     <MainWrapper>
       <PageHeaderArea title={title} />
       <div className="mx-[auto] my-[0] max-w-[1200px]">
-        <div className='px-[40px] max-[500px]:px-[20px]'>
+        <div className="px-[40px] max-[500px]:px-[20px]">
           <Breadcrumbs pageLink={pageLink} />
           <div className="flex gap-[40px] max-[900px]:flex-col">
             <CatalogFilters />

@@ -1,6 +1,6 @@
 'use client';
 
-import { JSX } from 'react';
+import { JSX, Suspense } from 'react';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -29,7 +29,9 @@ const AsideProductSearch = (): JSX.Element => {
       >
         <VscChromeClose />
       </button>
-      <FormProductSearch />
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <FormProductSearch />
+      </Suspense>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { JSX } from 'react';
+import { JSX, Suspense } from 'react';
 
 import Breadcrumbs from '@/components/Breadcrumbs';
 import CatalogFilters from '@/components/filter/CatalogFilters';
@@ -26,7 +26,9 @@ const CategoryProductPage = (): JSX.Element => {
         <div className="flex gap-[40px] max-[900px]:flex-col">
           <CatalogFilters />
           <div className="w-[100%]">
-            <CatalogSort />
+            <Suspense fallback={<div>Загрузка сортировки...</div>}>
+              <CatalogSort />
+            </Suspense>
             <ProductsCatalog />
           </div>
         </div>
