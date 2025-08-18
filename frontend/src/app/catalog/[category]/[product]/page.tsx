@@ -30,8 +30,6 @@ export async function generateMetadata({ params }: IParams): Promise<Metadata> {
   };
 }
 
-// const ProductPage = ({ params }: IParams): JSX.Element => {
-
 const ProductPage = ({ params }: IParams): JSX.Element => {
   return (
     <MainWrapper>

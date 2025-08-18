@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
 import { FaRegHeart } from 'react-icons/fa6';
@@ -12,8 +11,11 @@ import { RootState } from '@/store';
 import { IProduct } from '@/types';
 import { EViewMode } from '@/types';
 
+import MedusaImage from '../MedusaImage';
+
 import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductTags from './ProductTags';
+
 
 interface IProps {
   product: IProduct;
@@ -53,7 +55,7 @@ const ProductItem = ({ product, isViewModeLocked = false }: IProps): JSX.Element
             <ProductTags tags={product.tags} />
           </div>
           <Link href={`/catalog/${product.collection.handle}/${product.id}`}>
-            <Image
+            <MedusaImage
               className={`${isTableOrLocked && 'mb-[10px]'} w-[100%] rounded-[10px] mb-[0px] group-hover:opacity-90 transition-opacity`}
               src={product.images[0]?.url || '/img/webp/product.webp'}
               alt="product"

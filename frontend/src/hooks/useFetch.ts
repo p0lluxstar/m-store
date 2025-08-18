@@ -16,6 +16,7 @@ export function useFetch<T>(url: string): IUseFetch<T> {
 
     const fetchData = async (): Promise<void> => {
       try {
+        setLoading(true);
         const res = await fetch(url);
 
         if (!res.ok) {

@@ -8,7 +8,7 @@ interface IProps {
 }
 
 const CategoryDesk = ({ categoryHandle }: IProps): JSX.Element | null => {
-  const url = `http://localhost:4000/categories/category?handle=${categoryHandle}`;
+  const url = `${process.env.NEXT_PUBLIC_API_HOST}/categories/category?handle=${categoryHandle}`;
   const { data: category, loading, error } = useFetch<ICategory[]>(url);
 
   if (loading) return null;

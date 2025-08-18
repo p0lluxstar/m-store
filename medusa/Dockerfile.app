@@ -13,18 +13,8 @@ RUN npm install --production=false
 # Копируем остальные файлы
 COPY . .
 
-# Собираем проект (NODE_ENV должен быть установлен ДО сборки)
-ENV NODE_ENV production
-RUN npm run build
-
-# Устанавливаем зависимости для серверной части
-RUN cd .medusa/server && npm install --production
-
-# Копируем .env в .env.production для серверной части
-RUN cp .env .medusa/server/.env.production
-
 # Запускаем из каталога .medusa/server
-CMD ["sh", "-c", "cd .medusa/server && npm run start"]
+CMD ["sh", "-c", "npm run dev"]
 
 # Открываем порт
 EXPOSE 9000

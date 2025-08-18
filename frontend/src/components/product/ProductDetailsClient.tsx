@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { JSX, useEffect, useState } from 'react';
 import { FaRegHeart } from 'react-icons/fa';
@@ -13,6 +12,8 @@ import { useDelToCartOrWishListFromProductItem } from '@/hooks/useDelToCartOrWis
 import { RootState } from '@/store';
 import { setBreadcrumbsLinks } from '@/store/slices/breadcrumbsLinksSlice';
 import { IProduct } from '@/types';
+
+import MedusaImage from '../MedusaImage';
 
 import ProductAddCartBtn from './ProductAddCartBtn';
 import ProductImageSlider from './ProductImageSlider';
@@ -90,13 +91,12 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           className="cursor-pointer hover:opacity-90 transition-opacity"
           onClick={() => openSlider(0)}
         >
-          <Image
+          <MedusaImage
             className="rounded-[15px] border-[1px] border-solid border-[#e1e1e1]"
             src={product.images[0]?.url || '/img/webp/product.webp'}
             alt="Main product"
             width={550}
             height={550}
-            priority
           />
         </div>
         <div className="flex gap-[20px]">
@@ -106,7 +106,7 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
               className="cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => openSlider(index + 1)}
             >
-              <Image
+              <MedusaImage
                 className="rounded-[10px] border-[1px] border-solid border-[#e1e1e1]"
                 src={image.url}
                 alt={`Thumbnail ${index + 1}`}

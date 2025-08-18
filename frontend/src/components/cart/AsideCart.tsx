@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { JSX, useEffect, useState } from 'react';
 import { FaChevronRight } from 'react-icons/fa';
@@ -11,6 +10,8 @@ import { RootState } from '@/store';
 import { delItemFromCart } from '@/store/slices/cartItemsSlice';
 import { toggleVisibility } from '@/store/slices/toggleAsideCartSlice';
 import { ICartItem } from '@/types';
+
+import MedusaImage from '../MedusaImage';
 
 const AsideCart = (): JSX.Element | null => {
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const AsideCart = (): JSX.Element | null => {
               {cartItems.map((item: ICartItem) => {
                 return (
                   <li className="flex mb-[30px]" key={item.id}>
-                    <Image
+                    <MedusaImage
                       className="mr-[20px]"
                       src={item.imagesUrl || '/img/webp/aside-cart-img-product.webp'}
                       alt=""

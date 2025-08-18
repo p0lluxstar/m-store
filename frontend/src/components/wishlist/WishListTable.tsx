@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
@@ -11,6 +10,7 @@ import { RootState } from '@/store';
 import { delItemFromWishlist, clearWishlist } from '@/store/slices/wishLikstItemsSlice';
 
 import EmptyState from '../EmptyState';
+import MedusaImage from '../MedusaImage';
 
 const WishListTable = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const WishListTable = (): JSX.Element => {
                 </button>
               </td>
               <td>
-                <Image
+                <MedusaImage
                   src={item.imagesUrl || '/img/webp/aside-cart-img-product.webp'}
                   alt="product img"
                   width={90}

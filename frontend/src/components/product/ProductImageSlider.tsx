@@ -40,8 +40,18 @@ const ProductImageSlider = ({
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  // Закрытие при клике на фон (но не на контент)
+  const handleBackdropClick = (e: React.MouseEvent<HTMLDivElement>): void => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 bg-[#292929]/80 z-50 flex items-center justify-center p-4">
+    <div
+      className="fixed inset-0 bg-[#292929]/80 z-50 flex items-center justify-center p-4 cursor-pointer"
+      onClick={handleBackdropClick}
+    >
       <button
         onClick={onClose}
         className="absolute top-4 right-4 text-white text-2xl cursor-pointer hover:text-gray-300 z-20"
@@ -49,7 +59,7 @@ const ProductImageSlider = ({
         <FaTimes size={24} />
       </button>
 
-      <div className="relative w-full max-w-4xl h-full max-h-[90vh] flex items-center">
+      <div className="relative w-full max-w-4xl h-full max-h-[90vh] flex items-center cursor-default">
         <button
           onClick={goToPrev}
           className="absolute left-4 text-white text-2xl hover:text-gray-300 z-10 p-2 cursor-pointer"
@@ -62,8 +72,9 @@ const ProductImageSlider = ({
             src={images[currentIndex].url}
             alt={`Product image ${currentIndex + 1}`}
             fill
-            className="object-contain rounded-[15px]"
+            className="object-contain rounded-[15px] cursor-default"
             priority
+            unoptimized
           />
         </div>
 
@@ -80,7 +91,7 @@ const ProductImageSlider = ({
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? 'bg-white' : 'bg-gray-500 hover:bg-gray-400'}`}
+            className={`w-3 h-3 rounded-full transition-colors cursor-pointer ${index === currentIndex ? 'bg-white' : 'bg-gray-500 hover:bg-gray-400'}`}
           />
         ))}
       </div>

@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { JSX } from 'react';
 import { HiMiniMinusSmall } from 'react-icons/hi2';
@@ -17,6 +16,7 @@ import {
 } from '@/store/slices/cartItemsSlice';
 
 import EmptyState from '../EmptyState';
+import MedusaImage from '../MedusaImage';
 
 const TableCart = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -75,7 +75,7 @@ const TableCart = (): JSX.Element => {
                 </button>
               </td>
               <td>
-                <Image
+                <MedusaImage
                   src={item.imagesUrl || '/img/webp/aside-cart-img-product.webp'}
                   alt="product img"
                   width={90}

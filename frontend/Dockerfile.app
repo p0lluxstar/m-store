@@ -10,6 +10,10 @@ COPY package*.json ./
 # Устанавливаем зависимости
 RUN npm install
 
+# Передаём переменную окружения на этапе сборки
+ARG NEXT_PUBLIC_MEDIA_URL
+ENV NEXT_PUBLIC_MEDIA_URL=${NEXT_PUBLIC_MEDIA_URL}
+
 # Копируем исходный код приложения
 COPY . .
 
@@ -27,6 +31,7 @@ COPY --from=builder /app/.next .next
 COPY --from=builder /app/node_modules node_modules
 COPY --from=builder /app/package.json package.json
 COPY --from=builder /app/public public
+COPY --from=builder /app/next.config.ts ./
 
 # Запускаем Next.js в продакшен-режиме
 CMD ["npm", "start"]
