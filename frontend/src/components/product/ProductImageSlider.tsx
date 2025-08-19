@@ -55,7 +55,7 @@ const ProductImageSlider = ({
     >
       <button
         onClick={onClose}
-        className="absolute top-3 right-3 text-gray-300 text-2xl cursor-pointer hover:text-gray-300 z-20"
+        className="absolute top-3 right-3 text-gray-300 text-2xl cursor-pointer hover:text-gray-400 z-20"
       >
         <FaTimes size={24} />
       </button>
@@ -63,7 +63,7 @@ const ProductImageSlider = ({
       <div className="relative w-full max-w-4xl h-full max-h-[90vh] flex items-center cursor-default">
         <button
           onClick={goToPrev}
-          className="absolute left-4 text-gray-300 text-2xl hover:text-gray-300 z-10 p-2 cursor-pointer"
+          className="absolute left-4 text-gray-300 text-2xl hover:text-gray-400 z-10 p-2 cursor-pointer"
         >
           <FaChevronLeft size={32} />
         </button>
@@ -80,7 +80,7 @@ const ProductImageSlider = ({
 
         <button
           onClick={goToNext}
-          className="absolute right-4 text-gray-300 text-2xl hover:text-gray-300 z-10 p-2 cursor-pointer"
+          className="absolute right-4 text-gray-300 text-2xl hover:text-gray-400 z-10 p-2 cursor-pointer"
         >
           <FaChevronRight size={32} />
         </button>
