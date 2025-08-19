@@ -140,12 +140,12 @@ const ProductDetailsClient = ({ product }: Props): JSX.Element => {
           <ul className="my-[20px] text-[14px]">
             {propertyList.map((property, index) => (
               <li className="flex items-center mb-[6px] ml-[-4px] leading-none" key={index}>
-                <>
-                  <span className="text-[16px]">
-                    <VscDebugBreakpointLog />
+                <div className='flex'>
+                  <span className="text-[14px]">
+                    <VscDebugBreakpointLog className='mr-[2px]'/>
                   </span>
-                  <span className="ml-[2px]">{property}</span>
-                </>
+                  <span>{property}</span>
+                </div>
               </li>
             ))}
           </ul>

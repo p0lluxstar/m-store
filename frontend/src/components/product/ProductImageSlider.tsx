@@ -1,8 +1,9 @@
 'use client';
 
-import Image from 'next/image';
 import { useState, useEffect, JSX } from 'react';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+import MedusaImage from '../MedusaImage';
 
 interface IProductImageSliderProps {
   images: Array<{
@@ -54,7 +55,7 @@ const ProductImageSlider = ({
     >
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 text-white text-2xl cursor-pointer hover:text-gray-300 z-20"
+        className="absolute top-3 right-3 text-gray-300 text-2xl cursor-pointer hover:text-gray-300 z-20"
       >
         <FaTimes size={24} />
       </button>
@@ -62,25 +63,24 @@ const ProductImageSlider = ({
       <div className="relative w-full max-w-4xl h-full max-h-[90vh] flex items-center cursor-default">
         <button
           onClick={goToPrev}
-          className="absolute left-4 text-white text-2xl hover:text-gray-300 z-10 p-2 cursor-pointer"
+          className="absolute left-4 text-gray-300 text-2xl hover:text-gray-300 z-10 p-2 cursor-pointer"
         >
           <FaChevronLeft size={32} />
         </button>
 
         <div className="w-full h-full flex items-center justify-center">
-          <Image
+          <MedusaImage
+            className="w-full h-full object-cover"
             src={images[currentIndex].url}
             alt={`Product image ${currentIndex + 1}`}
-            fill
-            className="object-contain rounded-[15px] cursor-default"
-            priority
-            unoptimized
+            width={1000}
+            height={1000}
           />
         </div>
 
         <button
           onClick={goToNext}
-          className="absolute right-4 text-white text-2xl hover:text-gray-300 z-10 p-2 cursor-pointer"
+          className="absolute right-4 text-gray-300 text-2xl hover:text-gray-300 z-10 p-2 cursor-pointer"
         >
           <FaChevronRight size={32} />
         </button>
@@ -91,7 +91,7 @@ const ProductImageSlider = ({
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-3 h-3 rounded-full transition-colors cursor-pointer ${index === currentIndex ? 'bg-white' : 'bg-gray-500 hover:bg-gray-400'}`}
+            className={`w-3 h-3 rounded-full transition-colors cursor-pointer ${index === currentIndex ? 'bg-gray-300' : 'bg-gray-500 hover:bg-gray-400'}`}
           />
         ))}
       </div>

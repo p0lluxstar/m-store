@@ -17,7 +17,7 @@ const ServiceInfo = (): JSX.Element => {
           height={60}
           className={`mb-4 group-hover:-translate-y-1 transition-transform ${styles.serviceImg}`}
         />
-        <h3 className="uppercase font-bold text-lg mb-2 text-gray-800 text-center max-[700px]:text-[36px] max-[500px]:text-[28px]">
+        <h3 className="uppercase font-bold text-lg mb-2 text-gray-800 text-center max-[700px]:text-[36px] max-[500px]:text-[30px]">
           Бесплатная доставка
         </h3>
         <p className="text-center text-gray-500 text-sm px-4 max-[700px]:text-[20px] max-[500px]:text-[18px]">
@@ -32,7 +32,7 @@ const ServiceInfo = (): JSX.Element => {
           height={60}
           className={`mb-4 group-hover:rotate-6 transition-transform ${styles.serviceImg}`}
         />
-        <h3 className="uppercase font-bold text-lg mb-2 text-gray-800 text-center max-[700px]:text-[36px]">
+        <h3 className="uppercase font-bold text-lg mb-2 text-gray-800 text-center max-[700px]:text-[36px] max-[500px]:text-[30px]">
           Возврат денег
         </h3>
         <p className="text-center text-gray-500 text-sm px-4 max-[700px]:text-[20px]">
@@ -50,7 +50,7 @@ const ServiceInfo = (): JSX.Element => {
           height={60}
           className={`mb-4 group-hover:scale-105 transition-transform ${styles.serviceImg}`}
         />
-        <h3 className="uppercase font-bold text-lg mb-2 text-gray-800 text-center max-[700px]:text-[36px]">
+        <h3 className="uppercase font-bold text-lg mb-2 text-gray-800 text-center max-[700px]:text-[36px] max-[500px]:text-[30px]">
           Поддержка 24/7
         </h3>
         <p className="text-center text-gray-500 text-sm px-4 max-[700px]:text-[20px]">

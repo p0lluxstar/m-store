@@ -8,7 +8,7 @@ const SpecialOffer = (): JSX.Element => {
   return (
     <section className="mb-[60px]">
       <div className="flex flex-col justify-center items-center mb-[60px]">
-        <h2 className="text-xl font-bold mb-2 text-[42px] text-center">Акции и скидки</h2>
+        <h2 className="text-xl font-bold mb-[15px] leading-[1] text-[42px] text-center">Акции и скидки</h2>
         <p className="text-gray-600 text-[22px] text-center">
           Специальные предложения, скидки и эксклюзивные бонусы
         </p>
@@ -38,7 +38,7 @@ const SpecialOffer = (): JSX.Element => {
             </Link>
           </div>
           <div className="ml-[40px] max-[800px]:ml-[0px]">
-            <h2 className="text-[50px] font-bold mb-[10px]">{SPECIAL_OFFER.title}</h2>
+            <h2 className="text-[50px] font-bold mb-[15px] leading-[1]">{SPECIAL_OFFER.title}</h2>
             <p className="text-[20px] mb-[30px] uppercase text-[#595858]">
               {SPECIAL_OFFER.description}
             </p>

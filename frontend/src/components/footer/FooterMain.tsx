@@ -93,19 +93,17 @@ const FooterMain = (): JSX.Element => {
                 {openMenus.customers ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </span>
             </h4>
-            <div className={`${styles.menuList} ${openMenus.customers ? styles.open : ''}`}>
-              <ul className={`${styles.menuList} ${openMenus.mainMenu ? styles.open : ''}`}>
-                {SECONDARY_MENU_ITEMS.map((item) => (
-                  <li key={item.name} className="max-[700px]:mb-2 last:max-[700px]:mb-0">
-                    <Link href={item.url}>
-                      <span className="font-semibold hover:text-[var(--theme-color)] transition-colors">
-                        {item.name}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <ul className={`${styles.menuList} ${openMenus.customers ? styles.open : ''}`}>
+              {SECONDARY_MENU_ITEMS.map((item) => (
+                <li key={item.name} className="max-[700px]:mb-2 last:max-[700px]:mb-0">
+                  <Link href={item.url}>
+                    <span className="font-semibold hover:text-[var(--theme-color)] transition-colors">
+                      {item.name}
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Контакты */}

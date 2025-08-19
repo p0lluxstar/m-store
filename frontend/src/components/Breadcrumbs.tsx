@@ -34,7 +34,7 @@ const Breadcrumbs = ({ pageLink }: IProps): JSX.Element => {
           </Link>
         </li>
         {totalLinks.map((link, index) => (
-          <li key={`${link.href}-${index}`} className="flex items-center">
+          <li key={`${link.href}-${index}`} className="flex items-center max-[400px]:text-[13px]">
             <span className="mx-1">/</span>
             <Link href={link.href} scroll={false} className="hover:opacity-80">
               {link.label}

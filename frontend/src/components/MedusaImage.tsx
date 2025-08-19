@@ -16,7 +16,7 @@ const MedusaImage = ({ className, src, alt, width, height }: IProps): JSX.Elemen
     ? `${process.env.NEXT_PUBLIC_MEDIA_URL}/static/${staticPath}`
     : src;
 
-  return <Image className={className} src={finalScr} alt={alt} width={width} height={height} />;
+  return <Image className={className} src={finalScr} alt={alt} width={width} height={height}/>;
 };
 
 export default MedusaImage;
