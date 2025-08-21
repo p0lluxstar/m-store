@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:15-alpine
     container_name: mstore-postgres
-    restart: unless-stopped
+    restart: always
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
@@ -19,6 +19,7 @@ services:
 
   backend:
     container_name: mstore-backend
+    restart: always
     build:
       context: ./backend
       dockerfile: Dockerfile.app
@@ -31,6 +32,7 @@ services:
 
   frontend:
     container_name: mstore-frontend
+    restart: always
     build:
       context: ./frontend
       dockerfile: Dockerfile.app
@@ -46,6 +48,7 @@ services:
 
   medusajs:
     container_name: mstore-medusajs
+    restart: always
     build:
       context: ./medusa
       dockerfile: Dockerfile.app 
