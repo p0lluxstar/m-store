@@ -2,6 +2,8 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: process.env.NODE_ENV === 'development',
+
     remotePatterns: [
       // process.env.NEXT_PUBLIC_MEDIA_URL исппользуется когда проект запущен в докере
       {
